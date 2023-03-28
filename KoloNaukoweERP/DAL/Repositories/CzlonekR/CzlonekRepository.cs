@@ -67,10 +67,5 @@ namespace DAL.Repositories.CzlonekR
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        public Czlonek GetCzlonekByID(int czlonekId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
