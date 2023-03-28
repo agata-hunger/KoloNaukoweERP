@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.SprzetR
 {
-    internal class SprzetRepository : ISprzetRepository, IDisposable
+    public class SprzetRepository : ISprzetRepository
     {
         private DbKoloNaukoweERP context;
 
@@ -41,31 +42,5 @@ namespace DAL.Repositories.SprzetR
         {
             context.Entry(sprzet).State = EntityState.Modified;
         }
-
-        public void Save()
-        {
-            //context.saveChanges();
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-
-        }
-
-        public void Dispose()
-        {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
     }
 }

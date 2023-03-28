@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.CzlonekR
 {
-    public class CzlonekRepository : ICzlonekRepository, IDisposable
+    public class CzlonekRepository : ICzlonekRepository
     {
         private DbKoloNaukoweERP context;
 
@@ -41,31 +41,6 @@ namespace DAL.Repositories.CzlonekR
         public void UpdateCzlonek(Czlonek czlonek)
         {
             context.Entry(czlonek).State = EntityState.Modified;
-        }
-
-        public void Save()
-        {
-            //context.saveChanges();  // do unitofWork - tylko on moze zapisywac
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

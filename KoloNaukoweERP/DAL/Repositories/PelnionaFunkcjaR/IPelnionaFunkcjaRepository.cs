@@ -14,6 +14,5 @@ namespace DAL.Repositories.PelnionaFunkcjaR
         void InsertPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja);
         void DeletePelnionaFunkcja(int idPelnionejFunkcji);
         void UpdatePelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja);
-        void Save();
     }
 }

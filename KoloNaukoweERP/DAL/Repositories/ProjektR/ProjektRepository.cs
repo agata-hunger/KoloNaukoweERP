@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.ProjektR
 {
-    public class ProjektRepository : IProjektRepository, IDisposable
+    public class ProjektRepository : IWydarzenieRepository
     {
         private DbKoloNaukoweERP context;
         
-        ProjektRepository(DbKoloNaukoweERP context)
+        public ProjektRepository(DbKoloNaukoweERP context)
         {
             this.context = context;
         }
@@ -42,29 +42,5 @@ namespace DAL.Repositories.ProjektR
         {
             context.Entry(projekt).State = EntityState.Modified;
         }
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)      // oba dispose i save w unitofwork
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);  
-        }
-
-
     }
 }

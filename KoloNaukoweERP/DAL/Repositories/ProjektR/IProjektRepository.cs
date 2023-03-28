@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.ProjektR
 {
-    public interface IProjektRepository
+    public interface IWydarzenieRepository
     {
         IEnumerable<Projekt> GetProjekty();
         Projekt GetProjektById(int idProjektu);
         void InsertProjekt(Projekt projekt);
         void DeleteProjekt(int idProjektu);
         void UpdateProjekt(Projekt projekt);
-        void Save();
     }
 }

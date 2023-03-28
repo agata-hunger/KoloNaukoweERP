@@ -12,7 +12,7 @@ namespace DAL.Repositories.ZespolR
     {
         private DbKoloNaukoweERP context;
 
-        ZespolRepository(DbKoloNaukoweERP context)
+        public ZespolRepository(DbKoloNaukoweERP context)
         {
             this.context = context;
         }
@@ -36,29 +36,6 @@ namespace DAL.Repositories.ZespolR
         public void UpdateZespol(Zespol zespol)
         {
             context.Entry(zespol).State = EntityState.Modified;
-        }
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
     }

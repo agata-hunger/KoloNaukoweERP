@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories.ProjektR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,58 +8,35 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.WydarzenieR
 {
-    public class WydarzenieRepository : IProjektRepository, IDisposable
+    public class WydarzenieRepository : IWydarzenieRepository
     {
         private DbKoloNaukoweERP context;
 
-        WydarzenieRepository(DbKoloNaukoweERP context)
+        public WydarzenieRepository(DbKoloNaukoweERP context)
         {
             this.context = context;
         }
-        public IEnumerable<Projekt> GetProjekty()
+        public IEnumerable<Wydarzenie> GetWydarzenia()
         {
-            return context.Projekty.ToList();
+            return context.Wydarzenia.ToList();
         }
-        public Projekt GetProjektById(int idProjektu)
+        public Wydarzenie GetWydarzenieById(int idWydarzenia)
         {
-            return context.Projekty.Find(idProjektu);
+            return context.Wydarzenia.Find(idWydarzenia);
+            
         }
-        public void InsertProjekt(Projekt projekt)
+        public void InsertWydarzenie(Wydarzenie wydarzenie)
         {
-            context.Projekty.Add(projekt);
+            context.Wydarzenia.Add(wydarzenie);
         }
-        public void DeleteProjekt(int idProjektu)
+        public void DeleteWydarzenie(int idWydarzenia)
         {
-            Projekt projekt = context.Projekty.Find(idProjektu);
-            context.Projekty.Remove(projekt);
+            Wydarzenie wydarzenie = context.Wydarzenia.Find(idWydarzenia);
+            context.Wydarzenia.Remove(wydarzenie);
         }
-        public void UpdateProjekt(Projekt projekt)
+        public void UpdateWydarzenie(Wydarzenie wydarzenie)
         {
-            context.Entry(projekt).State = EntityState.Modified;
+            context.Entry(wydarzenie).State = EntityState.Modified;
         }
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-        
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
     }
 }

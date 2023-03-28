@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.PelnionaFunkcjaR
 {
-    internal class PelnionaFunkcjaRepository : IPelnionaFunkcjaRepository, IDisposable
+    public class PelnionaFunkcjaRepository : IPelnionaFunkcjaRepository
     {
         private DbKoloNaukoweERP context;
 
@@ -41,31 +41,6 @@ namespace DAL.Repositories.PelnionaFunkcjaR
         public void UpdatePelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja)
         {
             context.Entry(pelnionaFunkcja).State = EntityState.Modified;
-        }
-
-        public void Save()
-        {
-            //context.saveChanges();
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
