@@ -48,7 +48,7 @@ namespace DAL.Repositories.ProjektR
         }
 
         private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)      // oba dispose i save w unitofwork
         {
             if (!this.disposed)
             {

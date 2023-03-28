@@ -7,7 +7,7 @@ using DAL.Entities;
 
 namespace DAL.Repositories.CzlonekR
 {
-    public interface ICzlonekRepository
+    public interface ICzlonekRepository 
     {
         IEnumerable<Czlonek> GetCzlonkowie();
         Czlonek GetCzlonekById(int idCzlonka);
