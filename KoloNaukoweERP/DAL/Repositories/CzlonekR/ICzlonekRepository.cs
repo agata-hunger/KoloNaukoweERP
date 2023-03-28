@@ -10,9 +10,9 @@ namespace DAL.Repositories.CzlonekR
     public interface ICzlonekRepository
     {
         IEnumerable<Czlonek> GetCzlonkowie();
-        Czlonek GetCzlonekByID(int czlonekId);
+        Czlonek GetCzlonekById(int idCzlonka);
         void InsertCzlonek(Czlonek czlonek);
-        void DeleteCzlonek(int czlonekId);
+        void DeleteCzlonek(int idCzlonka);
         void UpdateCzlonek(Czlonek czlonek);
         void Save();
     }
