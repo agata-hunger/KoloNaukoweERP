@@ -6,20 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Entities
 {
     public class Zespol
     {
         [Key]
         public int IdZespolu { get; set; }
 
-/*        public int? IdProjektu { get; set; }
-        [ForeignKey(nameof(IdProjektu))]
-        public Projekt? Projekt { get; set; }*/
+        /*        public int? IdProjektu { get; set; }
+                [ForeignKey(nameof(IdProjektu))]
+                public Projekt? Projekt { get; set; }*/
 
-/*        public int? IdWydarzenia { get; set; }
-        [ForeignKey(nameof(IdWydarzenia))]
-        public Wydarzenie? Wydarzenie { get; set; }*/
+        /*        public int? IdWydarzenia { get; set; }
+                [ForeignKey(nameof(IdWydarzenia))]
+                public Wydarzenie? Wydarzenie { get; set; }*/
 
         //public int? IdCzlonekZespol { get; set; }
         //[ForeignKey(nameof(IdCzlonekZespol))]
