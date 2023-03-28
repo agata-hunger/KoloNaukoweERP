@@ -24,16 +24,18 @@ namespace DAL
             Sprzety = new SprzetRepository(context);
             Wydarzenia = new WydarzenieRepository(context);
             Zespoly = new ZespolRepository(context);
-
         }
 
         public ICzlonekRepository Czlonkowie { get; private set; }
 
         public IPelnionaFunkcjaRepository PelnioneFunkcje { get; private set; }
 
-        public Repositories.ProjektR.IWydarzenieRepository Projekty { get; private set; }
+        public IProjektRepository Projekty { get; private set; }
+
         public ISprzetRepository Sprzety { get; private set; }
-        public Repositories.WydarzenieR.IWydarzenieRepository Wydarzenia { get; private set; }
+
+        public IWydarzenieRepository Wydarzenia { get; private set; }
+
         public IZespolRepository Zespoly { get; set; }
 
         public void Dispose()

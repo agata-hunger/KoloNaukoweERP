@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.ProjektR
 {
-    public interface IWydarzenieRepository
+    public interface IProjektRepository
     {
         IEnumerable<Projekt> GetProjekty();
         Projekt GetProjektById(int idProjektu);

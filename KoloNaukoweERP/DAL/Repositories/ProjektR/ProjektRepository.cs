@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.ProjektR
 {
-    public class ProjektRepository : IWydarzenieRepository
+    public class ProjektRepository : IProjektRepository
     {
         private DbKoloNaukoweERP context;
         

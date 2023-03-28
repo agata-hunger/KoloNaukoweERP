@@ -18,11 +18,13 @@ namespace DAL
 
         IPelnionaFunkcjaRepository PelnioneFunkcje { get; }
 
-        Repositories.ProjektR.IWydarzenieRepository Projekty { get; }
-        ISprzetRepository Sprzety { get; }
-        Repositories.WydarzenieR.IWydarzenieRepository Wydarzenia { get; }
-        IZespolRepository Zespoly { get; }
+        IProjektRepository Projekty { get; }
 
+        ISprzetRepository Sprzety { get; }
+
+        IWydarzenieRepository Wydarzenia { get; }
+
+        IZespolRepository Zespoly { get; }
 
         public void Save();
 
