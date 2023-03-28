@@ -15,7 +15,7 @@ namespace DAL
         public DbSet<Wydarzenie> Wydarzenia { get; set; }
         public DbSet<Zespol> Zespoly { get; set; }
         public DbSet<Projekt> Projekty { get; set; }
-        public DbSet<CzlonekZespol> CzlonkowieZespoly { get; set; }
+        //public DbSet<CzlonekZespol> CzlonkowieZespoly { get; set; }
 
         public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
 
@@ -27,7 +27,7 @@ namespace DAL
                 {
                     IdCzlonka = 1,
                     IdPelnionejFunkcji = 1,
-                    IdCzlonekZespol = 1,
+                    //IdCzlonekZespol = 1,
                     NrTelefonu = "696-789-521",
                     Mail = "daniel.malik@student.pl",
                     Nazwisko = "Malik",
@@ -40,7 +40,7 @@ namespace DAL
                 {
                     IdCzlonka = 2,
                     IdPelnionejFunkcji = 2,
-                    IdCzlonekZespol = 2,
+                    //IdCzlonekZespol = 2,
                     NrTelefonu = "789-666-231",
                     Mail = "milosz.malecki@student.pl",
                     Nazwisko = "Malecki",
@@ -134,7 +134,7 @@ namespace DAL
                     IdZespolu = 1,
                    /* IdProjektu = 1,*/
 /*                    IdWydarzenia = 1,*/
-                    IdCzlonekZespol = 1,
+                    //IdCzlonekZespol = 1,
                     Nazwa = "Zespół projektowy nr 1",
                 },
                 new Zespol
@@ -142,26 +142,26 @@ namespace DAL
                     IdZespolu = 2,
                    /* IdProjektu = 2,*/
 /*                    IdWydarzenia = 2,*/
-                    IdCzlonekZespol = 2,
+                    //IdCzlonekZespol = 2,
                     Nazwa = "Zespół projektowy nr 2",
                 }
             };
 
-            List<CzlonekZespol> czlonkowieZespoly = new List<CzlonekZespol>
-            {
-                new CzlonekZespol
-                {
-                    IdCzlonekZespol = 1,
-                    IdCzlonka = 1,
-                    IdZespolu=1
-                },
-                new CzlonekZespol
-                {
-                    IdCzlonekZespol = 2,
-                    IdCzlonka= 2,
-                    IdZespolu=2
-                },
-            };
+            //List<CzlonekZespol> czlonkowieZespoly = new List<CzlonekZespol>
+            //{
+            //    new CzlonekZespol
+            //    {
+            //        IdCzlonekZespol = 1,
+            //        IdCzlonka = 1,
+            //        IdZespolu=1
+            //    },
+            //    new CzlonekZespol
+            //    {
+            //        IdCzlonekZespol = 2,
+            //        IdCzlonka= 2,
+            //        IdZespolu=2
+            //    },
+            //};
 
             modelBuilder.Entity<Czlonek>()
                 .HasData(czlonkowie);
@@ -181,8 +181,8 @@ namespace DAL
             modelBuilder.Entity<Zespol>()
                 .HasData(zespoly);
 
-            modelBuilder.Entity<CzlonekZespol>()
-                .HasData(czlonkowieZespoly);
+            //modelBuilder.Entity<CzlonekZespol>()
+            //    .HasData(czlonkowieZespoly);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace DAL
         [ForeignKey(nameof(IdPelnionejFunkcji))]
         public PelnionaFunkcja PelnionaFunkcja { get; set; }
 
-        public int? IdCzlonekZespol { get; set; }
-        [ForeignKey(nameof(IdCzlonekZespol))]
-        public CzlonekZespol? CzlonekZespol { get; set; }
+        //public int? IdCzlonekZespol { get; set; }
+        //[ForeignKey(nameof(IdCzlonekZespol))]
+        //public CzlonekZespol? CzlonekZespol { get; set; }
 
         [RegularExpression(@"^[0-9]{9}$", ErrorMessage = "Numer telefonu musi składać się z 9 cyfr")]
         [Required(ErrorMessage = "Numer telefonu jest wymagany")]

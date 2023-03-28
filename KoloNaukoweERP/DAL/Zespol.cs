@@ -21,9 +21,9 @@ namespace DAL
         [ForeignKey(nameof(IdWydarzenia))]
         public Wydarzenie? Wydarzenie { get; set; }*/
 
-        public int? IdCzlonekZespol { get; set; }
-        [ForeignKey(nameof(IdCzlonekZespol))]
-        public CzlonekZespol? CzlonekZespol { get; set; }
+        //public int? IdCzlonekZespol { get; set; }
+        //[ForeignKey(nameof(IdCzlonekZespol))]
+        //public CzlonekZespol? CzlonekZespol { get; set; }
 
         [MinLength(1, ErrorMessage = "Nazwa zespołu jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa zespołu jest za długa")]
