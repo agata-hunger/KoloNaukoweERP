@@ -26,7 +26,5 @@ namespace DAL.Entities
         [MinLength(1, ErrorMessage = "Opis jest wymagany")]
         [MaxLength(300, ErrorMessage = "Opis jest za długi (max. 300 znaków)")]
         public string Opis { get; set; }
-
-        //public ICollection<Zespol> Zespoly { get; set; }
     }
 }

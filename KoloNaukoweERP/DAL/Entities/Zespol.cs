@@ -13,18 +13,6 @@ namespace DAL.Entities
         [Key]
         public int IdZespolu { get; set; }
 
-        /*        public int? IdProjektu { get; set; }
-                [ForeignKey(nameof(IdProjektu))]
-                public Projekt? Projekt { get; set; }*/
-
-        /*        public int? IdWydarzenia { get; set; }
-                [ForeignKey(nameof(IdWydarzenia))]
-                public Wydarzenie? Wydarzenie { get; set; }*/
-
-        //public int? IdCzlonekZespol { get; set; }
-        //[ForeignKey(nameof(IdCzlonekZespol))]
-        //public CzlonekZespol? CzlonekZespol { get; set; }
-
         [MinLength(1, ErrorMessage = "Nazwa zespołu jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa zespołu jest za długa")]
         public string Nazwa { get; set; }

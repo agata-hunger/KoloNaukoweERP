@@ -1,10 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DAL;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIKN.Controllers
 {
-    public class CzlonkowieController : Controller
+    public class CzlonkowieController : Controller //Check what is ControllerBase - probably wrong
     {
+        private readonly IUnitOfWork unitOfWork;
+        //check for what is mapper
+
+        public CzlonkowieController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
+
+
         // GET: CzlonkowieController2
         public ActionResult Index()
         {

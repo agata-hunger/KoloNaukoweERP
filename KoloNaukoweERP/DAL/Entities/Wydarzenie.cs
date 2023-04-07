@@ -26,7 +26,5 @@ namespace DAL.Entities
         [MinLength(1, ErrorMessage = "Nazwa miejsca jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa miejsca jest za długa")]
         public string Miejsce { get; set; }
-
-        //public ICollection<Zespol> zespoly { get; set; }
     }
 }
