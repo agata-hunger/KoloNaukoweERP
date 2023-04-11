@@ -10,90 +10,90 @@ using DAL.Entities;
 
 namespace WebAPIKN.Controllers
 {
-    public class CzlonkowieController : Controller
+    public class ProjektyController : Controller
     {
         private readonly DbKoloNaukoweERP _context;
 
-        public CzlonkowieController(DbKoloNaukoweERP context)
+        public ProjektyController(DbKoloNaukoweERP context)
         {
             _context = context;
         }
 
-        // GET: Czlonkowie
+        // GET: Projekty
         public async Task<IActionResult> Index()
         {
-            var dbKoloNaukoweERP = _context.Czlonkowie.Include(c => c.PelnionaFunkcja);
+            var dbKoloNaukoweERP = _context.Projekty.Include(p => p.Zespol);
             return View(await dbKoloNaukoweERP.ToListAsync());
         }
 
-        // GET: Czlonkowie/Details/5
+        // GET: Projekty/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Projekty == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie
-                .Include(c => c.PelnionaFunkcja)
-                .FirstOrDefaultAsync(m => m.IdCzlonka == id);
-            if (czlonek == null)
+            var projekt = await _context.Projekty
+                .Include(p => p.Zespol)
+                .FirstOrDefaultAsync(m => m.IdProjektu == id);
+            if (projekt == null)
             {
                 return NotFound();
             }
 
-            return View(czlonek);
+            return View(projekt);
         }
 
-        // GET: Czlonkowie/Create
+        // GET: Projekty/Create
         public IActionResult Create()
         {
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa");
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa");
             return View();
         }
 
-        // POST: Czlonkowie/Create
+        // POST: Projekty/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCzlonka,IdPelnionejFunkcji,NrTelefonu,Mail,Nazwisko,Imie,KierunekStudiow,Wydzial,Uczelnia")] Czlonek czlonek)
+        public async Task<IActionResult> Create([Bind("IdProjektu,IdZespolu,Nazwa,TerminRealizacji,Opis")] Projekt projekt)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(czlonek);
+                _context.Add(projekt);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", projekt.IdZespolu);
+            return View(projekt);
         }
 
-        // GET: Czlonkowie/Edit/5
+        // GET: Projekty/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Projekty == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie.FindAsync(id);
-            if (czlonek == null)
+            var projekt = await _context.Projekty.FindAsync(id);
+            if (projekt == null)
             {
                 return NotFound();
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", projekt.IdZespolu);
+            return View(projekt);
         }
 
-        // POST: Czlonkowie/Edit/5
+        // POST: Projekty/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCzlonka,IdPelnionejFunkcji,NrTelefonu,Mail,Nazwisko,Imie,KierunekStudiow,Wydzial,Uczelnia")] Czlonek czlonek)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProjektu,IdZespolu,Nazwa,TerminRealizacji,Opis")] Projekt projekt)
         {
-            if (id != czlonek.IdCzlonka)
+            if (id != projekt.IdProjektu)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace WebAPIKN.Controllers
             {
                 try
                 {
-                    _context.Update(czlonek);
+                    _context.Update(projekt);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CzlonekExists(czlonek.IdCzlonka))
+                    if (!ProjektExists(projekt.IdProjektu))
                     {
                         return NotFound();
                     }
@@ -118,51 +118,51 @@ namespace WebAPIKN.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", projekt.IdZespolu);
+            return View(projekt);
         }
 
-        // GET: Czlonkowie/Delete/5
+        // GET: Projekty/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Projekty == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie
-                .Include(c => c.PelnionaFunkcja)
-                .FirstOrDefaultAsync(m => m.IdCzlonka == id);
-            if (czlonek == null)
+            var projekt = await _context.Projekty
+                .Include(p => p.Zespol)
+                .FirstOrDefaultAsync(m => m.IdProjektu == id);
+            if (projekt == null)
             {
                 return NotFound();
             }
 
-            return View(czlonek);
+            return View(projekt);
         }
 
-        // POST: Czlonkowie/Delete/5
+        // POST: Projekty/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Czlonkowie == null)
+            if (_context.Projekty == null)
             {
-                return Problem("Entity set 'DbKoloNaukoweERP.Czlonkowie'  is null.");
+                return Problem("Entity set 'DbKoloNaukoweERP.Projekty'  is null.");
             }
-            var czlonek = await _context.Czlonkowie.FindAsync(id);
-            if (czlonek != null)
+            var projekt = await _context.Projekty.FindAsync(id);
+            if (projekt != null)
             {
-                _context.Czlonkowie.Remove(czlonek);
+                _context.Projekty.Remove(projekt);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CzlonekExists(int id)
+        private bool ProjektExists(int id)
         {
-          return (_context.Czlonkowie?.Any(e => e.IdCzlonka == id)).GetValueOrDefault();
+          return (_context.Projekty?.Any(e => e.IdProjektu == id)).GetValueOrDefault();
         }
     }
 }

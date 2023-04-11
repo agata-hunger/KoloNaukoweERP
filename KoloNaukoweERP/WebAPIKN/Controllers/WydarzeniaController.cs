@@ -10,90 +10,90 @@ using DAL.Entities;
 
 namespace WebAPIKN.Controllers
 {
-    public class CzlonkowieController : Controller
+    public class WydarzeniaController : Controller
     {
         private readonly DbKoloNaukoweERP _context;
 
-        public CzlonkowieController(DbKoloNaukoweERP context)
+        public WydarzeniaController(DbKoloNaukoweERP context)
         {
             _context = context;
         }
 
-        // GET: Czlonkowie
+        // GET: Wydarzenia
         public async Task<IActionResult> Index()
         {
-            var dbKoloNaukoweERP = _context.Czlonkowie.Include(c => c.PelnionaFunkcja);
+            var dbKoloNaukoweERP = _context.Wydarzenia.Include(w => w.Zespol);
             return View(await dbKoloNaukoweERP.ToListAsync());
         }
 
-        // GET: Czlonkowie/Details/5
+        // GET: Wydarzenia/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Wydarzenia == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie
-                .Include(c => c.PelnionaFunkcja)
-                .FirstOrDefaultAsync(m => m.IdCzlonka == id);
-            if (czlonek == null)
+            var wydarzenie = await _context.Wydarzenia
+                .Include(w => w.Zespol)
+                .FirstOrDefaultAsync(m => m.IdWydarzenia == id);
+            if (wydarzenie == null)
             {
                 return NotFound();
             }
 
-            return View(czlonek);
+            return View(wydarzenie);
         }
 
-        // GET: Czlonkowie/Create
+        // GET: Wydarzenia/Create
         public IActionResult Create()
         {
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa");
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa");
             return View();
         }
 
-        // POST: Czlonkowie/Create
+        // POST: Wydarzenia/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCzlonka,IdPelnionejFunkcji,NrTelefonu,Mail,Nazwisko,Imie,KierunekStudiow,Wydzial,Uczelnia")] Czlonek czlonek)
+        public async Task<IActionResult> Create([Bind("IdWydarzenia,IdZespolu,Nazwa,Data,Miejsce")] Wydarzenie wydarzenie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(czlonek);
+                _context.Add(wydarzenie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", wydarzenie.IdZespolu);
+            return View(wydarzenie);
         }
 
-        // GET: Czlonkowie/Edit/5
+        // GET: Wydarzenia/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Wydarzenia == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie.FindAsync(id);
-            if (czlonek == null)
+            var wydarzenie = await _context.Wydarzenia.FindAsync(id);
+            if (wydarzenie == null)
             {
                 return NotFound();
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", wydarzenie.IdZespolu);
+            return View(wydarzenie);
         }
 
-        // POST: Czlonkowie/Edit/5
+        // POST: Wydarzenia/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCzlonka,IdPelnionejFunkcji,NrTelefonu,Mail,Nazwisko,Imie,KierunekStudiow,Wydzial,Uczelnia")] Czlonek czlonek)
+        public async Task<IActionResult> Edit(int id, [Bind("IdWydarzenia,IdZespolu,Nazwa,Data,Miejsce")] Wydarzenie wydarzenie)
         {
-            if (id != czlonek.IdCzlonka)
+            if (id != wydarzenie.IdWydarzenia)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace WebAPIKN.Controllers
             {
                 try
                 {
-                    _context.Update(czlonek);
+                    _context.Update(wydarzenie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CzlonekExists(czlonek.IdCzlonka))
+                    if (!WydarzenieExists(wydarzenie.IdWydarzenia))
                     {
                         return NotFound();
                     }
@@ -118,51 +118,51 @@ namespace WebAPIKN.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPelnionejFunkcji"] = new SelectList(_context.PelnioneFunkcje, "IdPelnionejFunkcji", "Nazwa", czlonek.IdPelnionejFunkcji);
-            return View(czlonek);
+            ViewData["IdZespolu"] = new SelectList(_context.Zespoly, "IdZespolu", "Nazwa", wydarzenie.IdZespolu);
+            return View(wydarzenie);
         }
 
-        // GET: Czlonkowie/Delete/5
+        // GET: Wydarzenia/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Czlonkowie == null)
+            if (id == null || _context.Wydarzenia == null)
             {
                 return NotFound();
             }
 
-            var czlonek = await _context.Czlonkowie
-                .Include(c => c.PelnionaFunkcja)
-                .FirstOrDefaultAsync(m => m.IdCzlonka == id);
-            if (czlonek == null)
+            var wydarzenie = await _context.Wydarzenia
+                .Include(w => w.Zespol)
+                .FirstOrDefaultAsync(m => m.IdWydarzenia == id);
+            if (wydarzenie == null)
             {
                 return NotFound();
             }
 
-            return View(czlonek);
+            return View(wydarzenie);
         }
 
-        // POST: Czlonkowie/Delete/5
+        // POST: Wydarzenia/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Czlonkowie == null)
+            if (_context.Wydarzenia == null)
             {
-                return Problem("Entity set 'DbKoloNaukoweERP.Czlonkowie'  is null.");
+                return Problem("Entity set 'DbKoloNaukoweERP.Wydarzenia'  is null.");
             }
-            var czlonek = await _context.Czlonkowie.FindAsync(id);
-            if (czlonek != null)
+            var wydarzenie = await _context.Wydarzenia.FindAsync(id);
+            if (wydarzenie != null)
             {
-                _context.Czlonkowie.Remove(czlonek);
+                _context.Wydarzenia.Remove(wydarzenie);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CzlonekExists(int id)
+        private bool WydarzenieExists(int id)
         {
-          return (_context.Czlonkowie?.Any(e => e.IdCzlonka == id)).GetValueOrDefault();
+          return (_context.Wydarzenia?.Any(e => e.IdWydarzenia == id)).GetValueOrDefault();
         }
     }
 }
