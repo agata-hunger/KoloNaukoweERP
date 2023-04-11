@@ -13,11 +13,11 @@ namespace DAL.Entities
         [Key]
         public int IdSprzetu { get; set; }
 
-        public int IdCzlonka { get; set; }
+        public int? IdCzlonka { get; set; }
         [ForeignKey(nameof(IdCzlonka))]
         public Czlonek? Czlonek { get; set; }
 
-        public int IdZespolu { get; set; }
+        public int? IdZespolu { get; set; }
         [ForeignKey(nameof(IdZespolu))]
         public Zespol? Zespol { get; set; }
 

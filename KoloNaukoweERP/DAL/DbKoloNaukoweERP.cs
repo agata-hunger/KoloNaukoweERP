@@ -169,6 +169,39 @@ namespace DAL
             //    },
             //};
 
+
+            //modelBuilder.Entity<Projekt>()
+            //    .HasOne(o => o.Zespol)
+            //    .WithMany(z => z.Projekty)
+            //    .HasForeignKey(o => o.IdProjektu)
+            //    .OnDelete(DeleteBehavior.SetNull);
+
+            //modelBuilder.Entity<Wydarzenie>()
+            //    .HasOne(o => o.Zespol)
+            //    .WithMany(z => z.Wydarzenia)
+            //    .HasForeignKey(o => o.IdWydarzenia)
+            //    .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<PelnionaFunkcja>()
+                .HasMany(o => o.Czlonkowie)
+                .WithOne(z => z.PelnionaFunkcja)
+                .HasForeignKey(z => z.IdPelnionejFunkcji)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            //modelBuilder.Entity<Sprzet>()
+            //    .HasOne(o => o.Czlonek)
+            //    .WithMany(z => z.Sprzety)
+            //    .HasForeignKey(o => o.IdCzlonka)
+            //    .OnDelete(DeleteBehavior.SetNull);
+
+            //modelBuilder.Entity<Sprzet>()
+            //    .HasOne(o => o.Zespol)
+            //    .WithMany(z => z.Sprzety)
+            //    .HasForeignKey(o => o.IdZespolu)
+            //    .OnDelete(DeleteBehavior.SetNull);
+
+
+
             modelBuilder.Entity<Czlonek>()
                 .HasData(czlonkowie);
 

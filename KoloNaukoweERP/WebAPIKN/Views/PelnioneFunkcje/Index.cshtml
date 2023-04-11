@@ -1,6 +1,14 @@
 ﻿@model IEnumerable<DAL.Entities.PelnionaFunkcja>
 
-@{
+<ul>
+@foreach(var item in Model)
+{
+
+    <li>@item.Nazwa</li>
+    <a asp-controller="PelnioneFunkcje" asp-action="Delete" asp-route-id="@item.IdPelnionejFunkcji" >Delete</a>
+}
+</ul>
+@*{
     ViewData["Title"] = "Index";
 }
 
@@ -32,4 +40,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

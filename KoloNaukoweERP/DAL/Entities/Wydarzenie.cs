@@ -13,9 +13,9 @@ namespace DAL.Entities
         [Key]
         public int IdWydarzenia { get; set; }
 
-        public int IdZespolu { get; set; }
+        public int? IdZespolu { get; set; }
         [ForeignKey(nameof(IdZespolu))]
-        public Zespol Zespol { get; set; }
+        public Zespol? Zespol { get; set; }
 
         [MinLength(1, ErrorMessage = "Nazwa wydarzenia jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa wydarzenia jest za długa")]

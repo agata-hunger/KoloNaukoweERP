@@ -8,9 +8,9 @@ namespace DAL.Entities
         [Key]
         public int IdCzlonka { get; set; }
 
-        public int IdPelnionejFunkcji { get; set; }
-        [ForeignKey(nameof(IdPelnionejFunkcji))]
-        public PelnionaFunkcja PelnionaFunkcja { get; set; }
+        public int? IdPelnionejFunkcji { get; set; }
+ //       [ForeignKey(nameof(IdPelnionejFunkcji))]
+        public PelnionaFunkcja? PelnionaFunkcja { get; set; }
 
         [RegularExpression(@"^[0-9]{9}$", ErrorMessage = "Numer telefonu musi składać się z 9 cyfr")]
         [Required(ErrorMessage = "Numer telefonu jest wymagany")]

@@ -12,18 +12,18 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private DbKoloNaukoweERP context;
-        UnitOfWork(DbKoloNaukoweERP context)
+        public UnitOfWork(DbKoloNaukoweERP context, ICzlonekRepository czlonek, IPelnionaFunkcjaRepository pelnionaFunkcja, IProjektRepository projekt, ISprzetRepository sprzet, IWydarzenieRepository wydarzenie, IZespolRepository zespol)
         {
             this.context = context;
-            Czlonkowie = new CzlonekRepository(context);
-            PelnioneFunkcje = new PelnionaFunkcjaRepository(context);
-            Projekty = new ProjektRepository(context);
-            Sprzety = new SprzetRepository(context);
-            Wydarzenia = new WydarzenieRepository(context);
-            Zespoly = new ZespolRepository(context);
+            Czlonkowie = czlonek;
+            PelnioneFunkcje = pelnionaFunkcja;
+            Projekty = projekt;
+            Sprzety = sprzet;
+            Wydarzenia = wydarzenie;
+            Zespoly = zespol;
         }
 
         public ICzlonekRepository Czlonkowie { get; private set; }

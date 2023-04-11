@@ -37,7 +37,7 @@ namespace DAL.Migrations
                     b.ToTable("CzlonekZespol");
                 });
 
-            modelBuilder.Entity("DAL.Czlonek", b =>
+            modelBuilder.Entity("DAL.Entities.Czlonek", b =>
                 {
                     b.Property<int>("IdCzlonka")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCzlonka"));
 
-                    b.Property<int>("IdPelnionejFunkcji")
+                    b.Property<int?>("IdPelnionejFunkcji")
                         .HasColumnType("int");
 
                     b.Property<string>("Imie")
@@ -114,13 +114,13 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.PelnionaFunkcja", b =>
+            modelBuilder.Entity("DAL.Entities.PelnionaFunkcja", b =>
                 {
-                    b.Property<int>("IdPelnionejFunkcji")
+                    b.Property<int?>("IdPelnionejFunkcji")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPelnionejFunkcji"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("IdPelnionejFunkcji"));
 
                     b.Property<string>("Nazwa")
                         .IsRequired()
@@ -144,7 +144,7 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.Projekt", b =>
+            modelBuilder.Entity("DAL.Entities.Projekt", b =>
                 {
                     b.Property<int>("IdProjektu")
                         .ValueGeneratedOnAdd()
@@ -152,7 +152,7 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProjektu"));
 
-                    b.Property<int>("IdZespolu")
+                    b.Property<int?>("IdZespolu")
                         .HasColumnType("int");
 
                     b.Property<string>("Nazwa")
@@ -193,7 +193,7 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.Sprzet", b =>
+            modelBuilder.Entity("DAL.Entities.Sprzet", b =>
                 {
                     b.Property<int>("IdSprzetu")
                         .ValueGeneratedOnAdd()
@@ -204,10 +204,10 @@ namespace DAL.Migrations
                     b.Property<bool>("CzyDostepny")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IdCzlonka")
+                    b.Property<int?>("IdCzlonka")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdZespolu")
+                    b.Property<int?>("IdZespolu")
                         .HasColumnType("int");
 
                     b.Property<string>("Nazwa")
@@ -249,7 +249,7 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.Wydarzenie", b =>
+            modelBuilder.Entity("DAL.Entities.Wydarzenie", b =>
                 {
                     b.Property<int>("IdWydarzenia")
                         .ValueGeneratedOnAdd()
@@ -260,7 +260,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdZespolu")
+                    b.Property<int?>("IdZespolu")
                         .HasColumnType("int");
 
                     b.Property<string>("Miejsce")
@@ -298,7 +298,7 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.Zespol", b =>
+            modelBuilder.Entity("DAL.Entities.Zespol", b =>
                 {
                     b.Property<int>("IdZespolu")
                         .ValueGeneratedOnAdd()
@@ -330,82 +330,73 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("CzlonekZespol", b =>
                 {
-                    b.HasOne("DAL.Czlonek", null)
+                    b.HasOne("DAL.Entities.Czlonek", null)
                         .WithMany()
                         .HasForeignKey("CzlonkowieIdCzlonka")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Zespol", null)
+                    b.HasOne("DAL.Entities.Zespol", null)
                         .WithMany()
                         .HasForeignKey("ZespolyIdZespolu")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAL.Czlonek", b =>
+            modelBuilder.Entity("DAL.Entities.Czlonek", b =>
                 {
-                    b.HasOne("DAL.PelnionaFunkcja", "PelnionaFunkcja")
+                    b.HasOne("DAL.Entities.PelnionaFunkcja", "PelnionaFunkcja")
                         .WithMany("Czlonkowie")
                         .HasForeignKey("IdPelnionejFunkcji")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("PelnionaFunkcja");
                 });
 
-            modelBuilder.Entity("DAL.Projekt", b =>
+            modelBuilder.Entity("DAL.Entities.Projekt", b =>
                 {
-                    b.HasOne("DAL.Zespol", "Zespol")
+                    b.HasOne("DAL.Entities.Zespol", "Zespol")
                         .WithMany("Projekty")
-                        .HasForeignKey("IdZespolu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdZespolu");
 
                     b.Navigation("Zespol");
                 });
 
-            modelBuilder.Entity("DAL.Sprzet", b =>
+            modelBuilder.Entity("DAL.Entities.Sprzet", b =>
                 {
-                    b.HasOne("DAL.Czlonek", "Czlonek")
+                    b.HasOne("DAL.Entities.Czlonek", "Czlonek")
                         .WithMany("Sprzety")
-                        .HasForeignKey("IdCzlonka")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCzlonka");
 
-                    b.HasOne("DAL.Zespol", "Zespol")
+                    b.HasOne("DAL.Entities.Zespol", "Zespol")
                         .WithMany("Sprzety")
-                        .HasForeignKey("IdZespolu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdZespolu");
 
                     b.Navigation("Czlonek");
 
                     b.Navigation("Zespol");
                 });
 
-            modelBuilder.Entity("DAL.Wydarzenie", b =>
+            modelBuilder.Entity("DAL.Entities.Wydarzenie", b =>
                 {
-                    b.HasOne("DAL.Zespol", "Zespol")
+                    b.HasOne("DAL.Entities.Zespol", "Zespol")
                         .WithMany("Wydarzenia")
-                        .HasForeignKey("IdZespolu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdZespolu");
 
                     b.Navigation("Zespol");
                 });
 
-            modelBuilder.Entity("DAL.Czlonek", b =>
+            modelBuilder.Entity("DAL.Entities.Czlonek", b =>
                 {
                     b.Navigation("Sprzety");
                 });
 
-            modelBuilder.Entity("DAL.PelnionaFunkcja", b =>
+            modelBuilder.Entity("DAL.Entities.PelnionaFunkcja", b =>
                 {
                     b.Navigation("Czlonkowie");
                 });
 
-            modelBuilder.Entity("DAL.Zespol", b =>
+            modelBuilder.Entity("DAL.Entities.Zespol", b =>
                 {
                     b.Navigation("Projekty");
 

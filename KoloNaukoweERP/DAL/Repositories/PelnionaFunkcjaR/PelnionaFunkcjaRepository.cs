@@ -19,7 +19,9 @@ namespace DAL.Repositories.PelnionaFunkcjaR
 
         public IEnumerable<PelnionaFunkcja> GetPelnioneFunkcje()
         {
+            var nazwy = context.PelnioneFunkcje.Where(id=>id.IdPelnionejFunkcji > 0).Select(n=>n.Nazwa).ToList();
             return context.PelnioneFunkcje.ToList();
+
         }
 
         public PelnionaFunkcja GetPelnionaFunkcjaById(int idPelnionejFunkcji)

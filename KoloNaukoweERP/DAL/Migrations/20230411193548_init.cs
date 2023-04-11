@@ -45,7 +45,7 @@ namespace DAL.Migrations
                 {
                     IdCzlonka = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdPelnionejFunkcji = table.Column<int>(type: "int", nullable: false),
+                    IdPelnionejFunkcji = table.Column<int>(type: "int", nullable: true),
                     NrTelefonu = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nazwisko = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -62,7 +62,7 @@ namespace DAL.Migrations
                         column: x => x.IdPelnionejFunkcji,
                         principalTable: "PelnioneFunkcje",
                         principalColumn: "IdPelnionejFunkcji",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,7 +71,7 @@ namespace DAL.Migrations
                 {
                     IdProjektu = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdZespolu = table.Column<int>(type: "int", nullable: false),
+                    IdZespolu = table.Column<int>(type: "int", nullable: true),
                     Nazwa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     TerminRealizacji = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Opis = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
@@ -83,8 +83,7 @@ namespace DAL.Migrations
                         name: "FK_Projekty_Zespoly_IdZespolu",
                         column: x => x.IdZespolu,
                         principalTable: "Zespoly",
-                        principalColumn: "IdZespolu",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdZespolu");
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +92,7 @@ namespace DAL.Migrations
                 {
                     IdWydarzenia = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdZespolu = table.Column<int>(type: "int", nullable: false),
+                    IdZespolu = table.Column<int>(type: "int", nullable: true),
                     Nazwa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Miejsce = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
@@ -105,8 +104,7 @@ namespace DAL.Migrations
                         name: "FK_Wydarzenia_Zespoly_IdZespolu",
                         column: x => x.IdZespolu,
                         principalTable: "Zespoly",
-                        principalColumn: "IdZespolu",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdZespolu");
                 });
 
             migrationBuilder.CreateTable(
@@ -139,8 +137,8 @@ namespace DAL.Migrations
                 {
                     IdSprzetu = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCzlonka = table.Column<int>(type: "int", nullable: false),
-                    IdZespolu = table.Column<int>(type: "int", nullable: false),
+                    IdCzlonka = table.Column<int>(type: "int", nullable: true),
+                    IdZespolu = table.Column<int>(type: "int", nullable: true),
                     Nazwa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Opis = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     CzyDostepny = table.Column<bool>(type: "bit", nullable: false)
@@ -152,14 +150,12 @@ namespace DAL.Migrations
                         name: "FK_Sprzety_Czlonkowie_IdCzlonka",
                         column: x => x.IdCzlonka,
                         principalTable: "Czlonkowie",
-                        principalColumn: "IdCzlonka",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdCzlonka");
                     table.ForeignKey(
                         name: "FK_Sprzety_Zespoly_IdZespolu",
                         column: x => x.IdZespolu,
                         principalTable: "Zespoly",
-                        principalColumn: "IdZespolu",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdZespolu");
                 });
 
             migrationBuilder.InsertData(
