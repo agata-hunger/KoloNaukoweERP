@@ -18,7 +18,12 @@ namespace DAL
         public DbSet<Projekt> Projekty { get; set; }
         //public DbSet<CzlonekZespol> CzlonkowieZespoly { get; set; }
 
-        public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
+        //public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
+        {
+            optionBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=KoloNaukowe;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
