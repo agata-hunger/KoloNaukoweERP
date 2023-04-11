@@ -18,7 +18,7 @@ namespace DAL
         public DbSet<Projekt> Projekty { get; set; }
         //public DbSet<CzlonekZespol> CzlonkowieZespoly { get; set; }
 
-        //public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
+        public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {

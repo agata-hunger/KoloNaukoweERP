@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Uczelnia\\SEM VI\\TAIIB\\Projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj": {}
+    "F:\\Taiib - projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "D:\\Uczelnia\\SEM VI\\TAIIB\\Projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj": {
+    "F:\\Taiib - projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Uczelnia\\SEM VI\\TAIIB\\Projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
+        "projectUniqueName": "F:\\Taiib - projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\Uczelnia\\SEM VI\\TAIIB\\Projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\Agata\\.nuget\\packages\\",
-        "outputPath": "D:\\Uczelnia\\SEM VI\\TAIIB\\Projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\obj\\",
+        "projectPath": "F:\\Taiib - projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "F:\\Taiib - projekt\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Agata\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
