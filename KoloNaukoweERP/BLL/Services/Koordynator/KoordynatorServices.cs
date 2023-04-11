@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Koordynator
 {
-    internal class KoordynatorServices : IKoordynatorServices
+    public class KoordynatorServices : IKoordynatorServices
     {
         private readonly IUnitOfWork unitOfWork;
         public KoordynatorServices(IUnitOfWork unitOfWork)

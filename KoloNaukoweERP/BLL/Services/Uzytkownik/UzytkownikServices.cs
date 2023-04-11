@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Uzytkownik
 {
-    internal class UzytkownikServices : IUzytkownikServices
+    public class UzytkownikServices : IUzytkownikServices
     {
         private readonly IUnitOfWork unitOfWork;
         
