@@ -134,7 +134,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddEventToTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia)
         {
             var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
@@ -145,7 +145,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveEventFromTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia)
         {
             var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
@@ -257,8 +257,36 @@ namespace BLL.Services.Sekretarz
             sprzet.Zespol = zespol;
             sprzet.Opis = opis;
             sprzet.CzyDostepny = czyDostepny;
+            unitOfWork.Save();
         }
 
+        public void RemoveSprzet(string nazwaSprzetu)
+        {
+            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
+            var SprzetId = sprzet.IdSprzetu;
+            if(sprzet != null)
+            {
+                unitOfWork.Sprzety.DeleteSprzet(SprzetId);
+            }
+        }
+        public void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia)
+        {
+            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            Projekt projekt = new Projekt();
+            projekt.Nazwa = nazwaProjektu;
+            projekt.Zespol = zespol;
+            projekt.TerminRealizacji = terminRealizacji;
+            projekt.Opis = opisWydarzenia;
+            unitOfWork.Projekty.InsertProjekt(projekt);
+            unitOfWork.Save();
+        }
+        public void RemoveProjekt(string nazwaProjektu)
+        {
+            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            var projektId = projekt.IdProjektu;
+            unitOfWork.Projekty.DeleteProjekt(projektId);
+            unitOfWork.Save();
+        }
 
     }
 }

@@ -24,8 +24,8 @@ namespace BLL.Services.Sekretarz
         void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
         void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
 
-        void AddEventToTeam(string nazwaZespolu, string nazwaWydarzenia);
-        void RemoveEventFromTeam(string nazwaZespolu, string nazwaWydarzenia);
+        void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia);
+        void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia);
 
         void AddProjektToTeam(string nazwaZespolu, string nazwaProjektu);
         void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
@@ -43,5 +43,9 @@ namespace BLL.Services.Sekretarz
         void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
 
         void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny);
+        void RemoveSprzet(string nazwaSprzetu);
+
+        void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia);
+        void RemoveProjekt(string nazwaProjektu);
     }
 }

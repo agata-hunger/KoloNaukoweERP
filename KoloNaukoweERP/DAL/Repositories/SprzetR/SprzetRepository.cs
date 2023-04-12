@@ -32,7 +32,7 @@ namespace DAL.Repositories.SprzetR
             context.Sprzety.Add(sprzet);
         }
 
-        public void DeleteSprzet(int idSprzetu)
+        public void DeleteSprzet(int? idSprzetu)
         {
             Sprzet sprzet = context.Sprzety.Find(idSprzetu);
             context.Sprzety.Remove(sprzet);
