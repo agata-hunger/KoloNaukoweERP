@@ -34,7 +34,7 @@ namespace DAL.Repositories.PelnionaFunkcjaR
             context.PelnioneFunkcje.Add(pelnionaFunkcja);
         }
 
-        public void DeletePelnionaFunkcja(int idPelnionejFunkcji)
+        public void DeletePelnionaFunkcja(int? idPelnionejFunkcji)
         {
             PelnionaFunkcja pelnionaFunkcja = context.PelnioneFunkcje.Find(idPelnionejFunkcji);
             context.PelnioneFunkcje.Remove(pelnionaFunkcja);

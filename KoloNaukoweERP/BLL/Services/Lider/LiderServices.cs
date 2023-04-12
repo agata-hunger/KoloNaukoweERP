@@ -15,41 +15,36 @@ namespace BLL.Services.Lider
         {
             this.unitOfWork = unitOfWork;
         }
-        public void AddUser(Czlonek czlonek, int idZespolu)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            zespol.Czlonkowie.Add(czlonek);
-            unitOfWork.Save();
-        }
 
-        public void AddWypozyczenie(string nazwaSprzetu, int idZespolu)
+        public void AddWypozyczenie(string nazwaSprzetu, int idCzlonka)
         {
             //TO DO - id użytkownika w Urlu 
             var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            zespol.Sprzety.Add(sprzet);
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            czlonek.Sprzety.Add(sprzet);
             unitOfWork.Save();
         }
 
-        public void RemoveUser(Czlonek czlonek, int idZespolu)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            zespol.Czlonkowie.Remove(czlonek);
-            unitOfWork.Save();
-        }
-
-        public void RemoveWypozyczenie(string nazwaSprzetu, int idZespolu)
+        public void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka)
         {
             var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            zespol.Sprzety.Remove(sprzet);
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            czlonek.Sprzety.Remove(sprzet);
             unitOfWork.Save();
         }
 
-        //public void UpdateUser(Czlonek czlonek, int idZespolu)
-        //{
+        public void AddZespolToProject(Zespol zespol, int idProjektu)
+        {
+            var projekt = unitOfWork.Wydarzenia.GetWydarzenieById(idProjektu);
+            projekt.Zespol = zespol;
+            unitOfWork.Save();
+        }
 
-        //    throw new NotImplementedException();
-        //}
+        public void RemoveZespolFromProject(Zespol zespol, int idProjektu)
+        {
+            var projekt = unitOfWork.Wydarzenia.GetWydarzenieById(idProjektu);
+            projekt.Zespol = null;
+            unitOfWork.Save();
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace DAL.Repositories.PelnionaFunkcjaR
         IEnumerable<PelnionaFunkcja> GetPelnioneFunkcje();
         PelnionaFunkcja GetPelnionaFunkcjaById(int idPelnionejFunkcji);
         void InsertPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja);
-        void DeletePelnionaFunkcja(int idPelnionejFunkcji);
+        void DeletePelnionaFunkcja(int? idPelnionejFunkcji);
         void UpdatePelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja);
     }
 }

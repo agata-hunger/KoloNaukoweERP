@@ -15,63 +15,37 @@ namespace BLL.Services.Koordynator
         {
             this.unitOfWork = unitOfWork;
         }
-        public void AddZespol(Zespol zespol, int idWydarzenia)
+
+        public void AddWypozyczenie(string nazwaSprzetu, int idCzlonka)
+        {
+            //TO DO - id użytkownika w Urlu 
+            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            czlonek.Sprzety.Add(sprzet);
+            unitOfWork.Save();
+        }
+
+        public void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka)
+        {
+            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            czlonek.Sprzety.Remove(sprzet);
+            unitOfWork.Save();
+        }
+
+
+
+        public void AddZespolToEvent(Zespol zespol, int idWydarzenia)
         {
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
             wydarzenie.Zespol = zespol;
             unitOfWork.Save();
         }
 
-        public void AddWypozyczenie(string nazwaSprzetu, int idWydarzenia)
-        {
-            //TO DO - id użytkownika w Urlu, rozwiązanie Zespol? nullable
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            var sprzety = wydarzenie.Zespol.Sprzety;
-            if (sprzet != null)
-            {
-                sprzety.Add(sprzet);
-            }
-            unitOfWork.Save();
-        }
-
-        public void RemoveZespol(Zespol zespol, int idWydarzenia)
+        public void RemoveZespolFromEvent(Zespol zespol, int idWydarzenia)
         {
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
             wydarzenie.Zespol = null;
-            unitOfWork.Save();
-        }
-
-        public void RemoveWypozyczenie(string nazwaSprzetu, int idWydarzenia)
-        {
-            //TO DO -  rozwiązanie Zespol? nullable
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            var sprzety = wydarzenie.Zespol.Sprzety;
-            if (sprzet != null)
-            {
-                sprzety.Remove(sprzet);
-            }
-            unitOfWork.Save();
-        }
-
-        public void AddCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if(czlonek!= null) 
-            {
-                zespol.Czlonkowie.Add(czlonek);
-            }
-            unitOfWork.Save();
-        }
-
-        public void RemoveCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
-            {
-                zespol.Czlonkowie.Remove(czlonek);
-            }
             unitOfWork.Save();
         }
     }

@@ -9,12 +9,11 @@ namespace BLL.Services.Koordynator
 {
     public interface IKoordynatorServices
     {
-        void AddZespol(Zespol zespol, int idWydarzenia);
-        void RemoveZespol(Zespol zespol, int idWydarzenia);
-        //void UpdateZespol(Zespol zespol, int idWydarzenia);
-        void AddWypozyczenie(string nazwaSprzetu, int idWydarzenia);
-        void RemoveWypozyczenie(string nazwaSprzetu, int idWydarzenia);
-        void AddCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
-        void RemoveCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void AddWypozyczenie(string nazwaSprzetu, int idCzlonka);
+        void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka);
+
+
+        void AddZespolToEvent(Zespol zespol, int idWydarzenia);
+        void RemoveZespolFromEvent(Zespol zespol, int idWydarzenia);
     }
 }

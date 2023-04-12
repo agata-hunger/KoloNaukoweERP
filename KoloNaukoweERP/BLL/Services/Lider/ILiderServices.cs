@@ -9,10 +9,11 @@ namespace BLL.Services.Lider
 {
     public interface ILiderServices
     {
-        void AddUser(Czlonek czlonek, int idZespolu);
-        void RemoveUser(Czlonek czlonek, int idZespolu);
-        //void UpdateUser(Czlonek czlonek, int idZespolu);
-        void AddWypozyczenie(string nazwaSprzetu, int idZespolu);
-        void RemoveWypozyczenie(string nazwaSprzetu, int idZespolu);
+        void AddWypozyczenie(string nazwaSprzetu, int idCzlonka);
+        void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka);
+
+
+        void AddZespolToProject(Zespol zespol, int idProjektu);
+        void RemoveZespolFromProject(Zespol zespol, int idProjektu);
     }
 }
