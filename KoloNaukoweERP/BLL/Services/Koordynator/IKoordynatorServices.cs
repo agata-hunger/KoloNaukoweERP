@@ -14,5 +14,7 @@ namespace BLL.Services.Koordynator
         //void UpdateZespol(Zespol zespol, int idWydarzenia);
         void AddWypozyczenie(string nazwaSprzetu, int idWydarzenia);
         void RemoveWypozyczenie(string nazwaSprzetu, int idWydarzenia);
+        void AddCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void RemoveCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
     }
 }

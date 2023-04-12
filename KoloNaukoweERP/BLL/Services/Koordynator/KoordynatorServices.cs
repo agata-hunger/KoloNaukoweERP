@@ -54,5 +54,25 @@ namespace BLL.Services.Koordynator
             }
             unitOfWork.Save();
         }
+
+        public void AddCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+            if(czlonek!= null) 
+            {
+                zespol.Czlonkowie.Add(czlonek);
+            }
+            unitOfWork.Save();
+        }
+
+        public void RemoveCzlonek(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+            if (czlonek != null)
+            {
+                zespol.Czlonkowie.Remove(czlonek);
+            }
+            unitOfWork.Save();
+        }
     }
 }
