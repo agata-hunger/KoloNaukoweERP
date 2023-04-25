@@ -165,5 +165,7 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             wydarzenie.Zespol = null;
             unitOfWork.Save();
         }
+
+        
     }
 }

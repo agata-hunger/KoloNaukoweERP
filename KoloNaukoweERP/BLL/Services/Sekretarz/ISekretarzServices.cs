@@ -47,5 +47,12 @@ namespace BLL.Services.Sekretarz
 
         void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia);
         void RemoveProjekt(string nazwaProjektu);
+
+        Wydarzenie GetEvent(int idWydarzenia);
+        List<Wydarzenie> GetEvents();
+        Zespol GetTeam(int idWydarzenia);
+        List<Zespol> GetTeams();
+        //void EditEvent(int idWydarzenia);
+
     }
 }

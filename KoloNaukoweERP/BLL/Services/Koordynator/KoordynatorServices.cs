@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL.Services.Uzytkownik;
+using DAL;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Koordynator
 {
-    public class KoordynatorServices : IKoordynatorServices
+    public class KoordynatorServices : IKoordynatorServices 
     {
         private readonly IUnitOfWork unitOfWork;
         public KoordynatorServices(IUnitOfWork unitOfWork)
@@ -48,5 +49,8 @@ namespace BLL.Services.Koordynator
             wydarzenie.Zespol = null;
             unitOfWork.Save();
         }
+
+
+       
     }
 }

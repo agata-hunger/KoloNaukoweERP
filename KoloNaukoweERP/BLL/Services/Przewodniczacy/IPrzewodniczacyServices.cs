@@ -33,6 +33,6 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
         void AddZespolToEvent(Zespol zespol, string nazwaWydarzenia);
         void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia);
 
-
+       
     }
 }

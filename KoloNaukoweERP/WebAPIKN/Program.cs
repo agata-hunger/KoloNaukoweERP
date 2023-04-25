@@ -1,3 +1,8 @@
+using BLL.Services.Koordynator;
+using BLL.Services.Lider;
+using BLL.Services.Sekretarz;
+using BLL.Services.Uzytkownik;
+using BLL.Services.ZastepcaPrzewodniczacego;
 using DAL;
 using DAL.Entities;
 using DAL.Repositories.CzlonekR;
@@ -27,6 +32,11 @@ builder.Services.AddScoped<ISprzetRepository, SprzetRepository>();
 builder.Services.AddScoped<IWydarzenieRepository, WydarzenieRepository>();
 builder.Services.AddScoped<IZespolRepository, ZespolRepository>();
 
+builder.Services.AddScoped<ISekretarzServices, SekretarzeServices>();
+builder.Services.AddScoped<IPrzewodniczacyServices, PrzewodniczacyServices>();
+builder.Services.AddScoped<IKoordynatorServices, KoordynatorServices>();
+builder.Services.AddScoped<IUzytkownikServices, UzytkownikServices>();
+builder.Services.AddScoped<ILiderServices, LiderServices>();
 
 var app = builder.Build();
 

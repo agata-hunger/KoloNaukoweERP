@@ -51,8 +51,12 @@ namespace BLL.Services.Sekretarz
         public void RemoveWydarzenie(string nazwaWydarzenia)
         {
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            var idWydarzenia = wydarzenie.IdWydarzenia;
-            unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
+            if (wydarzenie != null)
+            {
+                var idWydarzenia = wydarzenie.IdWydarzenia;
+                unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
+            }
+            
             unitOfWork.Save();
         }
 
@@ -287,6 +291,28 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Projekty.DeleteProjekt(projektId);
             unitOfWork.Save();
         }
-
+        public Wydarzenie GetEvent(int idWydarzenia)
+        {
+            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+            return wydarzenie;
+        }
+        public List<Wydarzenie> GetEvents()
+        {
+            var list = new List<Wydarzenie>();
+            list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
+            return list;
+        }
+        public Zespol GetTeam(int idZespolu)
+        {
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+            return zespol;
+        }
+        public List<Zespol> GetTeams()
+        {
+            var list = new List<Zespol>();
+            list = (List<Zespol>)unitOfWork.Zespoly.GetZespoly();
+            return list;
+        }
+        
     }
 }
