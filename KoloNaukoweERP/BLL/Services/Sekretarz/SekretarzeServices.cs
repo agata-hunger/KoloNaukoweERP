@@ -56,7 +56,6 @@ namespace BLL.Services.Sekretarz
                 var idWydarzenia = wydarzenie.IdWydarzenia;
                 unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
             }
-            
             unitOfWork.Save();
         }
 
