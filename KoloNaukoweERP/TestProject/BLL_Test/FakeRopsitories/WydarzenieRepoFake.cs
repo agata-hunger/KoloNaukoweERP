@@ -9,16 +9,16 @@ using DAL;
 using DAL.Repositories.WydarzenieR;
 using DAL.Entities;
 
-namespace TestProject.BLL_Test
+namespace TestProject.BLL_Test.FakeRopsitories
 {
-    internal class WydarzenieRepoFake : IWydarzenieRepository
+    public class WydarzenieRepoFake : IWydarzenieRepository
     {
         private List<Wydarzenie> wydarzenia = new List<Wydarzenie>();
 
 
         public IEnumerable<Wydarzenie> GetWydarzenia()
         {
-            return this.wydarzenia;
+            return wydarzenia;
         }
         public Wydarzenie GetWydarzenieById(int idWydarzenia)
         {
@@ -27,16 +27,16 @@ namespace TestProject.BLL_Test
         }
         public void InsertWydarzenie(Wydarzenie wydarzenie)
         {
-            this.wydarzenia.Add(wydarzenie);
+            wydarzenia.Add(wydarzenie);
         }
         public void DeleteWydarzenie(int idWydarzenia)
         {
-            Wydarzenie wydarzenie = this.wydarzenia.Find(w => w.IdWydarzenia == idWydarzenia);
-            this.wydarzenia.Remove(wydarzenie);
+            Wydarzenie wydarzenie = wydarzenia.Find(w => w.IdWydarzenia == idWydarzenia);
+            wydarzenia.Remove(wydarzenie);
         }
         public void UpdateWydarzenie(Wydarzenie wydarzenie)
         {
-            int index = this.wydarzenia.FindIndex(w => w.IdWydarzenia == wydarzenie.IdWydarzenia);
+            int index = wydarzenia.FindIndex(w => w.IdWydarzenia == wydarzenie.IdWydarzenia);
             if (index != -1)
                 wydarzenia[index] = wydarzenie;
         }
