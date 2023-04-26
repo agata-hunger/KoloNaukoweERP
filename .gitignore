@@ -396,3 +396,16 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+KoloNaukoweERP/.vs/KoloNaukoweERP/v17/.suo
+KoloNaukoweERP/.vs/KoloNaukoweERP/DesignTimeBuild/.dtbcache.v2
+KoloNaukoweERP/.vs/KoloNaukoweERP/v17/.futdcache.v2
+KoloNaukoweERP/.vs/KoloNaukoweERP/v17/.suo
+KoloNaukoweERP/DAL/obj/project.nuget.cache
+KoloNaukoweERP/DAL/obj/project.assets.json
+KoloNaukoweERP/DAL/obj/DAL.csproj.nuget.g.props
+KoloNaukoweERP/DAL/obj/Debug/net6.0/DAL.assets.cache
+KoloNaukoweERP/DAL/obj/Debug/net6.0/DAL.csproj.CoreCompileInputs.cache
+KoloNaukoweERP/DAL/obj/Debug/net6.0/DAL.GeneratedMSBuildEditorConfig.editorconfig
+KoloNaukoweERP/DAL/obj/Debug/net6.0/DAL.genruntimeconfig.cache
+KoloNaukoweERP/DAL/obj/project.assets.json
+KoloNaukoweERP/DAL/obj/project.nuget.cache
