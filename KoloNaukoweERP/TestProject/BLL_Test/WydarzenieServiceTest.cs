@@ -19,9 +19,9 @@ namespace TestProject.BLL_Test
         [Fact]
         public void TestAddWydarzenie()//string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia
         {
-            var wydarzenieRepo = new WydarzenieRepoFake();
-            var 
-            var unitOfWork = new UnitOfWork(wydarzenieRepo);
+            //var wydarzenieRepo = new WydarzenieRepoFake();
+            //var 
+            //var unitOfWork = new UnitOfWork(wydarzenieRepo);
         }
 
         public void RemoveWydarzenie(string nazwaWydarzenia)

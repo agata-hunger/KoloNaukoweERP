@@ -12,7 +12,7 @@ namespace DAL.Repositories.ZespolR
         IEnumerable<Zespol> GetZespoly();
         Zespol GetZespolById(int idZespolu);
         void InsertZespol(Zespol zespol);
-        void DeleteZespol(int idZespolu);
+        void DeleteZespol(int? idZespolu);
         void UpdateZespol(Zespol zespol);
     }
 }

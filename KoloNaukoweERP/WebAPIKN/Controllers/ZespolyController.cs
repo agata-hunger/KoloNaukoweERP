@@ -155,7 +155,7 @@ namespace WebAPIKN.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ZespolExists(int id)
+        private bool ZespolExists(int? id)
         {
           return (_context.Zespoly?.Any(e => e.IdZespolu == id)).GetValueOrDefault();
         }

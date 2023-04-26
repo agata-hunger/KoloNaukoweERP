@@ -28,7 +28,7 @@ namespace DAL.Repositories.ZespolR
         {
             context.Zespoly.Add(zespol);
         }
-        public void DeleteZespol(int idZespolu)
+        public void DeleteZespol(int? idZespolu)
         {
             Zespol zespol = context.Zespoly.Find(idZespolu);
             context.Zespoly.Remove(zespol);
