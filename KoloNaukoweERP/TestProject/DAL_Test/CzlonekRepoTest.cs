@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject
+namespace TestProject.DAL_Test
 {
     public class CzlonekRepoTest
     {
@@ -30,7 +30,7 @@ namespace TestProject
             czlonekRepo.Save();
 
             Assert.Equal(1, czlonekRepo.GetCzlonkowie().Count());
-                
+
         }
 
 
