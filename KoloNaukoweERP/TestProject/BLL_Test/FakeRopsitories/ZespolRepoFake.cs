@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Repositories.ZespolR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestProject.BLL_Test.FakeRopsitories
 {
-    public class ZespolRepoFake
+    public class ZespolRepoFake : IZespolRepository
     {
         private List<Zespol> zespoly = new List<Zespol>();
 
@@ -16,7 +17,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             return zespoly;
         }
-        public Zespol GetZespolyById(int idZespoly)
+        public Zespol GetZespolById(int idZespoly)
         {
             return zespoly.Find(z => z.IdZespolu == idZespoly);
 
@@ -25,7 +26,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             zespoly.Add(zespol);
         }
-        public void DeleteZespol(int idZespolu)
+        public void DeleteZespol(int? idZespolu)
         {
             Zespol wydarzenie = zespoly.Find(z => z.IdZespolu == idZespolu);
             zespoly.Remove(wydarzenie);
@@ -35,6 +36,16 @@ namespace TestProject.BLL_Test.FakeRopsitories
             int index = zespoly.FindIndex(z => z.IdZespolu == zespol.IdZespolu);
             if (index != -1)
                 zespoly[index] = zespol;
+        }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
         }
     }
 }

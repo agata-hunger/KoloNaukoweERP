@@ -42,5 +42,13 @@ namespace DAL.Repositories.CzlonekR
         {
             context.Entry(czlonek).State = EntityState.Modified;
         }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

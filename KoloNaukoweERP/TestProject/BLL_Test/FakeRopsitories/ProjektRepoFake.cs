@@ -37,5 +37,15 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 projekty[index] = projekt;
         }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
+        }
     }
 }

@@ -36,5 +36,15 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 czlonkowie[index] = czlonek;
         }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
+        }
     }
 }

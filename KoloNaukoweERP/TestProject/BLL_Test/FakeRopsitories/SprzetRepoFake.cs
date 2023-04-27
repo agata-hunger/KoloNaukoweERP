@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Repositories.SprzetR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestProject.BLL_Test.FakeRopsitories
 {
-    public class SprzetRepoFake
+    public class SprzetRepoFake : ISprzetRepository
     {
         private List<Sprzet> sprzety = new List<Sprzet>();
 
@@ -25,7 +26,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             sprzety.Add(sprzet);
         }
-        public void DeleteSprzet(int idSprzetu)
+        public void DeleteSprzet(int? idSprzetu)
         {
             Sprzet sprzet = sprzety.Find(s => s.IdSprzetu == idSprzetu);
             sprzety.Remove(sprzet);
@@ -35,6 +36,16 @@ namespace TestProject.BLL_Test.FakeRopsitories
             int index = sprzety.FindIndex(s => s.IdSprzetu == sprzet.IdSprzetu);
             if (index != -1)
                 sprzety[index] = sprzet;
+        }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
         }
     }
 }

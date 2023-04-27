@@ -38,5 +38,13 @@ namespace DAL.Repositories.WydarzenieR
         {
             context.Entry(wydarzenie).State = EntityState.Modified;
         }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

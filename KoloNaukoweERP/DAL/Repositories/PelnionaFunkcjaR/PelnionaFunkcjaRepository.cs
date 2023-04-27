@@ -44,6 +44,14 @@ namespace DAL.Repositories.PelnionaFunkcjaR
         {
             context.Entry(pelnionaFunkcja).State = EntityState.Modified;
         }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }
 

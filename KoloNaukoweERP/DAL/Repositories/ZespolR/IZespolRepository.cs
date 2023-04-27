@@ -14,5 +14,7 @@ namespace DAL.Repositories.ZespolR
         void InsertZespol(Zespol zespol);
         void DeleteZespol(int? idZespolu);
         void UpdateZespol(Zespol zespol);
+        void Dispose();
+        void Save();
     }
 }

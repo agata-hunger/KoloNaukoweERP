@@ -14,5 +14,7 @@ namespace DAL.Repositories.WydarzenieR
         void InsertWydarzenie(Wydarzenie wydarzenie);
         void DeleteWydarzenie(int idWydarzenia);
         void UpdateWydarzenie(Wydarzenie wydarzenie);
+        void Dispose();
+        void Save();
     }
 }

@@ -14,5 +14,7 @@ namespace DAL.Repositories.ProjektR
         void InsertProjekt(Projekt projekt);
         void DeleteProjekt(int idProjektu);
         void UpdateProjekt(Projekt projekt);
+        void Dispose();
+        void Save();
     }
 }

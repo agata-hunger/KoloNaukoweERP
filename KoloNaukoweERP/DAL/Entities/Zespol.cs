@@ -11,7 +11,7 @@ namespace DAL.Entities
     public class Zespol
     {
         [Key]
-        public int? IdZespolu { get; set; }
+        public int IdZespolu { get; set; }
 
         [MinLength(1, ErrorMessage = "Nazwa zespołu jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa zespołu jest za długa")]

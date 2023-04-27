@@ -37,6 +37,13 @@ namespace DAL.Repositories.ZespolR
         {
             context.Entry(zespol).State = EntityState.Modified;
         }
-
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

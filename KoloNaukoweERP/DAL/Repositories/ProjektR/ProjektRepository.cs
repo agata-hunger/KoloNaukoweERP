@@ -42,5 +42,13 @@ namespace DAL.Repositories.ProjektR
         {
             context.Entry(projekt).State = EntityState.Modified;
         }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

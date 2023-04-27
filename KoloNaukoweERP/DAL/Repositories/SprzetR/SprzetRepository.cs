@@ -42,5 +42,13 @@ namespace DAL.Repositories.SprzetR
         {
             context.Entry(sprzet).State = EntityState.Modified;
         }
+        public void Dispose()
+        {
+            context.Dispose();
+        }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
     }
 }

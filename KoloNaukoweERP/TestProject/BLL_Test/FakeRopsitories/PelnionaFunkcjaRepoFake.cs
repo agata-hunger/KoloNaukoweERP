@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Repositories.PelnionaFunkcjaR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestProject.BLL_Test.FakeRopsitories
 {
-    public class PelnionaFunkcjaRepoFake
+    public class PelnionaFunkcjaRepoFake : IPelnionaFunkcjaRepository
     {
         private List<PelnionaFunkcja> pelnioneFunkcje = new List<PelnionaFunkcja>();
 
@@ -25,7 +26,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             pelnioneFunkcje.Add(pelnionaFunkcja);
         }
-        public void DeletePelnionaFunkcja(int idPelnionejFunkcji)
+        public void DeletePelnionaFunkcja(int? idPelnionejFunkcji)
         {
             PelnionaFunkcja pelnionaFunkcja = pelnioneFunkcje.Find(p => p.IdPelnionejFunkcji == idPelnionejFunkcji);
             pelnioneFunkcje.Remove(pelnionaFunkcja);
@@ -35,6 +36,16 @@ namespace TestProject.BLL_Test.FakeRopsitories
             int index = pelnioneFunkcje.FindIndex(p => p.IdPelnionejFunkcji == pelnionaFunkcja.IdPelnionejFunkcji);
             if (index != -1)
                 pelnioneFunkcje[index] = pelnionaFunkcja;
+        }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
         }
     }
 }

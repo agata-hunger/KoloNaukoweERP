@@ -14,5 +14,7 @@ namespace DAL.Repositories.SprzetR
         void InsertSprzet(Sprzet sprzet);
         void DeleteSprzet(int? idSprzetu);
         void UpdateSprzet(Sprzet sprzet);
+        void Dispose();
+        void Save();
     }
 }

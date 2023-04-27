@@ -40,6 +40,16 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 wydarzenia[index] = wydarzenie;
         }
+
+        public void Dispose()
+        {
+            //do nothing
+        }
+
+        public void Save()
+        {
+            //do nothing
+        }
     }
 }
 

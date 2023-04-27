@@ -14,10 +14,8 @@ namespace DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private DbKoloNaukoweERP context;
-        public UnitOfWork(DbKoloNaukoweERP context, ICzlonekRepository czlonek, IPelnionaFunkcjaRepository pelnionaFunkcja, IProjektRepository projekt, ISprzetRepository sprzet, IWydarzenieRepository wydarzenie, IZespolRepository zespol)
+        public UnitOfWork(ICzlonekRepository czlonek, IPelnionaFunkcjaRepository pelnionaFunkcja, IProjektRepository projekt, ISprzetRepository sprzet, IWydarzenieRepository wydarzenie, IZespolRepository zespol)
         {
-            this.context = context;
             Czlonkowie = czlonek;
             PelnioneFunkcje = pelnionaFunkcja;
             Projekty = projekt;
@@ -40,12 +38,22 @@ namespace DAL
 
         public void Dispose()
         {
-            context.Dispose();
+            Czlonkowie.Dispose();
+            PelnioneFunkcje.Dispose();
+            Projekty.Dispose();
+            Sprzety.Dispose();
+            Wydarzenia.Dispose();
+            Zespoly.Dispose();
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            Czlonkowie.Save();
+            PelnioneFunkcje.Save();
+            Projekty.Save();
+            Sprzety.Save();
+            Wydarzenia.Save();
+            Zespoly.Save();
         }
     }
 }
