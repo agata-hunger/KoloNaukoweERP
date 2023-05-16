@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIKNbezDLL", "WebAPIKNb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{7AFE80C8-8695-4306-BDC2-1C9438920349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestControllersMVC", "TestControllersMVC\TestControllersMVC.csproj", "{24F7B27B-778E-4641-8F1F-EECCFE021D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestControllersMVC", "TestControllersMVC\TestControllersMVC.csproj", "{24F7B27B-778E-4641-8F1F-EECCFE021D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{E84963C5-E729-401C-8FFF-D84BDA3FF630}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84963C5-E729-401C-8FFF-D84BDA3FF630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84963C5-E729-401C-8FFF-D84BDA3FF630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84963C5-E729-401C-8FFF-D84BDA3FF630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84963C5-E729-401C-8FFF-D84BDA3FF630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
