@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIKNbezDLL", "WebAPIKNbezDLL\WebAPIKNbezDLL.csproj", "{6C81E7F4-A930-457B-915B-C64836F041B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{7AFE80C8-8695-4306-BDC2-1C9438920349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{7AFE80C8-8695-4306-BDC2-1C9438920349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestControllersMVC", "TestControllersMVC\TestControllersMVC.csproj", "{24F7B27B-778E-4641-8F1F-EECCFE021D61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7AFE80C8-8695-4306-BDC2-1C9438920349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AFE80C8-8695-4306-BDC2-1C9438920349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AFE80C8-8695-4306-BDC2-1C9438920349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F7B27B-778E-4641-8F1F-EECCFE021D61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -21,14 +21,7 @@ using Microsoft.Extensions.Options;
 namespace TestProject.BLL_Test
 {
     public class WydarzenieServiceTest 
-    {
-        private readonly Mock<IWydarzenieRepository> mockWydarzenieRepo = new Mock<IWydarzenieRepository>();
-        private readonly Mock<IZespolRepository> mockZespolRepo = new Mock<IZespolRepository>();
-        private readonly Mock<ISprzetRepository> mockSprzetRepo = new Mock<ISprzetRepository>();
-        private readonly Mock<IProjektRepository> mockProjektRepo = new Mock<IProjektRepository>();
-        private readonly Mock<IPelnionaFunkcjaRepository> mockPelnionaFunkcjaRepo = new Mock<IPelnionaFunkcjaRepository>();
-        private readonly Mock<ICzlonekRepository> mockCzlonekRepo = new Mock<ICzlonekRepository>();
-        
+    {   
         [Fact]
         public void TestAddWydarzenie()//string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia
         {
