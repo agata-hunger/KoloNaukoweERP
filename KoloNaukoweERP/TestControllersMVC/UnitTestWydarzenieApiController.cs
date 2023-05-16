@@ -7,8 +7,8 @@ using BLL.Services.Sekretarz;
 using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using WebAPIKN.Controllers;
-using WebAPIKN.Models;
+using WebAPI.Controllers;
+using WebAPI.Models;
 
 namespace TestControllersMVC
 {

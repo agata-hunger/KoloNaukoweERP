@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebAPIKN.Controllers;
-using WebAPIKN.Models;
+using WebAPI.Controllers;
+using WebAPI.Models;
 
 namespace TestControllersMVC
 {
@@ -33,6 +33,21 @@ namespace TestControllersMVC
             var model = Assert.IsAssignableFrom<List<Wydarzenie>>(viewResult.Model);
 
             Assert.Same(viewResult.Model, wydarzenia);
+        }
+
+        [Fact]
+        public void TestAddWydarzenie()
+        {
+            // Arrange
+            WydarzenieBLLMock wydarzenieBLLMock = new WydarzenieBLLMock();
+            var controller = new WydarzeniaController(wydarzenieBLLMock);
+            var wydarzenie = new WydarzenieDTO();
+            
+            // Act
+            var result = controller.Create(wydarzenie);
+
+            // Assert
+            var viewResult = Assert.IsType<RedirectToActionResult>(result);
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Entities;
 
-namespace WebAPIKN.Controllers
+namespace WebAPI.Controllers
 {
     public class SprzetyController : Controller
     {

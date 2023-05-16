@@ -10,9 +10,9 @@ using DAL.Entities;
 using BLL;
 using BLL.Services.Koordynator;
 using BLL.Services.Sekretarz;
-using WebAPIKN.Models;
+using WebAPI.Models;
 
-namespace WebAPIKN.Controllers
+namespace WebAPI.Controllers
 {
     public class WydarzeniaController : Controller
     {

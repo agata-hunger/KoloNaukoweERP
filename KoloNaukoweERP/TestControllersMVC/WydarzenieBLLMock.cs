@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Services.Sekretarz;
+using DAL;
 using DAL.Entities;
 
 namespace TestControllersMVC
@@ -95,7 +96,17 @@ namespace TestControllersMVC
 
         public Zespol GetTeam(int idWydarzenia)
         {
-            throw new NotImplementedException();
+            //var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+            //return zespol;
+
+            List<Zespol> zespolList = new List<Zespol>
+            {
+                new Zespol
+                {
+                    IdZespolu = 1
+                }
+            };
+            return zespolList.ElementAt(idWydarzenia);
         }
 
         public List<Zespol> GetTeams()

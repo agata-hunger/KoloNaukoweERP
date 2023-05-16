@@ -1,4 +1,4 @@
-﻿namespace WebAPIKN.Models
+﻿namespace WebAPI.Models
 {
     public class ProjektDTO
     {

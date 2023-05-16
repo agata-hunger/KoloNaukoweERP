@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BLL.Services.Sekretarz;
-using WebAPIKN.Models;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {

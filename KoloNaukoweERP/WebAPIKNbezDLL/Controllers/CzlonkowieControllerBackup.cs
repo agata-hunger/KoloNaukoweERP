@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPIKN.Controllers
+namespace WebAPI.Controllers
 {
     public class CzlonkowieControllerBackup : Controller //Check what is ControllerBase - probably wrong
     {
