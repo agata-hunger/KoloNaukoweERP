@@ -7,3 +7,6 @@ export class SekretarzService {
 
   constructor() { }
 }
+
+
+//tutaj te wszystkie gety addy i remove

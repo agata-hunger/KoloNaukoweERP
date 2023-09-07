@@ -1,10 +1,10 @@
 export class ProjektRequest {
-    idZespolu: Number;
+    idZespolu: number;
     nazwa: string;
     terminRealizacji: Date;
     opis: string;
 
-    constructor(idZespolu: Number, nazwa: string, terminRealizacji: Date, opis: string){
+    constructor(idZespolu: number, nazwa: string, terminRealizacji: Date, opis: string){
         this.idZespolu = idZespolu;
         this.nazwa = nazwa;
         this.terminRealizacji = terminRealizacji;
@@ -12,6 +12,4 @@ export class ProjektRequest {
         console.log('request-projekt')
     }
     
-
-
 }
