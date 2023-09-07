@@ -48,11 +48,21 @@ namespace TestProject.BLL_Test
             Mock<IPelnionaFunkcjaRepository> mockPelnionaFunkcjaRepo = new Mock<IPelnionaFunkcjaRepository>();
             Mock<ICzlonekRepository> mockCzlonekRepo = new Mock<ICzlonekRepository>();
 
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            mockZespolRepo.Setup(repo => repo.GetZespoly()).Returns(new List<Zespol> { zespol });
+
             var unitOfWork = new UnitOfWork(mockCzlonekRepo.Object, mockPelnionaFunkcjaRepo.Object, mockProjektRepo.Object, mockSprzetRepo.Object, mockWydarzenieRepo.Object, mockZespolRepo.Object);
             var sekretarzBLL = new SekretarzeServices(unitOfWork);
 
             sekretarzBLL.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
-            Assert.Equal(1, sekretarzBLL.GetEvents().Count());
+            //Assert.Equal(1, sekretarzBLL.GetEvents().Count());
+            var events = sekretarzBLL.GetEvents();
+
+           // Assert.NotNull(sekretarzBLL); // Upewnij się, że kolekcja nie jest null
+
+            Assert.NotNull(events); // Upewnij się, że kolekcja nie jest null
+            
+            Assert.Equal(1, events.Count());
         }
     public void RemoveWydarzenie(string nazwaWydarzenia)
         {

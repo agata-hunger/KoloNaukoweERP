@@ -9,7 +9,7 @@ namespace DAL.Repositories.ZespolR
 {
     public interface IZespolRepository
     {
-        IEnumerable<Zespol> GetZespoly();
+        List<Zespol> GetZespoly();
         Zespol GetZespolById(int idZespolu);
         void InsertZespol(Zespol zespol);
         void DeleteZespol(int? idZespolu);

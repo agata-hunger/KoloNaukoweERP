@@ -295,12 +295,28 @@ namespace BLL.Services.Sekretarz
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
             return wydarzenie;
         }
+        //public List<Wydarzenie> GetEvents()
+        //{
+        //    var list = new List<Wydarzenie>();
+
+        //    list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
+        //    return list;
+        //}
+
         public List<Wydarzenie> GetEvents()
         {
-            var list = new List<Wydarzenie>();
-            list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
+            var list = unitOfWork.Wydarzenia.GetWydarzenia(); // Upewnij się, że GetWydarzenia() zwraca odpowiednią listę wydarzeń.
+
+            if (list == null)
+            {
+                // Jeśli lista jest nullem, możesz zwrócić pustą listę lub podjąć inną decyzję, co zwrócić.
+                return new List<Wydarzenie>();
+            }
+
+            // Jeśli GetWydarzenia() zwraca odpowiednią listę wydarzeń, możesz ją bezpośrednio zwrócić.
             return list;
         }
+
         public Zespol GetTeam(int idZespolu)
         {
             var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);

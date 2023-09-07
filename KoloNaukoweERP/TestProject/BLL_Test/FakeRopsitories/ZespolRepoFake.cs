@@ -13,7 +13,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         private List<Zespol> zespoly = new List<Zespol>();
 
 
-        public IEnumerable<Zespol> GetZespoly()
+        public List<Zespol> GetZespoly()
         {
             return zespoly;
         }

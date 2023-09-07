@@ -16,7 +16,7 @@ namespace DAL.Repositories.ZespolR
         {
             this.context = context;
         }
-        public IEnumerable<Zespol> GetZespoly()
+        public List<Zespol> GetZespoly()
         {
             return context.Zespoly.ToList();
         }

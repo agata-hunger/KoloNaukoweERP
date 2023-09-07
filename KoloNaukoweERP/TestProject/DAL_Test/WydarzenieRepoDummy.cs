@@ -21,7 +21,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Wydarzenie> GetWydarzenia()
+        public List<Wydarzenie> GetWydarzenia()
         {
             throw new NotImplementedException();
         }
