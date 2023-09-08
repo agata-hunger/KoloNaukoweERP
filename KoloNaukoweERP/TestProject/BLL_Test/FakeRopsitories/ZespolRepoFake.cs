@@ -37,7 +37,14 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 zespoly[index] = zespol;
         }
-
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteWydarzenie(int? idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             //do nothing

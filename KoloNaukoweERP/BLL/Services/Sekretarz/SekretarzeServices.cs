@@ -138,14 +138,20 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if (wydarzenie != null)
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);//GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            //var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().Equals(wydarzenie).FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
+            if (wydarzenie == null)
             {
-                zespol.Wydarzenia.Add(wydarzenie);
+                throw new Exception();
             }
+            /*if (zespol.Wydarzenia == null)
+            {
+                throw new Exception();
+            }*/
+            //zespol.Wydarzenia.Add(wydarzenie);
+            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
             unitOfWork.Save();
         }
 

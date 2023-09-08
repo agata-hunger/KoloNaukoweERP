@@ -22,6 +22,9 @@ namespace DAL.Repositories.ZespolR
         }
         public Zespol GetZespolById(int idZespolu)
         {
+            /*Zespol zespol = context.Zespoly.Find(idZespolu);
+            return zespol;*/
+            
             return context.Zespoly.Find(idZespolu);
         }
         public void InsertZespol(Zespol zespol)
@@ -45,5 +48,16 @@ namespace DAL.Repositories.ZespolR
         {
             context.SaveChanges();
         }
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+            Zespol zespol = context.Zespoly.Find(idZespolu);
+            zespol.Wydarzenia.Add(wydarzenie);
+        }
+        public void DeleteWydarzenie(int? idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }

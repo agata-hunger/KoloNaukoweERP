@@ -45,5 +45,15 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+
+            throw new NotImplementedException();
+        }
+        public void DeleteWydarzenie(int? idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

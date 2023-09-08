@@ -14,6 +14,8 @@ namespace DAL.Repositories.ZespolR
         void InsertZespol(Zespol zespol);
         void DeleteZespol(int? idZespolu);
         void UpdateZespol(Zespol zespol);
+        void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie);
+        void DeleteWydarzenie(int? idZespołu);
         void Dispose();
         void Save();
     }

@@ -21,7 +21,7 @@ using System.Runtime.CompilerServices;
 
 namespace TestProject.BLL_Test
 {
-    public class WydarzenieServiceTest 
+    public class SekretarzServiceTest 
     {   
         [Fact]
         public void TestAddWydarzenieMoq()
@@ -46,6 +46,32 @@ namespace TestProject.BLL_Test
             
         }
         [Fact]
+        public void TestAddWydarzenieToTeam()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);//.GetZespoly()).Returns(new List<Zespol> { zespol });
+
+            var wydarzenie = new Wydarzenie();
+
+            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));//.InsertWyd(wydarzenie));
+            
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+
+            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+
+            var team = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
+
+            sekretarz.AddWydarzenieToTeam(1,wydarzenie);
+
+
+            unitOfWorkMock.Verify(repo=>repo.Zespoly.InsertWydarzenie(1,It.IsAny<Wydarzenie>()),Times.Once());
+        }
+        [Fact]
         public void TestAddWydarzenie()//string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia
         {
             var wydarzenieRepo = new WydarzenieRepoFake();
@@ -65,15 +91,31 @@ namespace TestProject.BLL_Test
 
             Assert.Equal(1, wydarzenieRepo.GetWydarzenia().Count());
         }
-        public void RemoveWydarzenie(string nazwaWydarzenia)
+        [Fact]
+        public void TestRemoveWydarzenie()
         {
-            throw new NotImplementedException();
+            var wydarzenieRepo = new WydarzenieRepoFake();
+            var zespolRepo = new ZespolRepoFake();
+            var sprzetRepo = new SprzetRepoFake();
+            var projektRepo = new ProjektRepoFake();
+            var czlonekRepo = new CzlonekRepoFake();
+            var pelnionaFunkcjaRepo = new PelnionaFunkcjaRepoFake();
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "zespol1" };
+            zespolRepo.InsertZespol(zespol);
+
+            var unitOfWork = new UnitOfWork(czlonekRepo, pelnionaFunkcjaRepo, projektRepo, sprzetRepo, wydarzenieRepo, zespolRepo);
+            var sekretarz = new SekretarzeServices(unitOfWork);
+
+            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+
+            sekretarz.RemoveWydarzenie("Test");
+            Assert.Equal(0, wydarzenieRepo.GetWydarzenia().Count());
         }
 
-        public void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// ///
+
 
         public void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia)
         {
