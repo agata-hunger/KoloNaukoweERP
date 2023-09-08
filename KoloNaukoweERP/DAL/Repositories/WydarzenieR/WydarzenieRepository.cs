@@ -16,7 +16,7 @@ namespace DAL.Repositories.WydarzenieR
         {
             this.context = context;
         }
-        public List<Wydarzenie> GetWydarzenia()
+        public IEnumerable<Wydarzenie> GetWydarzenia()
         {
             return context.Wydarzenia.ToList();
         }

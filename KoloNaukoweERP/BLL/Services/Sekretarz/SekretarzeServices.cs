@@ -39,13 +39,26 @@ namespace BLL.Services.Sekretarz
         public void AddWydarzenie(string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia)
         {
             var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+
             Wydarzenie wydarzenie = new Wydarzenie();
             wydarzenie.Nazwa = nazwaWydarzenia;
             wydarzenie.Zespol = zespol;
             wydarzenie.Data = dataWydarzenia;
-            wydarzenie.Miejsce = miejsceWydarzenia;
             unitOfWork.Wydarzenia.InsertWydarzenie(wydarzenie);
+
             unitOfWork.Save();
+
+            /*var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(z => z.Nazwa.Equals(nazwaZespolu));
+            var wydarzenieRepo = unitOfWork.Wydarzenia; // Deklaracja zmiennej wydarzenieRepo
+
+            var wydarzenie = new Wydarzenie();
+            wydarzenie.Nazwa = nazwaWydarzenia;
+            wydarzenie.Zespol = zespol;
+            wydarzenie.Data = dataWydarzenia;
+            wydarzenie.Miejsce = miejsceWydarzenia;
+
+            wydarzenieRepo.InsertWydarzenie(wydarzenie);
+            unitOfWork.Save();*/
         }
 
         public void RemoveWydarzenie(string nazwaWydarzenia)
@@ -295,27 +308,34 @@ namespace BLL.Services.Sekretarz
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
             return wydarzenie;
         }
-        //public List<Wydarzenie> GetEvents()
-        //{
-        //    var list = new List<Wydarzenie>();
-
-        //    list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
-        //    return list;
-        //}
-
         public List<Wydarzenie> GetEvents()
         {
-            var list = unitOfWork.Wydarzenia.GetWydarzenia(); // Upewnij się, że GetWydarzenia() zwraca odpowiednią listę wydarzeń.
+            /*            var list = new List<Wydarzenie>();
 
-            if (list == null)
-            {
-                // Jeśli lista jest nullem, możesz zwrócić pustą listę lub podjąć inną decyzję, co zwrócić.
-                return new List<Wydarzenie>();
-            }
+                        list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
+                        return list;*/
 
-            // Jeśli GetWydarzenia() zwraca odpowiednią listę wydarzeń, możesz ją bezpośrednio zwrócić.
+            var list = new List<Wydarzenie>();
+            var eventsArray = unitOfWork.Wydarzenia.GetWydarzenia(); // Pobieranie jako tablica
+
+            list.AddRange(eventsArray); // Dodawanie elementów tablicy do listy
+
             return list;
         }
+
+        /*        public List<Wydarzenie> GetEvents()
+                {
+                    var list = unitOfWork.Wydarzenia.GetWydarzenia(); // Upewnij się, że GetWydarzenia() zwraca odpowiednią listę wydarzeń.
+
+                    if (list == null)
+                    {
+                        // Jeśli lista jest nullem, możesz zwrócić pustą listę lub podjąć inną decyzję, co zwrócić.
+                        return new List<Wydarzenie>();
+                    }
+
+                    // Jeśli GetWydarzenia() zwraca odpowiednią listę wydarzeń, możesz ją bezpośrednio zwrócić.
+                    return list;
+                }*/
 
         public Zespol GetTeam(int idZespolu)
         {

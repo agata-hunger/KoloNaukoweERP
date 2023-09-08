@@ -26,7 +26,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public List<Zespol> GetZespoly()
+        public IEnumerable<Zespol> GetZespoly()
         {
             throw new NotImplementedException();
         }

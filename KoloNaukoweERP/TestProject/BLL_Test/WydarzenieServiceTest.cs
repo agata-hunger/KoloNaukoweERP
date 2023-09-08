@@ -17,6 +17,7 @@ using DAL.Repositories.PelnionaFunkcjaR;
 using DAL.Repositories.CzlonekR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Runtime.CompilerServices;
 
 namespace TestProject.BLL_Test
 {
@@ -31,38 +32,41 @@ namespace TestProject.BLL_Test
             var projektRepo = new ProjektRepoFake();
             var czlonekRepo = new CzlonekRepoFake();
             var pelnionaFunkcjaRepo = new PelnionaFunkcjaRepoFake();
+
             var zespol = new Zespol() { IdZespolu = 1, Nazwa = "zespol1" };
             zespolRepo.InsertZespol(zespol);
+
             var unitOfWork = new UnitOfWork(czlonekRepo, pelnionaFunkcjaRepo, projektRepo, sprzetRepo, wydarzenieRepo, zespolRepo);
             var sekretarz = new SekretarzeServices(unitOfWork);
+           
             sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+
             Assert.Equal(1, wydarzenieRepo.GetWydarzenia().Count());
         }
         [Fact]
         public void TestAddWydarzenieMoq()
         {
-            Mock<IWydarzenieRepository> mockWydarzenieRepo = new Mock<IWydarzenieRepository>();
-            Mock<IZespolRepository> mockZespolRepo = new Mock<IZespolRepository>();
-            Mock<ISprzetRepository> mockSprzetRepo = new Mock<ISprzetRepository>();
-            Mock<IProjektRepository> mockProjektRepo = new Mock<IProjektRepository>();
-            Mock<IPelnionaFunkcjaRepository> mockPelnionaFunkcjaRepo = new Mock<IPelnionaFunkcjaRepository>();
-            Mock<ICzlonekRepository> mockCzlonekRepo = new Mock<ICzlonekRepository>();
+            var wydarzenieRepo = new Mock<IWydarzenieRepository>();
+            var zespolRepo = new Mock<IZespolRepository>();
+            var sprzetRepo = new Mock<ISprzetRepository>();
+            var projektRepo = new Mock<IProjektRepository>();
+            var czlonekRepo = new Mock<ICzlonekRepository>();
+            var pelnionaFunkcjaRepo = new Mock<IPelnionaFunkcjaRepository>();
 
             var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
-            mockZespolRepo.Setup(repo => repo.GetZespoly()).Returns(new List<Zespol> { zespol });
+            zespolRepo.Setup(repo => repo.GetZespoly()).Returns(new List<Zespol> { zespol });
 
-            var unitOfWork = new UnitOfWork(mockCzlonekRepo.Object, mockPelnionaFunkcjaRepo.Object, mockProjektRepo.Object, mockSprzetRepo.Object, mockWydarzenieRepo.Object, mockZespolRepo.Object);
-            var sekretarzBLL = new SekretarzeServices(unitOfWork);
+            var wydarzenie = new Wydarzenie();
+            wydarzenieRepo.Setup(repo => repo.InsertWydarzenie(wydarzenie));
 
-            sekretarzBLL.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
-            //Assert.Equal(1, sekretarzBLL.GetEvents().Count());
-            var events = sekretarzBLL.GetEvents();
+            var unitOfWork = new UnitOfWork(czlonekRepo.Object, pelnionaFunkcjaRepo.Object, projektRepo.Object, sprzetRepo.Object, wydarzenieRepo.Object, zespolRepo.Object);
+            var sekretarz = new SekretarzeServices(unitOfWork);
 
-           // Assert.NotNull(sekretarzBLL); // Upewnij się, że kolekcja nie jest null
+            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
 
-            Assert.NotNull(events); // Upewnij się, że kolekcja nie jest null
+            wydarzenieRepo.Verify(repo => repo.InsertWydarzenie(It.IsAny<Wydarzenie>()), Times.Once);
+            wydarzenieRepo.Verify(repo => repo.Save(), Times.Once);
             
-            Assert.Equal(1, events.Count());
         }
     public void RemoveWydarzenie(string nazwaWydarzenia)
         {
