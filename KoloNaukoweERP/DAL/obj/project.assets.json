@@ -3511,23 +3511,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\danie\\.nuget\\packages\\": {},
+    "C:\\Users\\shemm\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\STUDIA\\KoloNaukoweERP\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\shemm\\Documents\\GitHub\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\STUDIA\\KoloNaukoweERP\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "D:\\STUDIA\\KoloNaukoweERP\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\obj\\",
+      "projectPath": "C:\\Users\\shemm\\Documents\\GitHub\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\shemm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shemm\\Documents\\GitHub\\KoloNaukoweERP\\KoloNaukoweERP\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\shemm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -39,12 +39,13 @@ namespace BLL.Services.Sekretarz
         public void AddWydarzenie(string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia)
         {
             var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+
             Wydarzenie wydarzenie = new Wydarzenie();
             wydarzenie.Nazwa = nazwaWydarzenia;
             wydarzenie.Zespol = zespol;
             wydarzenie.Data = dataWydarzenia;
-            wydarzenie.Miejsce = miejsceWydarzenia;
             unitOfWork.Wydarzenia.InsertWydarzenie(wydarzenie);
+
             unitOfWork.Save();
         }
 
@@ -137,14 +138,20 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if (wydarzenie != null)
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);//GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            //var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().Equals(wydarzenie).FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
+            if (wydarzenie == null)
             {
-                zespol.Wydarzenia.Add(wydarzenie);
+                throw new Exception();
             }
+            /*if (zespol.Wydarzenia == null)
+            {
+                throw new Exception();
+            }*/
+            //zespol.Wydarzenia.Add(wydarzenie);
+            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
             unitOfWork.Save();
         }
 
@@ -295,27 +302,34 @@ namespace BLL.Services.Sekretarz
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
             return wydarzenie;
         }
-        //public List<Wydarzenie> GetEvents()
-        //{
-        //    var list = new List<Wydarzenie>();
-
-        //    list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
-        //    return list;
-        //}
-
         public List<Wydarzenie> GetEvents()
         {
-            var list = unitOfWork.Wydarzenia.GetWydarzenia(); // Upewnij się, że GetWydarzenia() zwraca odpowiednią listę wydarzeń.
+            /*            var list = new List<Wydarzenie>();
 
-            if (list == null)
-            {
-                // Jeśli lista jest nullem, możesz zwrócić pustą listę lub podjąć inną decyzję, co zwrócić.
-                return new List<Wydarzenie>();
-            }
+                        list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
+                        return list;*/
 
-            // Jeśli GetWydarzenia() zwraca odpowiednią listę wydarzeń, możesz ją bezpośrednio zwrócić.
+            var list = new List<Wydarzenie>();
+            var eventsArray = unitOfWork.Wydarzenia.GetWydarzenia(); // Pobieranie jako tablica
+
+            list.AddRange(eventsArray); // Dodawanie elementów tablicy do listy
+
             return list;
         }
+
+        /*        public List<Wydarzenie> GetEvents()
+                {
+                    var list = unitOfWork.Wydarzenia.GetWydarzenia(); // Upewnij się, że GetWydarzenia() zwraca odpowiednią listę wydarzeń.
+
+                    if (list == null)
+                    {
+                        // Jeśli lista jest nullem, możesz zwrócić pustą listę lub podjąć inną decyzję, co zwrócić.
+                        return new List<Wydarzenie>();
+                    }
+
+                    // Jeśli GetWydarzenia() zwraca odpowiednią listę wydarzeń, możesz ją bezpośrednio zwrócić.
+                    return list;
+                }*/
 
         public Zespol GetTeam(int idZespolu)
         {

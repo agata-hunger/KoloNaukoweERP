@@ -59,7 +59,7 @@ namespace TestControllersMVC
             MiejsceWydarzenia = miejsceWydarzenia;
         }
 
-        public void AddWydarzenieToTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie)
         {
             throw new NotImplementedException();
         }
@@ -175,6 +175,16 @@ namespace TestControllersMVC
         }
 
         public void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+
+            throw new NotImplementedException();
+        }
+        public void DeleteWydarzenie(int? idWydarzenia)
         {
             throw new NotImplementedException();
         }

@@ -26,7 +26,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public List<Zespol> GetZespoly()
+        public IEnumerable<Zespol> GetZespoly()
         {
             throw new NotImplementedException();
         }
@@ -42,6 +42,16 @@ namespace TestProject.DAL_Test
         }
 
         public void UpdateZespol(Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+
+            throw new NotImplementedException();
+        }
+        public void DeleteWydarzenie(int? idWydarzenia)
         {
             throw new NotImplementedException();
         }

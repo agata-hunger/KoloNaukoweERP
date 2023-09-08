@@ -16,7 +16,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         private List<Wydarzenie> wydarzenia = new List<Wydarzenie>();
 
 
-        public List<Wydarzenie> GetWydarzenia()
+        public IEnumerable<Wydarzenie> GetWydarzenia()
         {
             return wydarzenia;
         }
