@@ -47,18 +47,6 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Wydarzenia.InsertWydarzenie(wydarzenie);
 
             unitOfWork.Save();
-
-            /*var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(z => z.Nazwa.Equals(nazwaZespolu));
-            var wydarzenieRepo = unitOfWork.Wydarzenia; // Deklaracja zmiennej wydarzenieRepo
-
-            var wydarzenie = new Wydarzenie();
-            wydarzenie.Nazwa = nazwaWydarzenia;
-            wydarzenie.Zespol = zespol;
-            wydarzenie.Data = dataWydarzenia;
-            wydarzenie.Miejsce = miejsceWydarzenia;
-
-            wydarzenieRepo.InsertWydarzenie(wydarzenie);
-            unitOfWork.Save();*/
         }
 
         public void RemoveWydarzenie(string nazwaWydarzenia)
