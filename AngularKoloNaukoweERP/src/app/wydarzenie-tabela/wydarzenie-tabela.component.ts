@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-wydarzenie-tabela',
-  template: `
-    <p>
-      wydarzenie-tabela works!
-    </p>
-  `,
+  templateUrl: 'wydarzenie-tabela.component.html',
   styles: [
   ]
 })

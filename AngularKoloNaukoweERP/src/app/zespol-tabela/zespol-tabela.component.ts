@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-zespol-tabela',
-  template: `
-    <p>
-      zespol-tabela works!
-    </p>
-  `,
+  templateUrl: 'zespol-tabela.component.html',
   styles: [
   ]
 })

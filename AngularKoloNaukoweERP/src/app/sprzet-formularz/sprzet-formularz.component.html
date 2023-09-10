@@ -1,0 +1,25 @@
+<form [formGroup]="formSprzet" class="formularz" (submit)="onSubmit()">
+    <form [formGroup]="formSprzet" class="formularz" >
+        <div [ngClass]="{ 'error': !isValid('nazwa')}">
+            <label>
+                Nazwa
+            </label>
+            <input type="text" name="nazwa" formControlName="nazwa">
+        </div>
+        <div>
+            <label>
+                Opis
+            </label>
+            <input type="text" name="opis" formControlName="opis">
+        </div>
+        <div>
+            <label>
+                Czy dostępny:
+            </label>
+            <input type="checkbox" id="CzyDostępny" name="CzyDostępny" value="1">
+            <label for="CzyDostępny"> Dostępny</label><br>
+        </div>
+    
+        <button [disabled]="!formSprzet.valid" type="submit">Dodaj</button>
+    </form>
+    

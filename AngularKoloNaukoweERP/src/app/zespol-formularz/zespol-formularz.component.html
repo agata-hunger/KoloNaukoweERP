@@ -1,0 +1,36 @@
+<!-- <form [formGroup]="form" class="formularz" (submit)="onSubmit()"> -->
+    <form [formGroup]="formZespol" class="formularz" >
+        <div [ngClass]="{ 'error': !isValid('idZespolu')}">
+            <label>
+                ID Projektu który przypisać do Zespołu:
+            </label>
+            <input type="number" name="idProjektu" formControlName="idProjektu">
+        </div>
+        <div>
+            <label>
+                ID Wydarzenia które przypisać do Zespołu:
+            </label>
+            <input type="number" name="idWydarzenia" formControlName="idWydarzenia">
+        </div>
+        <div>
+            <label>
+                ID Sprzętu który przypisać do Zespołu:
+            </label>
+            <input type="number" name="idSprzetu" formControlName="idSprzetu">
+        </div>
+        <div>
+            <label>
+                ID Członka którego przypsiać do Zespołu:
+            </label>
+            <input type="number" name="idCzlonka" formControlName="idCzlonka">
+        </div>
+        <div>
+            <label>
+                Nazwa
+            </label>
+            <input type="text" name="nazwa" formControlName="nazwa">
+        </div>
+    
+    
+        <button [disabled]="!formZespol.valid" type="submit">Dodaj</button>
+    </form>

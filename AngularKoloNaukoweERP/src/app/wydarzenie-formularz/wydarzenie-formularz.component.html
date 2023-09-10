@@ -1,0 +1,31 @@
+<!-- <form [formGroup]="form" class="formularz" (submit)="onSubmit()"> -->
+    <form [formGroup]="formWydarzenie" class="formularz" >
+        <div [ngClass]="{ 'error': !isValid('idZespolu')}">
+            <label>
+                ID Zespołu do którego przypisać wydarzenie:
+            </label>
+            <input type="number" name="idZespolu" formControlName="idZespolu">
+        </div>
+        <div [ngClass]="{ 'error': !isValid('nazwa')}">
+            <label>
+                Nazwa
+            </label>
+            <input type="text" name="nazwa" formControlName="nazwa">
+        </div>
+        <div>
+            <label>
+                Data
+            </label>
+            <input type="date" name="data" formControlName="data">
+        </div>
+        <div>
+            <label>
+                Opis
+            </label>
+            <input type="text" name="opis" formControlName="opis">
+        </div>
+    
+    
+        <button [disabled]="!formWydarzenie.valid" type="submit">Dodaj</button>
+    </form>
+    

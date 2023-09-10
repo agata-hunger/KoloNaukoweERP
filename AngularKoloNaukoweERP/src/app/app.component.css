@@ -1,0 +1,27 @@
+.header
+{
+    padding: 20px;
+    background-color: #00478a;
+    color: white;
+}
+
+
+
+ul li {
+    display: block;
+    text-align: center;
+    padding: 10px;
+	display: inline;
+	white-space: nowrap;
+    font-size: 20px;
+}
+
+ul li a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #00478a;
+}
+
+ul li a:hover {
+    color: #0084ff;
+}

@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sprzet-tabela',
-  template: `
-    <p>
-      sprzet-tabela works!
-    </p>
-  `,
+  templateUrl: './sprzet-tabela.component.html',
   styles: [
   ]
 })
