@@ -155,14 +155,14 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if (wydarzenie != null)
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+            if (wydarzenie == null)
             {
-                zespol.Wydarzenia.Remove(wydarzenie);
+                throw new Exception();
             }
+            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu);
             unitOfWork.Save();
         }
 

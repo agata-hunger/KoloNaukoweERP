@@ -154,7 +154,7 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie)
         {
             throw new NotImplementedException();
         }

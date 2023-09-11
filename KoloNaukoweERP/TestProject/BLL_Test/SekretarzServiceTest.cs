@@ -116,10 +116,30 @@ namespace TestProject.BLL_Test
         /// <summary>
         /// ///
 
-
-        public void RemoveWydarzenieFromTeam(string nazwaZespolu, string nazwaWydarzenia)
+        [Fact]
+        public void TestRemoveWydarzenieFromTeamMoq()
         {
-            throw new NotImplementedException();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+
+            var wydarzenie = new Wydarzenie();
+
+            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+
+            var team = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
+
+            sekretarz.AddWydarzenieToTeam(1, wydarzenie);
+            sekretarz.RemoveWydarzenieFromTeam(zespol.IdZespolu, wydarzenie);
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(1), Times.Once());
+            //unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
 
 
