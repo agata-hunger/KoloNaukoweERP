@@ -256,6 +256,18 @@ namespace BLL.Services.Sekretarz
             }
         }
 
+        public void AddSprzetToTeam(int idZespolu, Sprzet sprzet)
+        {
+            //var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+    
+            if (sprzet == null)
+            {
+                throw new Exception();
+            }
+            unitOfWork.Zespoly.AddSprzet(idZespolu, sprzet);
+            //unitOfWork.Sprzety.InsertSprzet(sprzet); // CZY DODAJEMY SPRZET PO PROSTU CZY DO CZLONKA/ZESPOLU, BO ROBI SIE BIGOS
+            unitOfWork.Save();
+        }
         public void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny)
         {
             var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));

@@ -45,6 +45,10 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             throw new NotImplementedException();
         }
+        public void AddSprzet(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             //do nothing

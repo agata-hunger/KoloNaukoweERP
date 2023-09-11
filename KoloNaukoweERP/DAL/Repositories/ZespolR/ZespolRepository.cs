@@ -53,6 +53,11 @@ namespace DAL.Repositories.ZespolR
             Zespol zespol = context.Zespoly.Find(idZespolu);
             zespol.Wydarzenia.Add(wydarzenie);
         }
+        public void AddSprzet(int idZespolu, Sprzet sprzet)
+        {
+            Zespol zespol = context.Zespoly.Find(idZespolu);
+            zespol.Sprzety.Add(sprzet);
+        }
         public void DeleteWydarzenie(int? idWydarzenia)
         {
             throw new NotImplementedException();

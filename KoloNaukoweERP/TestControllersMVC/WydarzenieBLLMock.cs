@@ -46,6 +46,11 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
+        public void AddSprzetToTeam(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny)
         {
             throw new NotImplementedException();

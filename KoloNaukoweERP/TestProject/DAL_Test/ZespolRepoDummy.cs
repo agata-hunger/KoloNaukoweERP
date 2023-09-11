@@ -55,5 +55,9 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+        public void AddSprzet(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

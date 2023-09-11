@@ -42,6 +42,8 @@ namespace BLL.Services.Sekretarz
         void AddPelnionaFunkcja(string nazwaPelnionejFunkcji, ICollection<Czlonek> czlonkowie);
         void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
 
+        void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
+
         void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny);
         void RemoveSprzet(string nazwaSprzetu);
 
