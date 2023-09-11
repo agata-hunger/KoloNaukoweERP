@@ -44,7 +44,10 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             throw new NotImplementedException();
         }
-
+        public void DeleteZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             //do nothing

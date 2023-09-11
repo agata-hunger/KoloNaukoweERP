@@ -49,5 +49,9 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+        public void DeleteZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

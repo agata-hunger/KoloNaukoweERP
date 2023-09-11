@@ -138,7 +138,7 @@ namespace TestProject.BLL_Test
             sekretarz.AddWydarzenieToTeam(1, wydarzenie);
             sekretarz.RemoveWydarzenieFromTeam(zespol.IdZespolu, wydarzenie);
 
-            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(1), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(wydarzenie.IdWydarzenia), Times.Once());
             //unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
         [Fact]
@@ -217,10 +217,21 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo=> repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
-
-        public void RemoveZespolFromEvent(Wydarzenie zespol, string nazwaWydarzenia)
+        [Fact]
+        public void TestRemoveZespolFromEventMoq()
         {
-            throw new NotImplementedException();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
+
+            var zespol = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(It.IsAny<Zespol>()));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
+            sekretarz.RemoveZespolFromEvent(wydarzenie.IdWydarzenia, zespol);
+
+            unitOfWorkMock.Verify(repo => repo.Wydarzenia.DeleteZespol(wydarzenie.IdWydarzenia, zespol), Times.Once());
         }
 
         public Wydarzenie GetEvent(int idWydarzenia)

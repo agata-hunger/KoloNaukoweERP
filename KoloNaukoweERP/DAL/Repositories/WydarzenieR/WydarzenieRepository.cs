@@ -42,6 +42,10 @@ namespace DAL.Repositories.WydarzenieR
         {
             throw new NotImplementedException();
         }
+        public void DeleteZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             context.Dispose();

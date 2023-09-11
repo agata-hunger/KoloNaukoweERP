@@ -179,7 +179,7 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia)
+        public void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol)
         {
             throw new NotImplementedException();
         }
@@ -199,6 +199,10 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
         public void AddZespolToEvent(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteZespol(int idWydarzenia, Zespol zespol)
         {
             throw new NotImplementedException();
         }

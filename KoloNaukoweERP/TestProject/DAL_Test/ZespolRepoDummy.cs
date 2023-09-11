@@ -51,7 +51,7 @@ namespace TestProject.DAL_Test
 
             throw new NotImplementedException();
         }
-        public void DeleteWydarzenie(int? idWydarzenia)
+        public void DeleteWydarzenie(int idWydarzenia)
         {
             throw new NotImplementedException();
         }

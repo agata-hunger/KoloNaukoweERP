@@ -162,7 +162,7 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu);
+            unitOfWork.Zespoly.DeleteWydarzenie(wydarzenie.IdWydarzenia);
             unitOfWork.Save();
         }
 
@@ -214,10 +214,14 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia)
+        public void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol)
         {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            wydarzenie.Zespol = null;
+            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+            if(zespol==null)
+            {
+                throw new Exception();
+            }
+            unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
             unitOfWork.Save();
         }
 
