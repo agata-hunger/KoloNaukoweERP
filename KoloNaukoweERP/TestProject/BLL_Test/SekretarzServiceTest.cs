@@ -156,9 +156,20 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.AddSprzet(zespol.IdZespolu,It.IsAny<Sprzet>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
-        public void AddZespolToEvent(Wydarzenie zespol, string nazwaWydarzenia)
+        [Fact]
+        public void TestAddZespolToEventMoq()
         {
-            throw new NotImplementedException();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u=>u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
+
+            var zespol = new Zespol() { IdZespolu=1, Nazwa = "Test" };
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
+
+            unitOfWorkMock.Verify(repo=> repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
 
         public void RemoveZespolFromEvent(Wydarzenie zespol, string nazwaWydarzenia)

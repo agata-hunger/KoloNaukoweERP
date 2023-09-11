@@ -193,5 +193,9 @@ namespace TestControllersMVC
         {
             throw new NotImplementedException();
         }
+        public void AddZespolToEvent(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -38,6 +38,10 @@ namespace DAL.Repositories.WydarzenieR
         {
             context.Entry(wydarzenie).State = EntityState.Modified;
         }
+        public void InsertZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             context.Dispose();

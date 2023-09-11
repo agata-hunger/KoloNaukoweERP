@@ -33,7 +33,7 @@ namespace BLL.Services.Sekretarz
         void AddZespolToProject(Zespol zespol, string nazwaProjektu);
         void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);
 
-        void AddZespolToEvent(Zespol zespol, string nazwaWydarzenia);
+        void AddZespolToEvent(int idWydarzenia, Zespol zespol);
         void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia);
 
         void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);

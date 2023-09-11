@@ -203,10 +203,14 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddZespolToEvent(Zespol zespol, string nazwaWydarzenia)
+        public void AddZespolToEvent(int idWydarzenia, Zespol zespol)
         {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            wydarzenie.Zespol = zespol;
+            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+            if (zespol == null)
+            {
+                throw new Exception();
+            }
+            unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
             unitOfWork.Save();
         }
 

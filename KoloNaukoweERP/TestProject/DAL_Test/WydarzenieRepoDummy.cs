@@ -45,5 +45,9 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+        public void InsertZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
