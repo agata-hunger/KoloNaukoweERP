@@ -44,8 +44,8 @@ namespace BLL.Services.Sekretarz
 
         void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
 
-        void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny);
-        void RemoveSprzet(string nazwaSprzetu);
+        void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny);
+        void RemoveSprzet(int idSrzetu); 
 
         void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia);
         void RemoveProjekt(string nazwaProjektu);

@@ -272,28 +272,30 @@ namespace BLL.Services.Sekretarz
             //unitOfWork.Sprzety.InsertSprzet(sprzet); // CZY DODAJEMY SPRZET PO PROSTU CZY DO CZLONKA/ZESPOLU, BO ROBI SIE BIGOS
             unitOfWork.Save();
         }
-        public void AddSprzet(string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu, string nazwaSprzetu, string opis, bool czyDostepny)
+        public void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            //var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
+            //var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
 
             Sprzet sprzet = new Sprzet();
             sprzet.Nazwa = nazwaSprzetu;
-            sprzet.Czlonek = czlonek;
-            sprzet.Zespol = zespol;
+
             sprzet.Opis = opis;
             sprzet.CzyDostepny = czyDostepny;
+            unitOfWork.Sprzety.InsertSprzet(sprzet);
             unitOfWork.Save();
         }
 
-        public void RemoveSprzet(string nazwaSprzetu)
+        public void RemoveSprzet(int idSprzetu)
         {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var SprzetId = sprzet.IdSprzetu;
-            if(sprzet != null)
+            var sprzet = unitOfWork.Sprzety.GetSprzetById(idSprzetu);
+            if (sprzet != null)
             {
-                unitOfWork.Sprzety.DeleteSprzet(SprzetId);
+                unitOfWork.Sprzety.DeleteSprzet(idSprzetu);
+                //throw new Exception();
             }
+
+            unitOfWork.Save();
         }
         public void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia)
         {
