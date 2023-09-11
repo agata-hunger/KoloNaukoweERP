@@ -322,6 +322,7 @@ namespace BLL.Services.Sekretarz
         public Wydarzenie GetEvent(int idWydarzenia)
         {
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+            unitOfWork.Save();
             return wydarzenie;
         }
         public List<Wydarzenie> GetEvents()
