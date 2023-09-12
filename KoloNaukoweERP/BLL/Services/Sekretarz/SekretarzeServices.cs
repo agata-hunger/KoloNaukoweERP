@@ -60,9 +60,8 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddCzlonek(string nazwaPelnionejFunkcji, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
+        public void AddCzlonek(PelnionaFunkcja? pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
         {
-            var pelnionaFunkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(pelnionaFunkcja => pelnionaFunkcja.Nazwa.Equals(nazwaPelnionejFunkcji));
             Czlonek czlonek = new Czlonek();
             czlonek.PelnionaFunkcja = pelnionaFunkcja;
             czlonek.NrTelefonu = nrTelefonu;

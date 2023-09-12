@@ -22,7 +22,18 @@ using System.Runtime.CompilerServices;
 namespace TestProject.BLL_Test
 {
     public class SekretarzServiceTest 
-    {   
+    {
+        [Fact]
+        public void TestAddCzlonekMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var czlonek = new Czlonek() { };
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddCzlonek(czlonek.PelnionaFunkcja, czlonek.NrTelefonu, czlonek.Mail, czlonek.Nazwisko, czlonek.Imie, czlonek.KierunekStudiow, czlonek.Wydzial, czlonek.Uczelnia, czlonek.Zespoly, czlonek.Sprzety);
+
+        }
         [Fact]
         public void TestAddWydarzenieMoq()
         {

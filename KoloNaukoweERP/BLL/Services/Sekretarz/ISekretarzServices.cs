@@ -9,7 +9,7 @@ namespace BLL.Services.Sekretarz
 {
     public interface ISekretarzServices
     {
-        void AddCzlonek(string nazwaPelnionejFunkcji, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety);
+        void AddCzlonek(PelnionaFunkcja pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety);
         void RemoveCzlonek(string nazwiskoCzlonka, string imieCzlonka);
 
         void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia);

@@ -16,7 +16,7 @@ namespace TestControllersMVC
         public DateTime DataWydarzenia;
         public string MiejsceWydarzenia;
 
-        public void AddCzlonek(string nazwaPelnionejFunkcji, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
+        public void AddCzlonek(PelnionaFunkcja nazwaPelnionejFunkcji, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
         {
             throw new NotImplementedException();
         }
