@@ -33,6 +33,13 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
+        public void RemoveCzlonek(int idCzlonka)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            unitOfWork.Czlonkowie.DeleteCzlonek(idCzlonka);
+            unitOfWork.Save();
+        }
+
         public void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia)
         {
             Zespol zespol = new Zespol();
@@ -74,13 +81,6 @@ namespace BLL.Services.Sekretarz
                 var idWydarzenia = wydarzenie.IdWydarzenia;
                 unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
             }
-            unitOfWork.Save();
-        }
-
-        public void RemoveCzlonek(int idCzlonka)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            unitOfWork.Czlonkowie.DeleteCzlonek(idCzlonka);
             unitOfWork.Save();
         }
 

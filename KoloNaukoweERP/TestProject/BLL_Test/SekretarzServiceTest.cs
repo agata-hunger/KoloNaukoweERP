@@ -53,6 +53,20 @@ namespace TestProject.BLL_Test
         }
 
         [Fact]
+        public void TestAddZespolMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var zespol = new Zespol() { };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespol(zespol.Nazwa, zespol.Czlonkowie, zespol.Sprzety, zespol.Projekty, zespol.Wydarzenia);
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertZespol(It.IsAny<Zespol>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+
+        [Fact]
         public void TestAddWydarzenieMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
