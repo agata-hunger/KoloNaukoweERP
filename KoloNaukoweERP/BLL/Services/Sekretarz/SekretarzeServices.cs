@@ -16,6 +16,23 @@ namespace BLL.Services.Sekretarz
             this.unitOfWork = unitOfWork;
         }
 
+        public void AddCzlonek(PelnionaFunkcja? pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
+        {
+            Czlonek czlonek = new Czlonek();
+            czlonek.PelnionaFunkcja = pelnionaFunkcja;
+            czlonek.NrTelefonu = nrTelefonu;
+            czlonek.Mail = mail;
+            czlonek.Nazwisko = nazwisko;
+            czlonek.Imie = imie;
+            czlonek.Uczelnia = uczelnia;
+            czlonek.KierunekStudiow = kierunekStudiow;
+            czlonek.Wydzial = wydzial;
+            czlonek.Zespoly = zespoly;
+            czlonek.Sprzety = sprzety;
+            unitOfWork.Czlonkowie.InsertCzlonek(czlonek);
+            unitOfWork.Save();
+        }
+
         public void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia)
         {
             Zespol zespol = new Zespol();
@@ -57,23 +74,6 @@ namespace BLL.Services.Sekretarz
                 var idWydarzenia = wydarzenie.IdWydarzenia;
                 unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
             }
-            unitOfWork.Save();
-        }
-
-        public void AddCzlonek(PelnionaFunkcja? pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety)
-        {
-            Czlonek czlonek = new Czlonek();
-            czlonek.PelnionaFunkcja = pelnionaFunkcja;
-            czlonek.NrTelefonu = nrTelefonu;
-            czlonek.Mail = mail;
-            czlonek.Nazwisko = nazwisko;
-            czlonek.Imie = imie;
-            czlonek.Uczelnia = uczelnia;
-            czlonek.KierunekStudiow = kierunekStudiow;
-            czlonek.Wydzial = wydzial;
-            czlonek.Zespoly = zespoly;
-            czlonek.Sprzety = sprzety;
-            unitOfWork.Czlonkowie.InsertCzlonek(czlonek);
             unitOfWork.Save();
         }
 

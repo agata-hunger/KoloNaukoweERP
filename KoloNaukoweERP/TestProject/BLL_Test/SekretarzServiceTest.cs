@@ -33,7 +33,10 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
             sekretarz.AddCzlonek(czlonek.PelnionaFunkcja, czlonek.NrTelefonu, czlonek.Mail, czlonek.Nazwisko, czlonek.Imie, czlonek.KierunekStudiow, czlonek.Wydzial, czlonek.Uczelnia, czlonek.Zespoly, czlonek.Sprzety);
 
+            unitOfWorkMock.Verify(repo => repo.Czlonkowie.InsertCzlonek(It.IsAny<Czlonek>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once());
         }
+
         [Fact]
         public void TestAddWydarzenieMoq()
         {
