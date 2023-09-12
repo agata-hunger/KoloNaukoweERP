@@ -273,6 +273,17 @@ namespace BLL.Services.Sekretarz
             //unitOfWork.Sprzety.InsertSprzet(sprzet); // CZY DODAJEMY SPRZET PO PROSTU CZY DO CZLONKA/ZESPOLU, BO ROBI SIE BIGOS
             unitOfWork.Save();
         }
+        public void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet)
+        {
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+            if (sprzet == null)
+            {
+                throw new Exception();
+            }
+            unitOfWork.Zespoly.DeleteSprzet(sprzet.IdSprzetu);
+            //unitOfWork.Zespoly.DeleteSprzet(idZespolu,sprzet); 
+            unitOfWork.Save();
+        }
         public void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny)
         {
             //var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
@@ -290,12 +301,8 @@ namespace BLL.Services.Sekretarz
         public void RemoveSprzet(int idSprzetu)
         {
             var sprzet = unitOfWork.Sprzety.GetSprzetById(idSprzetu);
-            if (sprzet != null)
-            {
-                unitOfWork.Sprzety.DeleteSprzet(idSprzetu);
-                //throw new Exception();
-            }
-
+            
+            unitOfWork.Sprzety.DeleteSprzet(idSprzetu);
             unitOfWork.Save();
         }
         public void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia)

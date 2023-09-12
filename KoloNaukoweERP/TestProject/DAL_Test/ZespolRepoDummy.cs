@@ -59,5 +59,15 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteSprzet(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSprzet(int idSprzetu)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

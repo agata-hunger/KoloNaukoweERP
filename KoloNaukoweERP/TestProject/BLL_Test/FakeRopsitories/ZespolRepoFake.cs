@@ -58,5 +58,10 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             //do nothing
         }
+
+        public void DeleteSprzet(int idSprzetu)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

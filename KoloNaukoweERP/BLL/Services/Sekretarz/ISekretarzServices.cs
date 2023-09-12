@@ -43,6 +43,7 @@ namespace BLL.Services.Sekretarz
         void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
 
         void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
+        void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet);
 
         void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny);
         void RemoveSprzet(int idSrzetu); 

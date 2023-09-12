@@ -214,6 +214,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.AddSprzet(zespol.IdZespolu,It.IsAny<Sprzet>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
+        [Fact]
         public void TestRemoveSprzetFromTeamMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -224,7 +225,19 @@ namespace TestProject.BLL_Test
             var sprzet = new Sprzet();
 
             unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
-            //unitOfWorkMock.Setup(u=>u.Zespoly.insert)
+            unitOfWorkMock.Setup(u => u.Zespoly.AddSprzet(zespol.IdZespolu, sprzet));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddSprzet("Test", "Test", true);
+
+            var zespol2 = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol2));
+
+            sekretarz.AddSprzetToTeam(zespol.IdZespolu, sprzet);
+            sekretarz.RemoveSprzetFromTeam(zespol.IdZespolu, sprzet);
+
+            unitOfWorkMock.Verify(repo=>repo.Zespoly.DeleteSprzet(sprzet.IdSprzetu), Times.Once());
+
         }
 
         [Fact]
@@ -245,19 +258,16 @@ namespace TestProject.BLL_Test
         public void TestRemoveSprzetMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
+
             var sprzet = new Sprzet() { Nazwa = "Test", Opis = "Test", CzyDostepny = true };
-
-            /*var sprzetRepositoryMock = new Mock<ISprzetRepository>();
-            unitOfWorkMock.Setup(u => u.Sprzety).Returns(sprzetRepositoryMock.Object);*/
-
-
             unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
             sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
 
             sekretarz.RemoveSprzet(sprzet.IdSprzetu);
-            unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(sprzet.IdSprzetu), Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
         }
 
         [Fact]

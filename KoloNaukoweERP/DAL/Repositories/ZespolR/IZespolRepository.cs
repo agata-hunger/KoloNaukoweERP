@@ -17,6 +17,7 @@ namespace DAL.Repositories.ZespolR
         void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie);
         void DeleteWydarzenie(int idWydarzenia);
         void AddSprzet(int idZespolu, Sprzet sprzet);
+        void DeleteSprzet(int idSprzetu);
         void Dispose();
         void Save();
     }
