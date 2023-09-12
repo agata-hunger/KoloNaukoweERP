@@ -226,6 +226,25 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
+
+        public void AddPelnionaFunkcja(string nazwaPelnionejFunkcji, ICollection<Czlonek> czlonkowie)
+        {
+            PelnionaFunkcja pelnionaFunkcja = new PelnionaFunkcja();
+            pelnionaFunkcja.Nazwa = nazwaPelnionejFunkcji;
+            pelnionaFunkcja.Czlonkowie = czlonkowie;
+            unitOfWork.Save();
+        }
+
+        public void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji)
+        {
+            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(funkcja => funkcja.Nazwa.Equals(nazwaPelnionejFunkcji));
+            var funkcjaId = funkcja.IdPelnionejFunkcji;
+            if (funkcja != null)
+            {
+                unitOfWork.PelnioneFunkcje.DeletePelnionaFunkcja(funkcjaId);
+            }
+        }
+
         public void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja)
         {
             var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
@@ -247,23 +266,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddPelnionaFunkcja(string nazwaPelnionejFunkcji, ICollection<Czlonek> czlonkowie)
-        {
-            PelnionaFunkcja pelnionaFunkcja = new PelnionaFunkcja();
-            pelnionaFunkcja.Nazwa = nazwaPelnionejFunkcji;
-            pelnionaFunkcja.Czlonkowie = czlonkowie;
-            unitOfWork.Save();
-        }
-
-        public void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji)
-        {
-            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(funkcja => funkcja.Nazwa.Equals(nazwaPelnionejFunkcji));
-            var funkcjaId = funkcja.IdPelnionejFunkcji;
-            if (funkcja !=null)
-            {
-                unitOfWork.PelnioneFunkcje.DeletePelnionaFunkcja(funkcjaId);
-            }
-        }
+        
         
         public void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny)
         {

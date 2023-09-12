@@ -12,17 +12,17 @@ namespace BLL.Services.Sekretarz
         void AddCzlonek(PelnionaFunkcja pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety);
         void RemoveCzlonek(int idCzlonka);
 
+        void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+
         void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia);
         void RemoveZespol(int idZespolu);
-
-        void AddWydarzenie(string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia);
-        void RemoveWydarzenie(string nazwaWydarzenia);
 
         void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
         void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
 
-        void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
-        void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void AddWydarzenie(string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia);
+        void RemoveWydarzenie(string nazwaWydarzenia);
 
         void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie);
         void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie);
@@ -36,17 +36,17 @@ namespace BLL.Services.Sekretarz
         void AddZespolToEvent(int idWydarzenia, Zespol zespol);
         void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol);
 
-        void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);
-        void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka);
-
         void AddPelnionaFunkcja(string nazwaPelnionejFunkcji, ICollection<Czlonek> czlonkowie);
         void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
 
-        void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
-        void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet);
+        void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);
+        void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka);
 
         void AddSprzet(string nazwaSprzetu, string opis, bool czyDostepny);
-        void RemoveSprzet(int idSrzetu); 
+        void RemoveSprzet(int idSrzetu);
+
+        void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
+        void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet);
 
         void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia);
         void RemoveProjekt(int idProjektu);

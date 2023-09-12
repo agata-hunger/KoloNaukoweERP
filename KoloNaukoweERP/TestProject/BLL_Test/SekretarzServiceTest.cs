@@ -259,10 +259,13 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Wydarzenia.DeleteZespol(wydarzenie.IdWydarzenia, zespol), Times.Once());
         }
 
-        // AddPelnionaFunkcjaToUser
-        // RemovePelnionaFunkcjaFromUser
+
+
         // AddPelnionaFunkcja
         // RemovePelnionaFunkcja
+        // AddPelnionaFunkcjaToUser
+        // RemovePelnionaFunkcjaFromUser
+
 
 
 
