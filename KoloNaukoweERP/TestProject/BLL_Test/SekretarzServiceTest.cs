@@ -52,6 +52,16 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
+
+
+
+        // AddCzlonekToTeam
+        // RemoveCzlonekFromTeam
+
+
+
+
+
         [Fact]
         public void TestAddZespolMoq()
         {
@@ -81,6 +91,15 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo=>repo.Save());   
         }
 
+
+        // AddWypozyczenie
+        // RemoveWypozyczenie
+        
+
+
+
+
+
         [Fact]
         public void TestAddWydarzenieMoq()
         {
@@ -103,32 +122,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
             
         }
-        [Fact]
-        public void TestAddWydarzenieToTeam()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-
-            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
-            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);//.GetZespoly()).Returns(new List<Zespol> { zespol });
-
-            var wydarzenie = new Wydarzenie();
-
-            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));//.InsertWyd(wydarzenie));
-            
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
-
-            var team = new Zespol();
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
-
-            sekretarz.AddWydarzenieToTeam(1,wydarzenie);
-
-
-            unitOfWorkMock.Verify(repo=>repo.Zespoly.InsertWydarzenie(1,It.IsAny<Wydarzenie>()),Times.Once());
-        }
+        
         [Fact]
         public void TestAddWydarzenie()//string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia
         {
@@ -171,9 +165,32 @@ namespace TestProject.BLL_Test
             Assert.Equal(0, wydarzenieRepo.GetWydarzenia().Count());
         }
 
-        /// <summary>
-        /// ///
+        [Fact]
+        public void TestAddWydarzenieToTeam()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
 
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);//.GetZespoly()).Returns(new List<Zespol> { zespol });
+
+            var wydarzenie = new Wydarzenie();
+
+            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));//.InsertWyd(wydarzenie));
+
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+
+            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+
+            var team = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
+
+            sekretarz.AddWydarzenieToTeam(1, wydarzenie);
+
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertWydarzenie(1, It.IsAny<Wydarzenie>()), Times.Once());
+        }
         [Fact]
         public void TestRemoveWydarzenieFromTeamMoq()
         {
@@ -190,8 +207,8 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
             sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
 
-            var team = new Zespol();
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
+            /*var team = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));*/      //gdzies w innych też nadmiarowy zespol
 
             sekretarz.AddWydarzenieToTeam(1, wydarzenie);
             sekretarz.RemoveWydarzenieFromTeam(zespol.IdZespolu, wydarzenie);
@@ -199,6 +216,88 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(wydarzenie.IdWydarzenia), Times.Once());
             //unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
+
+
+
+
+        // AddProjektToTeam
+        // RemoveProjektFromTeam
+        // AddZespolToProject
+        // RemoveZespolFromProject
+
+
+
+        [Fact]
+        public void TestAddZespolToEventMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
+
+            unitOfWorkMock.Verify(repo => repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
+        }
+        [Fact]
+        public void TestRemoveZespolFromEventMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
+
+            var zespol = new Zespol();
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(It.IsAny<Zespol>()));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
+            sekretarz.RemoveZespolFromEvent(wydarzenie.IdWydarzenia, zespol);
+
+            unitOfWorkMock.Verify(repo => repo.Wydarzenia.DeleteZespol(wydarzenie.IdWydarzenia, zespol), Times.Once());
+        }
+
+        // AddPelnionaFunkcjaToUser
+        // RemovePelnionaFunkcjaFromUser
+        // AddPelnionaFunkcja
+        // RemovePelnionaFunkcja
+
+
+
+
+        [Fact]
+        public void TestAddSprzetMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var sprzet = new Sprzet() { Nazwa = "Test", Opis = "Test", CzyDostepny = true };
+            unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+
+            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
+            unitOfWorkMock.Verify(repo => repo.Sprzety.InsertSprzet(It.IsAny<Sprzet>()), Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
+        }
+
+        [Fact]
+        public void TestRemoveSprzetMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var sprzet = new Sprzet() { Nazwa = "Test", Opis = "Test", CzyDostepny = true };
+            unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
+
+            sekretarz.RemoveSprzet(sprzet.IdSprzetu);
+            unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+
         [Fact]
         public void TestAddSprzetToTeamMoq()
         {
@@ -214,6 +313,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.AddSprzet(zespol.IdZespolu,It.IsAny<Sprzet>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
+
         [Fact]
         public void TestRemoveSprzetFromTeamMoq()
         {
@@ -237,40 +337,8 @@ namespace TestProject.BLL_Test
             sekretarz.RemoveSprzetFromTeam(zespol.IdZespolu, sprzet);
 
             unitOfWorkMock.Verify(repo=>repo.Zespoly.DeleteSprzet(sprzet.IdSprzetu), Times.Once());
-
-            
-
         }
 
-        [Fact]
-        public void TestAddSprzetMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-
-            var sprzet = new Sprzet() { Nazwa = "Test", Opis = "Test", CzyDostepny = true };
-            unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-
-            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
-            unitOfWorkMock.Verify(repo => repo.Sprzety.InsertSprzet(It.IsAny<Sprzet>()), Times.Once);
-            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
-        }
-        [Fact]
-        public void TestRemoveSprzetMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-
-            var sprzet = new Sprzet() { Nazwa = "Test", Opis = "Test", CzyDostepny = true };
-            unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
-
-            sekretarz.RemoveSprzet(sprzet.IdSprzetu);
-            unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(It.IsAny<int>()), Times.Once());
-            unitOfWorkMock.Verify(repo => repo.Save());
-        }
         [Fact]
         public void TestAddProjektMoq()
         {
@@ -308,37 +376,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
-        [Fact]
-        public void TestAddZespolToEventMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
-            unitOfWorkMock.Setup(u=>u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
-
-            var zespol = new Zespol() { IdZespolu=1, Nazwa = "Test" };
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
-
-            unitOfWorkMock.Verify(repo=> repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
-            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
-        }
-        [Fact]
-        public void TestRemoveZespolFromEventMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var wydarzenie = new Wydarzenie() { IdWydarzenia = 1, Nazwa = "Test" };
-            unitOfWorkMock.Setup(u => u.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia)).Returns(wydarzenie);
-
-            var zespol = new Zespol();
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(It.IsAny<Zespol>()));
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespol);
-            sekretarz.RemoveZespolFromEvent(wydarzenie.IdWydarzenia, zespol);
-
-            unitOfWorkMock.Verify(repo => repo.Wydarzenia.DeleteZespol(wydarzenie.IdWydarzenia, zespol), Times.Once());
-        }
+        
         [Fact]
         public void TestGetEventMoq()
         {
@@ -366,6 +404,12 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Wydarzenia.GetWydarzenia(), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save());
         }
+
+
+
+        // GetTeam
+        // GetTeams
+
 
         public void Dispose()
         {
