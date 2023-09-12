@@ -38,6 +38,21 @@ namespace TestProject.BLL_Test
         }
 
         [Fact]
+        public void TestRemoveCzlonekMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var czlonek = new Czlonek() { };
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddCzlonek(czlonek.PelnionaFunkcja, czlonek.NrTelefonu, czlonek.Mail, czlonek.Nazwisko, czlonek.Imie, czlonek.KierunekStudiow, czlonek.Wydzial, czlonek.Uczelnia, czlonek.Zespoly, czlonek.Sprzety);
+            sekretarz.RemoveCzlonek(czlonek.IdCzlonka);
+
+            unitOfWorkMock.Verify(repo => repo.Czlonkowie.DeleteCzlonek(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+
+        [Fact]
         public void TestAddWydarzenieMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();

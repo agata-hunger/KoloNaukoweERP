@@ -77,10 +77,9 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveCzlonek(string nazwiskoCzlonka, string imieCzlonka)
+        public void RemoveCzlonek(int idCzlonka)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
-            var idCzlonka = czlonek.IdCzlonka;
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
             unitOfWork.Czlonkowie.DeleteCzlonek(idCzlonka);
             unitOfWork.Save();
         }

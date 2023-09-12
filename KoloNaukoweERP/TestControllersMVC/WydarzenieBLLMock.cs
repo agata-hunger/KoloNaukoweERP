@@ -21,6 +21,11 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
+        public void RemoveCzlonek(int idCzlonka)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
         {
             throw new NotImplementedException();
@@ -120,11 +125,6 @@ namespace TestControllersMVC
         }
 
         public List<Zespol> GetTeams()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveCzlonek(string nazwiskoCzlonka, string imieCzlonka)
         {
             throw new NotImplementedException();
         }
