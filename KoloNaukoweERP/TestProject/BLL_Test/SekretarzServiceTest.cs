@@ -247,9 +247,18 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once());
 
         }
-        public List<Wydarzenie> GetEvents()
+        [Fact]
+        public void TestGetEventsMoq()
         {
-            throw new NotImplementedException();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var wydarzenia = new List<Wydarzenie>() { };
+            unitOfWorkMock.Setup(u=>u.Wydarzenia.GetWydarzenia()).Returns(wydarzenia);
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.GetEvents();
+
+            unitOfWorkMock.Verify(repo => repo.Wydarzenia.GetWydarzenia(), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
         }
 
         public void Dispose()

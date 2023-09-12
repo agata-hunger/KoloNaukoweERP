@@ -99,7 +99,7 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public List<Wydarzenie> GetEvents()
+        public IEnumerable<Wydarzenie> GetEvents()
         {
             throw new NotImplementedException();
         }

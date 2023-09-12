@@ -325,19 +325,17 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
             return wydarzenie;
         }
-        public List<Wydarzenie> GetEvents()
+        public IEnumerable<Wydarzenie> GetEvents()
         {
-            /*            var list = new List<Wydarzenie>();
+            var wydarzenia = unitOfWork.Wydarzenia.GetWydarzenia();
+ 
+            if(wydarzenia==null)
+            {
+                throw new Exception();
+            }
 
-                        list = (List<Wydarzenie>)unitOfWork.Wydarzenia.GetWydarzenia();   //w razie czego sprawdzić typ!
-                        return list;*/
-
-            var list = new List<Wydarzenie>();
-            var eventsArray = unitOfWork.Wydarzenia.GetWydarzenia(); // Pobieranie jako tablica
-
-            list.AddRange(eventsArray); // Dodawanie elementów tablicy do listy
-
-            return list;
+            unitOfWork.Save();
+            return wydarzenia;
         }
 
         /*        public List<Wydarzenie> GetEvents()

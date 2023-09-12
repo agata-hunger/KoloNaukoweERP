@@ -51,7 +51,7 @@ namespace BLL.Services.Sekretarz
         void RemoveProjekt(string nazwaProjektu);
 
         Wydarzenie GetEvent(int idWydarzenia);
-        List<Wydarzenie> GetEvents();
+        IEnumerable<Wydarzenie> GetEvents();
         Zespol GetTeam(int idWydarzenia);
         List<Zespol> GetTeams();
         //void EditEvent(int idWydarzenia);
