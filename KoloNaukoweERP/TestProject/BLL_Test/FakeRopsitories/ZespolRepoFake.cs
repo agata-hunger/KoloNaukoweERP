@@ -63,5 +63,15 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             throw new NotImplementedException();
         }
+
+        public void InsertCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCzlonek(int idczlonka)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -52,15 +52,43 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
+        [Fact]
+        public void TestAddCzlonekToTeamMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
 
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
 
+            var czlonek = new Czlonek() { };
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertCzlonek(zespol.IdZespolu, It.IsAny<Czlonek>()));
 
-        // AddCzlonekToTeam
-        // RemoveCzlonekFromTeam
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddCzlonekToTeam(zespol.IdZespolu,czlonek);
 
+            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertCzlonek(zespol.IdZespolu, It.IsAny<Czlonek>()), Times.Once);
+        }
 
+        [Fact]
+        public void TestRemoveCzlonekFromTeamMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
 
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u=>u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
 
+            var czlonek = new Czlonek();
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertCzlonek(zespol.IdZespolu, czlonek));
+        
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddCzlonekToTeam(zespol.IdZespolu, czlonek);
+            sekretarz.RemoveCzlonekFromTeam(zespol.IdZespolu, czlonek);
+
+            unitOfWorkMock.Verify(repo=>repo.Zespoly.DeleteCzlonek(czlonek.IdCzlonka),Times.Once());
+        }
 
         [Fact]
         public void TestAddZespolMoq()
@@ -92,9 +120,9 @@ namespace TestProject.BLL_Test
         }
 
 
-        // AddWypozyczenie
-        // RemoveWypozyczenie
-        
+        // AddWypozyczenie             do zweryfikowania czy chcemy?
+        // RemoveWypozyczenie          do zweryfikowania czy chcemy?
+
 
 
 

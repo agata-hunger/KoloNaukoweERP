@@ -12,8 +12,8 @@ namespace BLL.Services.Sekretarz
         void AddCzlonek(PelnionaFunkcja pelnionaFunkcja, string nrTelefonu, string mail, string nazwisko, string imie, string kierunekStudiow, string wydzial, string uczelnia, ICollection<Zespol> zespoly, ICollection<Sprzet> sprzety);
         void RemoveCzlonek(int idCzlonka);
 
-        void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
-        void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void AddCzlonekToTeam(int idZespolu, Czlonek czlonek);
+        void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek);
 
         void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia);
         void RemoveZespol(int idZespolu);
@@ -57,5 +57,23 @@ namespace BLL.Services.Sekretarz
         List<Zespol> GetTeams();
         //void EditEvent(int idWydarzenia);
 
+
+        /*
+        co można dodać i nawet może miałoby sens
+
+        - addProjekt
+        - removeProjekt
+
+        - czy to nie jest to samo?	
+            void AddProjektToTeam(string nazwaZespolu, string nazwaProjektu);
+            void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
+
+            void AddZespolToProject(Zespol zespol, string nazwaProjektu);
+            void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);
+
+        - addZespol
+        - removeZespol
+
+        */
     }
 }

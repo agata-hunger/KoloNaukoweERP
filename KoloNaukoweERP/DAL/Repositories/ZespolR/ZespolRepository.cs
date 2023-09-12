@@ -67,6 +67,15 @@ namespace DAL.Repositories.ZespolR
             throw new NotImplementedException();
         }
 
-        
+        public void InsertCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            Zespol zespol = context.Zespoly.Find(idZespolu);
+            zespol.Czlonkowie.Add(czlonek);
+        }
+
+        public void DeleteCzlonek(int idczlonka)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

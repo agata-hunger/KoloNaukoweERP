@@ -40,23 +40,24 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        public void AddCzlonekToTeam(int idZespolu, Czlonek czlonek)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
+            if (czlonek == null)
             {
-                zespol.Czlonkowie.Add(czlonek);
+                throw new Exception();
             }
+            unitOfWork.Zespoly.InsertCzlonek(idZespolu, czlonek);
             unitOfWork.Save();
         }
 
-        public void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        public void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
+            //var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+            if (czlonek == null)
             {
-                zespol.Czlonkowie.Remove(czlonek);
+                throw new Exception();
             }
+            unitOfWork.Zespoly.DeleteCzlonek(czlonek.IdCzlonka);
             unitOfWork.Save();
         }
 

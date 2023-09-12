@@ -69,5 +69,15 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+
+        public void InsertCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCzlonek(int idczlonka)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
