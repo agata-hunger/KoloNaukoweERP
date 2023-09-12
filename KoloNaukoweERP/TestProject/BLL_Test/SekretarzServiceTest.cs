@@ -238,6 +238,8 @@ namespace TestProject.BLL_Test
 
             unitOfWorkMock.Verify(repo=>repo.Zespoly.DeleteSprzet(sprzet.IdSprzetu), Times.Once());
 
+            
+
         }
 
         [Fact]
@@ -267,6 +269,42 @@ namespace TestProject.BLL_Test
 
             sekretarz.RemoveSprzet(sprzet.IdSprzetu);
             unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+        [Fact]
+        public void TestAddProjektMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+
+            var projekt = new Projekt() { Nazwa = "Test", Opis = "Test", TerminRealizacji = DateTime.Now, IdZespolu=zespol.IdZespolu};
+            unitOfWorkMock.Setup(u => u.Projekty.InsertProjekt(projekt));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+
+            sekretarz.AddProjekt(projekt.Nazwa, zespol.Nazwa, projekt.TerminRealizacji, projekt.Opis);
+            unitOfWorkMock.Verify(repo=>repo.Projekty.InsertProjekt(It.IsAny<Projekt>()),Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save());
+
+        }
+        [Fact]
+        public void TestRemoveProjektMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+
+            var projekt = new Projekt() { Nazwa = "Test", Opis = "Test", TerminRealizacji = DateTime.Now };
+            unitOfWorkMock.Setup(u => u.Projekty.InsertProjekt(projekt));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+
+            sekretarz.AddProjekt(projekt.Nazwa, zespol.Nazwa, projekt.TerminRealizacji, projekt.Opis);
+            sekretarz.RemoveProjekt(projekt.IdProjektu);
+            unitOfWorkMock.Verify(repo=>repo.Projekty.DeleteProjekt(It.IsAny<int>()),Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 

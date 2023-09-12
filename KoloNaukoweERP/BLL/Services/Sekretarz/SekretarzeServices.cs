@@ -316,12 +316,15 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Projekty.InsertProjekt(projekt);
             unitOfWork.Save();
         }
-        public void RemoveProjekt(string nazwaProjektu)
+        public void RemoveProjekt(int idProjektu)
         {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            var projekt = unitOfWork.Projekty.GetProjektById(idProjektu);
+            unitOfWork.Projekty.DeleteProjekt(idProjektu);
+            unitOfWork.Save();
+            /*var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
             var projektId = projekt.IdProjektu;
             unitOfWork.Projekty.DeleteProjekt(projektId);
-            unitOfWork.Save();
+            unitOfWork.Save();*/
         }
         public Wydarzenie GetEvent(int idWydarzenia)
         {

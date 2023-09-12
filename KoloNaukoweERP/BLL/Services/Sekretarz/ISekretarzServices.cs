@@ -49,7 +49,7 @@ namespace BLL.Services.Sekretarz
         void RemoveSprzet(int idSrzetu); 
 
         void AddProjekt(string nazwaProjektu, string nazwaZespolu, DateTime terminRealizacji, string opisWydarzenia);
-        void RemoveProjekt(string nazwaProjektu);
+        void RemoveProjekt(int idProjektu);
 
         Wydarzenie GetEvent(int idWydarzenia);
         IEnumerable<Wydarzenie> GetEvents();
