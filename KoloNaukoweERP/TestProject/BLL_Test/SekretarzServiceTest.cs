@@ -67,6 +67,21 @@ namespace TestProject.BLL_Test
         }
 
         [Fact]
+        public void TestRemoveZespolMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            var zespol = new Zespol() { };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
+            sekretarz.AddZespol(zespol.Nazwa, zespol.Czlonkowie, zespol.Sprzety, zespol.Projekty, zespol.Wydarzenia);
+            sekretarz.RemoveZespol(zespol.IdZespolu);
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteZespol(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo=>repo.Save());   
+        }
+
+        [Fact]
         public void TestAddWydarzenieMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();

@@ -52,10 +52,9 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveZespol(string nazwaZespolu)
+        public void RemoveZespol(int idZespolu)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var idZespolu = zespol.IdZespolu;
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             unitOfWork.Zespoly.DeleteZespol(idZespolu);
             unitOfWork.Save();
         }

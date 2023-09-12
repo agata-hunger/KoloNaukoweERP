@@ -13,7 +13,7 @@ namespace BLL.Services.Sekretarz
         void RemoveCzlonek(int idCzlonka);
 
         void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia);
-        void RemoveZespol(string nazwaZespolu);
+        void RemoveZespol(int idZespolu);
 
         void AddWydarzenie(string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia);
         void RemoveWydarzenie(string nazwaWydarzenia);

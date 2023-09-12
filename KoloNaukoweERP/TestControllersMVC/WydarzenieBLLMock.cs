@@ -26,6 +26,16 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
+        public void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveZespol(int idZespolu)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
         {
             throw new NotImplementedException();
@@ -80,11 +90,6 @@ namespace TestControllersMVC
         }
 
         public void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddZespol(string nazwaZespolu, ICollection<Czlonek> czlonkowie, ICollection<Sprzet> sprzety, ICollection<Projekt> projekty, ICollection<Wydarzenie> wydarzenia)
         {
             throw new NotImplementedException();
         }
@@ -170,11 +175,6 @@ namespace TestControllersMVC
         }
 
         public void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveZespol(string nazwaZespolu)
         {
             throw new NotImplementedException();
         }
