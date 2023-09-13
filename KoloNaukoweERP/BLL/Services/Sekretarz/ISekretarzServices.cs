@@ -4,57 +4,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Models;
 
 namespace BLL.Services.Sekretarz
 {
     public interface ISekretarzServices
     {
-        void AddCzlonek(Czlonek czlonek);
+        void AddCzlonek(CzlonekDTO czlonekDto);
         void RemoveCzlonek(int idCzlonka);
 
-        void AddCzlonekToTeam(int idZespolu, Czlonek czlonek);
-        void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek);
+        void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto);
+        void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto);
 
-        void AddZespol(Zespol zespol);
+        void AddZespol(ZespolDTO zespolDto);
         void RemoveZespol(int idZespolu);
 
         /*void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
         void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);*/
 
-        void AddWydarzenie(Wydarzenie wydarzenie);
+        void AddWydarzenie(WydarzenieDTO wydarzenieDto);
         void RemoveWydarzenie(string nazwaWydarzenia);
 
-        void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie);
-        void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie);
+        void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
+        void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
 
-        void AddProjektToTeam(int idZespolu, Projekt projekt);
+        void AddProjektToTeam(int idZespolu, ProjektDTO projektDto);
         void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
 
-        void AddZespolToProject(Zespol zespol, string nazwaProjektu);
-        void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);
+        void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu);
+        void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);          //ddpd
 
-        void AddZespolToEvent(int idWydarzenia, Zespol zespol);
-        void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol);
+        void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
+        void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
 
-        void AddPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja);
+        void AddPelnionaFunkcja(PelnionaFunkcjaDTO pelnionaFunkcjaDto);
         void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
 
         void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);
         void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka);
 
-        void AddSprzet(Sprzet sprzet);
+        void AddSprzet(SprzetDTO sprzetDto);
         void RemoveSprzet(int idSrzetu);
 
-        void AddSprzetToTeam(int idZespolu, Sprzet sprzet);
-        void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet);
+        void AddSprzetToTeam(int idZespolu, SprzetDTO sprzetDto);
+        void RemoveSprzetFromTeam(int idZespolu, SprzetDTO sprzetDto);
 
-        void AddProjekt(Projekt projekt);
+        void AddProjekt(ProjektDTO projektDto);
         void RemoveProjekt(int idProjektu);
 
-        Wydarzenie GetEvent(int idWydarzenia);
-        IEnumerable<Wydarzenie> GetEvents();
-        Zespol GetTeam(int idWydarzenia);
-        List<Zespol> GetTeams();
+        WydarzenieDTO GetEvent(int idWydarzenia);
+        IEnumerable<WydarzenieDTO> GetEvents();
+        ZespolDTO GetTeam(int idZespolu);
+        List<ZespolDTO> GetTeams();
         //void EditEvent(int idWydarzenia);
 
 

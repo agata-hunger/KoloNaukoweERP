@@ -30,7 +30,12 @@ namespace BLL.Services.Sekretarz
             var czlonek = mapper.Map<Czlonek>(czlonekDto);
             unitOfWork.Czlonkowie.InsertCzlonek(czlonek);
             unitOfWork.Save();
-
+        }
+        public void RemoveCzlonek(int idCzlonka)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
+            unitOfWork.Czlonkowie.DeleteCzlonek(idCzlonka);
+            unitOfWork.Save();
         }
 
         public void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto)
@@ -90,6 +95,16 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
+        public void RemoveWydarzenie(string nazwaWydarzenia)
+        {
+            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
+            if (wydarzenie != null)
+            {
+                var idWydarzenia = wydarzenie.IdWydarzenia;
+                unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
+            }
+            unitOfWork.Save();
+        }
 
         public void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
         {
@@ -128,6 +143,16 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
+        public void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu)
+        {
+            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            if (projekt != null)
+            {
+                zespol.Projekty.Remove(projekt);
+            }
+            unitOfWork.Save();
+        }
 
         //TODO: To fix
         public void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu)
@@ -181,6 +206,37 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
+        public void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji)
+        {
+            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(funkcja => funkcja.Nazwa.Equals(nazwaPelnionejFunkcji));
+            var funkcjaId = funkcja.IdPelnionejFunkcji;
+            if (funkcja != null)
+            {
+                unitOfWork.PelnioneFunkcje.DeletePelnionaFunkcja(funkcjaId);
+            }
+        }
+
+        public void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(pelnionaFunkcja => pelnionaFunkcja.Nazwa.Equals(pelnionaFunkcja));
+            if (czlonek != null && funkcja != null)
+            {
+                czlonek.PelnionaFunkcja = funkcja;
+            }
+            unitOfWork.Save();
+        }
+
+        public void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka)
+        {
+            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+            if (czlonek != null)
+            {
+                czlonek.PelnionaFunkcja = null;
+            }
+            unitOfWork.Save();
+        }
+
         public void AddSprzet(SprzetDTO sprzetDto)
         {
             if (sprzetDto == null)
@@ -189,6 +245,14 @@ namespace BLL.Services.Sekretarz
             }
             var sprzet = mapper.Map<Sprzet>(sprzetDto);
             unitOfWork.Sprzety.InsertSprzet(sprzet);
+            unitOfWork.Save();
+        }
+
+        public void RemoveSprzet(int idSprzetu)
+        {
+            var sprzet = unitOfWork.Sprzety.GetSprzetById(idSprzetu);
+
+            unitOfWork.Sprzety.DeleteSprzet(idSprzetu);
             unitOfWork.Save();
         }
 
@@ -224,6 +288,13 @@ namespace BLL.Services.Sekretarz
             }
             var projekt = mapper.Map<Projekt>(projektDto);
             unitOfWork.Projekty.InsertProjekt(projekt);
+            unitOfWork.Save();
+        }
+
+        public void RemoveProjekt(int idProjektu)
+        {
+            var projekt = unitOfWork.Projekty.GetProjektById(idProjektu);
+            unitOfWork.Projekty.DeleteProjekt(idProjektu);
             unitOfWork.Save();
         }
 

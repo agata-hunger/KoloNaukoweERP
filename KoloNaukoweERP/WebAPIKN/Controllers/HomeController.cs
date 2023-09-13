@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebAPI.Models;
+using BLL.Models;
 
 namespace WebAPI.Controllers
 {

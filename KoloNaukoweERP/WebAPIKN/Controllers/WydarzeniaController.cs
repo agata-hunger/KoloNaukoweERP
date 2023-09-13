@@ -10,7 +10,7 @@ using DAL.Entities;
 using BLL;
 using BLL.Services.Koordynator;
 using BLL.Services.Sekretarz;
-using WebAPI.Models;
+using BLL.Models;
 
 namespace WebAPI.Controllers
 {
