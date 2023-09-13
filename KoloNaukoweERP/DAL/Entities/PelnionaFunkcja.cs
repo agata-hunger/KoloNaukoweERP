@@ -10,12 +10,12 @@ namespace DAL.Entities
     public class PelnionaFunkcja
     {
         [Key]
-        public int? IdPelnionejFunkcji { get; set; }
+        public int IdPelnionejFunkcji { get; set; }
 
         [MinLength(1, ErrorMessage = "Nazwa jest wymagana")]
         [MaxLength(50, ErrorMessage = "Nazwa jest za długa")]
         public string Nazwa { get; set; }
 
-        public ICollection<Czlonek> Czlonkowie { get; set; }
+        public ICollection<Czlonek>? Czlonkowie { get; set; }
     }
 }

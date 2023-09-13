@@ -31,7 +31,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddCzlonek(czlonek.PelnionaFunkcja, czlonek.NrTelefonu, czlonek.Mail, czlonek.Nazwisko, czlonek.Imie, czlonek.KierunekStudiow, czlonek.Wydzial, czlonek.Uczelnia, czlonek.Zespoly, czlonek.Sprzety);
+            sekretarz.AddCzlonek(czlonek);
 
             unitOfWorkMock.Verify(repo => repo.Czlonkowie.InsertCzlonek(It.IsAny<Czlonek>()), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once());
@@ -45,7 +45,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddCzlonek(czlonek.PelnionaFunkcja, czlonek.NrTelefonu, czlonek.Mail, czlonek.Nazwisko, czlonek.Imie, czlonek.KierunekStudiow, czlonek.Wydzial, czlonek.Uczelnia, czlonek.Zespoly, czlonek.Sprzety);
+            sekretarz.AddCzlonek(czlonek);
             sekretarz.RemoveCzlonek(czlonek.IdCzlonka);
 
             unitOfWorkMock.Verify(repo => repo.Czlonkowie.DeleteCzlonek(It.IsAny<int>()), Times.Once());
@@ -98,7 +98,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddZespol(zespol.Nazwa, zespol.Czlonkowie, zespol.Sprzety, zespol.Projekty, zespol.Wydarzenia);
+            sekretarz.AddZespol(zespol);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.InsertZespol(It.IsAny<Zespol>()), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save());
@@ -112,12 +112,14 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddZespol(zespol.Nazwa, zespol.Czlonkowie, zespol.Sprzety, zespol.Projekty, zespol.Wydarzenia);
+            sekretarz.AddZespol(zespol);
             sekretarz.RemoveZespol(zespol.IdZespolu);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteZespol(It.IsAny<int>()), Times.Once());
             unitOfWorkMock.Verify(repo=>repo.Save());   
         }
+
+
 
 
         // AddWypozyczenie             do zweryfikowania czy chcemy?
@@ -134,25 +136,22 @@ namespace TestProject.BLL_Test
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
             var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
-            //zespolRepo.Setup(repo => repo.GetZespoly()).Returns(new List<Zespol> { zespol });
             unitOfWorkMock.Setup(u => u.Zespoly.GetZespoly()).Returns(new List<Zespol> { zespol });
 
             var wydarzenie = new Wydarzenie();
-            //wydarzenieRepo.Setup(repo => repo.InsertWydarzenie(wydarzenie));
             unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
 
  
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
 
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+            sekretarz.AddWydarzenie(wydarzenie);
 
             unitOfWorkMock.Verify(repo => repo.Wydarzenia.InsertWydarzenie(It.IsAny<Wydarzenie>()), Times.Once);
-            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
-            
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);           
         }
         
         [Fact]
-        public void TestAddWydarzenie()//string nazwaWydarzenia, string nazwaZespolu, DateTime dataWydarzenia, string miejsceWydarzenia
+        public void TestAddWydarzenie()
         {
             var wydarzenieRepo = new WydarzenieRepoFake();
             var zespolRepo = new ZespolRepoFake();
@@ -166,11 +165,12 @@ namespace TestProject.BLL_Test
 
             var unitOfWork = new UnitOfWork(czlonekRepo, pelnionaFunkcjaRepo, projektRepo, sprzetRepo, wydarzenieRepo, zespolRepo);
             var sekretarz = new SekretarzeServices(unitOfWork);
-
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+            var wydarzenie = new Wydarzenie();
+            sekretarz.AddWydarzenie(wydarzenie);
 
             Assert.Equal(1, wydarzenieRepo.GetWydarzenia().Count());
         }
+
         [Fact]
         public void TestRemoveWydarzenie()
         {
@@ -187,7 +187,8 @@ namespace TestProject.BLL_Test
             var unitOfWork = new UnitOfWork(czlonekRepo, pelnionaFunkcjaRepo, projektRepo, sprzetRepo, wydarzenieRepo, zespolRepo);
             var sekretarz = new SekretarzeServices(unitOfWork);
 
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+            var wydarzenie = new Wydarzenie();
+            sekretarz.AddWydarzenie(wydarzenie);
 
             sekretarz.RemoveWydarzenie("Test");
             Assert.Equal(0, wydarzenieRepo.GetWydarzenia().Count());
@@ -199,17 +200,16 @@ namespace TestProject.BLL_Test
             var unitOfWorkMock = new Mock<IUnitOfWork>();
 
             var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
-            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);//.GetZespoly()).Returns(new List<Zespol> { zespol });
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
 
             var wydarzenie = new Wydarzenie();
 
             unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));//.InsertWyd(wydarzenie));
-
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
 
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
+            sekretarz.AddWydarzenie(wydarzenie);
 
             var team = new Zespol();
             unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));
@@ -219,6 +219,7 @@ namespace TestProject.BLL_Test
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.InsertWydarzenie(1, It.IsAny<Wydarzenie>()), Times.Once());
         }
+
         [Fact]
         public void TestRemoveWydarzenieFromTeamMoq()
         {
@@ -233,22 +234,26 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddWydarzenie("Test", "Test", DateTime.Now, "Test");
-
-            /*var team = new Zespol();
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(team));*/      //gdzies w innych też nadmiarowy zespol
+            sekretarz.AddWydarzenie(wydarzenie);
 
             sekretarz.AddWydarzenieToTeam(1, wydarzenie);
             sekretarz.RemoveWydarzenieFromTeam(zespol.IdZespolu, wydarzenie);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(wydarzenie.IdWydarzenia), Times.Once());
-            //unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
 
 
 
 
         // AddProjektToTeam
+        public void TestAddProjektToTeamMoq()
+        {
+            var  unitOfWorkMock = new Mock<IUnitOfWork>();
+            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            unitOfWorkMock.Setup(u=>u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+
+            //czy to nie to samo - domniemana nadmiarowość
+        }
         // RemoveProjektFromTeam
         // AddZespolToProject
         // RemoveZespolFromProject
@@ -270,6 +275,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
+
         [Fact]
         public void TestRemoveZespolFromEventMoq()
         {
@@ -308,7 +314,7 @@ namespace TestProject.BLL_Test
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
 
-            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
+            sekretarz.AddSprzet(sprzet);
             unitOfWorkMock.Verify(repo => repo.Sprzety.InsertSprzet(It.IsAny<Sprzet>()), Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
         }
@@ -322,7 +328,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Sprzety.InsertSprzet(sprzet));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddSprzet(sprzet.Nazwa, sprzet.Opis, sprzet.CzyDostepny);
+            sekretarz.AddSprzet(sprzet);
 
             sekretarz.RemoveSprzet(sprzet.IdSprzetu);
             unitOfWorkMock.Verify(repo => repo.Sprzety.DeleteSprzet(It.IsAny<int>()), Times.Once());
@@ -359,7 +365,7 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Setup(u => u.Zespoly.AddSprzet(zespol.IdZespolu, sprzet));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
-            sekretarz.AddSprzet("Test", "Test", true);
+            sekretarz.AddSprzet(sprzet);
 
             var zespol2 = new Zespol();
             unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol2));
@@ -383,11 +389,11 @@ namespace TestProject.BLL_Test
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
 
-            sekretarz.AddProjekt(projekt.Nazwa, zespol.Nazwa, projekt.TerminRealizacji, projekt.Opis);
+            sekretarz.AddProjekt(projekt);
             unitOfWorkMock.Verify(repo=>repo.Projekty.InsertProjekt(It.IsAny<Projekt>()),Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save());
-
         }
+
         [Fact]
         public void TestRemoveProjektMoq()
         {
@@ -401,12 +407,11 @@ namespace TestProject.BLL_Test
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object);
 
-            sekretarz.AddProjekt(projekt.Nazwa, zespol.Nazwa, projekt.TerminRealizacji, projekt.Opis);
+            sekretarz.AddProjekt(projekt);
             sekretarz.RemoveProjekt(projekt.IdProjektu);
             unitOfWorkMock.Verify(repo=>repo.Projekty.DeleteProjekt(It.IsAny<int>()),Times.Once);
             unitOfWorkMock.Verify(repo => repo.Save());
         }
-
         
         [Fact]
         public void TestGetEventMoq()
@@ -420,8 +425,8 @@ namespace TestProject.BLL_Test
 
             unitOfWorkMock.Verify(repo=>repo.Wydarzenia.GetWydarzenieById(wydarzenie.IdWydarzenia), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save(), Times.Once());
-
         }
+
         [Fact]
         public void TestGetEventsMoq()
         {

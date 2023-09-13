@@ -53,16 +53,17 @@ namespace DAL.Repositories.ZespolR
             Zespol zespol = context.Zespoly.Find(idZespolu);
             zespol.Wydarzenia.Add(wydarzenie);
         }
+        public void DeleteWydarzenie(int idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddSprzet(int idZespolu, Sprzet sprzet)
         {
             Zespol zespol = context.Zespoly.Find(idZespolu);
             zespol.Sprzety.Add(sprzet);
         }
         public void DeleteSprzet(int idSprzetu)
-        {
-            throw new NotImplementedException();
-        }
-        public void DeleteWydarzenie(int idWydarzenia)
         {
             throw new NotImplementedException();
         }
@@ -74,6 +75,18 @@ namespace DAL.Repositories.ZespolR
         }
 
         public void DeleteCzlonek(int idczlonka)
+        {
+            throw new NotImplementedException();
+            /////
+        }
+
+        public void InsertProjekt(int idZespolu, Projekt projekt)
+        {
+            Zespol zespol = context.Zespoly.Find(idZespolu);
+            zespol.Projekty.Add(projekt);
+        }
+
+        public void DeleteProjekt(int idProjektu)
         {
             throw new NotImplementedException();
         }

@@ -20,6 +20,8 @@ namespace DAL.Repositories.ZespolR
         void DeleteSprzet(int idSprzetu);
         void InsertCzlonek(int idZespolu,  Czlonek czlonek);
         void DeleteCzlonek(int idczlonka);
+        void InsertProjekt(int idZespolu,  Projekt projekt);
+        void DeleteProjekt(int idProjektu);
         void Dispose();
         void Save();
     }
