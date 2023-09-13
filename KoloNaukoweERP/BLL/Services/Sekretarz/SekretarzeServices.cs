@@ -1,16 +1,21 @@
+﻿@ -1,28 + 1,32 @@
 ﻿using DAL;
+﻿using AutoMapper;
+using DAL;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Models;
 
 namespace BLL.Services.Sekretarz
 {
     public class SekretarzeServices : ISekretarzServices
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
         public SekretarzeServices(IUnitOfWork unitOfWork)
         {
@@ -18,327 +23,306 @@ namespace BLL.Services.Sekretarz
         }
 
         public void AddCzlonek(Czlonek czlonek)
+        public void AddCzlonek(CzlonekDTO czlonekDto)
         {
-            if(czlonek == null) 
-            {
-                throw new Exception();
-            }
+            if (czlonek == null)
+                if (czlonekDto == null)
+                {
+                    throw new Exception();
+                }
+            var czlonek = mapper.Map<Czlonek>(czlonekDto);
             unitOfWork.Czlonkowie.InsertCzlonek(czlonek);
             unitOfWork.Save();
         }
-
-        public void RemoveCzlonek(int idCzlonka)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            unitOfWork.Czlonkowie.DeleteCzlonek(idCzlonka);
+@ -34,39 +38,45 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
+    }
 
-        public void AddCzlonekToTeam(int idZespolu, Czlonek czlonek)
-        {
-            if (czlonek == null)
+    public void AddCzlonekToTeam(int idZespolu, Czlonek czlonek)
+        public void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto)
+    {
+        if (czlonek == null)
+            if (czlonekDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.InsertCzlonek(idZespolu, czlonek);
-            unitOfWork.Save();
-        }
+        var czlonek = mapper.Map<Czlonek>(czlonekDto);
+        unitOfWork.Zespoly.InsertCzlonek(idZespolu, czlonek);
+        unitOfWork.Save();
+    }
 
-        public void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek)
-        {
-            if (czlonek == null)
+    public void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek)
+        public void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto)
+    {
+        if (czlonek == null)
+            if (czlonekDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteCzlonek(idZespolu, czlonek);
-            unitOfWork.Save();
-        }
+        var czlonek = mapper.Map<Czlonek>(czlonekDto);
+        unitOfWork.Zespoly.DeleteCzlonek(idZespolu, czlonek);
+        unitOfWork.Save();
+    }
 
-        public void AddZespol(Zespol zespol)
-        {
-            if (zespol == null)
+    public void AddZespol(Zespol zespol)
+        public void AddZespol(ZespolDTO zespolDto)
+    {
+        if (zespol == null)
+            if (zespolDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.InsertZespol(zespol);
-            unitOfWork.Save();
-        }
+        var zespol = mapper.Map<Zespol>(zespolDto);
+        unitOfWork.Zespoly.InsertZespol(zespol);
+        unitOfWork.Save();
+    }
 
-        public void RemoveZespol(int idZespolu) //zostawiac po id, tylko warunek ?null
+    public void RemoveZespol(int idZespolu) //zostawiac po id, tylko warunek ?null
+        public void RemoveZespol(int idZespolu)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+        if (idZespolu == null)
         {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            unitOfWork.Zespoly.DeleteZespol(idZespolu);
-            unitOfWork.Save();
+            throw new NotImplementedException();
         }
-
-        /*public void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
-        {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            if (czlonek != null && zespol == null)
-            {
-                czlonek.Sprzety.Add(sprzet);
-            }
-            else
-            {
-                zespol.Sprzety.Add(sprzet);
-            }
+        unitOfWork.Zespoly.DeleteZespol(idZespolu);
+        unitOfWork.Save();
+    }
+@ -103,14 +113,14 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
-
-        public void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
-        {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            if (czlonek != null && zespol == null)
-            {
-                czlonek.Sprzety.Remove(sprzet);
-            }
-            else
-            {
-                zespol.Sprzety.Remove(sprzet);
-            }
-            unitOfWork.Save();
-        }*/
+    }*/
 
         public void AddWydarzenie(Wydarzenie wydarzenie)
-        {
-            if(wydarzenie==null)
+        public void AddWydarzenie(WydarzenieDTO wydarzenieDto)
+    {
+        if (wydarzenie == null)
+            if (wydarzenieDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Wydarzenia.InsertWydarzenie(wydarzenie);
+        var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
+        unitOfWork.Wydarzenia.InsertWydarzenie(wydarzenie);
 
+        unitOfWork.Save();
+    }
+
+@ -125,35 +135,35 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
+    }
 
-        public void RemoveWydarzenie(string nazwaWydarzenia)
-        {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if (wydarzenie != null)
-            {
-                var idWydarzenia = wydarzenie.IdWydarzenia;
-                unitOfWork.Wydarzenia.DeleteWydarzenie(idWydarzenia);
-            }
-            unitOfWork.Save();
-        }
-
-        public void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);//GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            if (wydarzenie == null)
+    public void AddWydarzenieToTeam(int idZespolu, Wydarzenie wydarzenie)
+        public void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);//GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+        if (wydarzenie == null)
+            if (wydarzenieDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
-            unitOfWork.Save();
-        }
+        var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
+        unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
+        unitOfWork.Save();
+    }
 
-        public void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            if (wydarzenie == null)
+    public void RemoveWydarzenieFromTeam(int idZespolu, Wydarzenie wydarzenie)
+        public void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+        if (wydarzenie == null)
+            if (wydarzenieDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
-            unitOfWork.Save();
-        }
+        var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
+        unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
+        unitOfWork.Save();
+    }
 
-        public void AddProjektToTeam(int idZespolu, Projekt projekt)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            if (projekt == null)
-            {
-                throw new Exception();    
-            }
-            unitOfWork.Zespoly.InsertProjekt(idZespolu,projekt);
-            unitOfWork.Save();
-        }
-
-
-        public void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            if (projekt != null)
-            {
-                zespol.Projekty.Remove(projekt);
-            }
-            unitOfWork.Save();
-        }
-
-        public void AddZespolToProject(Zespol zespol, string nazwaProjektu)
-        {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            projekt.Zespol = zespol;
-            unitOfWork.Save();
-        }
-
-        public void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu)
-        {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            projekt.Zespol = null;
-            unitOfWork.Save();
-        }
-
-        public void AddZespolToEvent(int idWydarzenia, Zespol zespol)
-        {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            if (zespol == null)
+    public void AddProjektToTeam(int idZespolu, Projekt projekt)
+        public void AddProjektToTeam(int idZespolu, ProjektDTO projektDto)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+        if (projekt == null)
+            if (projektDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
+        var projekt = mapper.Map<Projekt>(projektDto);
+        unitOfWork.Zespoly.InsertProjekt(idZespolu, projekt);
+        unitOfWork.Save();
+    }
+@ -170,13 +180,15 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
+    }
 
-        public void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol)
-        {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            if (zespol == null)
+    public void AddZespolToProject(Zespol zespol, string nazwaProjektu)
+        //TODO: To fix
+        public void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu)
+    {
+        var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+        projekt.Zespol = zespol;
+        //projekt.Zespol = zespol;
+        unitOfWork.Save();
+    }
+
+    //TODO: To fix
+    public void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu)
+    {
+        var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+@ -184,34 + 196,35 @@ namespace BLL.Services.Sekretarz
+            unitOfWork.Save();
+    }
+
+    public void AddZespolToEvent(int idWydarzenia, Zespol zespol)
+        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
+    {
+        var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+        if (zespol == null)
+            if (zespolDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
+        var zespol = mapper.Map<Zespol>(zespolDto);
+        unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
+        unitOfWork.Save();
+    }
 
-        public void AddPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja)
-        {
-            if(pelnionaFunkcja == null)
+    public void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol)
+        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
+    {
+        var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+        if (zespol == null)
+            if (zespolDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.PelnioneFunkcje.InsertPelnionaFunkcja(pelnionaFunkcja);
-            unitOfWork.Save();
-        }
+        var zespol = mapper.Map<Zespol>(zespolDto);
+        unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
+        unitOfWork.Save();
+    }
 
-        public void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji)
-        {
-            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(funkcja => funkcja.Nazwa.Equals(nazwaPelnionejFunkcji));
-            var funkcjaId = funkcja.IdPelnionejFunkcji;
-            if (funkcja != null)
-            {
-                unitOfWork.PelnioneFunkcje.DeletePelnionaFunkcja(funkcjaId);
-            }
-        }
-
-        public void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(pelnionaFunkcja => pelnionaFunkcja.Nazwa.Equals(pelnionaFunkcja));
-            if (czlonek != null && funkcja != null)
-            {
-                czlonek.PelnionaFunkcja = funkcja;
-            }
-            unitOfWork.Save();
-        }
-
-        public void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka)
-        {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
-            {
-                czlonek.PelnionaFunkcja = null;
-            }
-            unitOfWork.Save();
-        }
-
-        
-        
-        public void AddSprzet(Sprzet sprzet)
-        {
-            if(sprzet == null)
+    public void AddPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja)
+        public void AddPelnionaFunkcja(PelnionaFunkcjaDTO pelnionaFunkcjaDto)
+    {
+        if (pelnionaFunkcja == null)
+            if (pelnionaFunkcjaDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Sprzety.InsertSprzet(sprzet);
+        var pelnionaFunkcja = mapper.Map<PelnionaFunkcja>(pelnionaFunkcjaDto);
+        unitOfWork.PelnioneFunkcje.InsertPelnionaFunkcja(pelnionaFunkcja);
+        unitOfWork.Save();
+    }
+@ -247,14 +260,13 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
+    }
 
-        public void RemoveSprzet(int idSprzetu)
-        {
-            var sprzet = unitOfWork.Sprzety.GetSprzetById(idSprzetu);
 
-            unitOfWork.Sprzety.DeleteSprzet(idSprzetu);
-            unitOfWork.Save();
-        }
 
-        public void AddSprzetToTeam(int idZespolu, Sprzet sprzet)
-        {
-            if (sprzet == null)
+    public void AddSprzet(Sprzet sprzet)
+        public void AddSprzet(SprzetDTO sprzetDto)
+    {
+        if (sprzet == null)
+            if (sprzetDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.AddSprzet(idZespolu, sprzet);
+        var sprzet = mapper.Map<Sprzet>(sprzetDto);
+        unitOfWork.Sprzety.InsertSprzet(sprzet);
+        unitOfWork.Save();
+    }
+@ -267,39 +279,34 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
-        }
-        public void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            if (sprzet == null)
+    }
+
+    public void AddSprzetToTeam(int idZespolu, Sprzet sprzet)
+        public void AddSprzetToTeam(int idZespolu, SprzetDTO sprzetDto)
+    {
+        if (sprzet == null)
+            if (sprzetDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteSprzet(idZespolu, sprzet);
-            //unitOfWork.Zespoly.DeleteSprzet(idZespolu,sprzet); 
-            unitOfWork.Save();
-        }
-        
-        public void AddProjekt(Projekt projekt)
-        {
-            /*var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            Projekt projekt = new Projekt();
-            projekt.Nazwa = nazwaProjektu;
-            projekt.Zespol = zespol;
-            projekt.TerminRealizacji = terminRealizacji;
-            projekt.Opis = opisWydarzenia;*/
-            if(projekt == null)
+        var sprzet = mapper.Map<Sprzet>(sprzetDto);
+        unitOfWork.Zespoly.AddSprzet(idZespolu, sprzet);
+        unitOfWork.Save();
+    }
+    public void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet)
+        public void RemoveSprzetFromTeam(int idZespolu, SprzetDTO sprzetDto)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+        if (sprzet == null)
+            if (sprzetDto == null)
             {
                 throw new Exception();
             }
-            unitOfWork.Projekty.InsertProjekt(projekt);
-            unitOfWork.Save();
-        }
-        public void RemoveProjekt(int idProjektu)
-        {
-            var projekt = unitOfWork.Projekty.GetProjektById(idProjektu);
+        var sprzet = mapper.Map<Sprzet>(sprzetDto);
+        unitOfWork.Zespoly.DeleteSprzet(idZespolu, sprzet);
+        //unitOfWork.Zespoly.DeleteSprzet(idZespolu,sprzet); 
+        unitOfWork.Save();
+    }
+
+    public void AddProjekt(Projekt projekt)
+    {
+        /*var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+        Projekt projekt = new Projekt();
+        projekt.Nazwa = nazwaProjektu;
+        projekt.Zespol = zespol;
+        projekt.TerminRealizacji = terminRealizacji;
+        projekt.Opis = opisWydarzenia;*/
+        if (projekt == null)
+            public void AddProjekt(ProjektDTO projektDto)
+            {
+                if (projektDto == null)
+                {
+                    throw new Exception();
+                }
+                var projekt = mapper.Map<Projekt>(projektDto);
+                unitOfWork.Projekty.InsertProjekt(projekt);
+                unitOfWork.Save();
+            }
+@ -309,35 + 316,34 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Projekty.DeleteProjekt(idProjektu);
             unitOfWork.Save();
         }
-        public Wydarzenie GetEvent(int idWydarzenia)
-        {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            unitOfWork.Save();
-            return wydarzenie;
-        }
-        public IEnumerable<Wydarzenie> GetEvents()
-        {
-            var wydarzenia = unitOfWork.Wydarzenia.GetWydarzenia();
-
-            if (wydarzenia == null)
-            {
-                throw new Exception();
-            }
-
-            unitOfWork.Save();
-            return wydarzenia;
-        }
-
-        public Zespol GetTeam(int idZespolu)
-        {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
-            return zespol;
-        }
-        public List<Zespol> GetTeams()
-        {
-            var list = new List<Zespol>();
-            list = (List<Zespol>)unitOfWork.Zespoly.GetZespoly();
-            return list;
-        }
-
+    public Wydarzenie GetEvent(int idWydarzenia)
+        public WydarzenieDTO GetEvent(int idWydarzenia)
+    {
+        var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
+        var wydarzenieDto = mapper.Map<WydarzenieDTO>(wydarzenie);
+        unitOfWork.Save();
+        return wydarzenie;
+        return wydarzenieDto;
     }
+    public IEnumerable<Wydarzenie> GetEvents()
+        public IEnumerable<WydarzenieDTO> GetEvents()
+    {
+        var wydarzenia = unitOfWork.Wydarzenia.GetWydarzenia();
+
+        if (wydarzenia == null)
+        {
+            throw new Exception();
+        }
+
+        unitOfWork.Save();
+        return wydarzenia;
+        return mapper.Map<IEnumerable<WydarzenieDTO>>(wydarzenia);
+    }
+
+    public Zespol GetTeam(int idZespolu)
+        public ZespolDTO GetTeam(int idZespolu)
+    {
+        var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+        return zespol;
+        return mapper.Map<ZespolDTO>(zespol);
+    }
+    public List<Zespol> GetTeams()
+        public List<ZespolDTO> GetTeams()
+    {
+        var list = new List<Zespol>();
+        list = (List<Zespol>)unitOfWork.Zespoly.GetZespoly();
+        return list;
+        return mapper.Map<List<ZespolDTO>>(list);
+    }
+
 }
