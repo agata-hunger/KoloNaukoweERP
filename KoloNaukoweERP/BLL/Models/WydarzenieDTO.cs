@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Models
+﻿namespace BLL.Models
 {
     public class WydarzenieDTO
     {

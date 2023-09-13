@@ -12,20 +12,6 @@ D:\Uczelnia\SEM VI\TAIIB\Projekt\Repozytorium\KoloNaukoweERP\DAL\obj\Debug\net6.
 D:\Uczelnia\SEM VI\TAIIB\Projekt\Repozytorium\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.pdb
 D:\Uczelnia\SEM VI\TAIIB\Projekt\Repozytorium\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
 D:\Uczelnia\SEM VI\TAIIB\Projekt\Repozytorium\KoloNaukoweERP\DAL\obj\Debug\net6.0\ref\DAL.dll
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.dll
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\refint\DAL.dll
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.pdb
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.deps.json
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.dll
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.pdb
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
-C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\ref\DAL.dll
 F:\Taiib - projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.deps.json
 F:\Taiib - projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
 F:\Taiib - projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.dll
@@ -68,3 +54,17 @@ D:\Uczelnia\SEM VI\TAIIB\Projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net
 D:\Uczelnia\SEM VI\TAIIB\Projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.pdb
 D:\Uczelnia\SEM VI\TAIIB\Projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
 D:\Uczelnia\SEM VI\TAIIB\Projekt\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\ref\DAL.dll
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.deps.json
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.dll
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\bin\Debug\net6.0\DAL.pdb
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.dll
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\refint\DAL.dll
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.pdb
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+C:\Users\shemm\Documents\GitHub\KoloNaukoweERP\KoloNaukoweERP\DAL\obj\Debug\net6.0\ref\DAL.dll
