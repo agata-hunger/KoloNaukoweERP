@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BLL.Services.Sekretarz;
 using WebAPI.Models;
+using DAL.Entities;
 
 namespace WebAPI.Controllers
 {
@@ -39,7 +40,7 @@ namespace WebAPI.Controllers
         public ActionResult Create(WydarzenieDTO wydarzenie)
         {
             var zespol = sekretarzService.GetTeam(wydarzenie.IdZespolu);
-            sekretarzService.AddWydarzenie(wydarzenie.Nazwa, zespol.Nazwa, wydarzenie.Data, wydarzenie.Miejsce);
+            //sekretarzService.AddWydarzenie(wydarzenie);
             return Ok();
         }
 

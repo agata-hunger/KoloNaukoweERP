@@ -206,5 +206,60 @@ namespace TestControllersMVC
         {
             throw new NotImplementedException();
         }
+
+        public void AddCzlonekToTeam(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveCzlonekFromTeam(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveSprzetFromTeam(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveProjekt(int idProjektu)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCzlonek(Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddZespol(Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddWydarzenie(Wydarzenie wydarzenie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProjektToTeam(int idZespolu, Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSprzet(Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProjekt(Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

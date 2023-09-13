@@ -73,5 +73,30 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSprzet(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertProjekt(int idZespolu, Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProjekt(int idZespolu, Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace BLL.Services.Sekretarz
     public class SekretarzeServices : ISekretarzServices
     {
         private readonly IUnitOfWork unitOfWork;
+
         public SekretarzeServices(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -49,7 +50,7 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteCzlonek(czlonek.IdCzlonka);
+            unitOfWork.Zespoly.DeleteCzlonek(idZespolu, czlonek);
             unitOfWork.Save();
         }
 
@@ -142,7 +143,7 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteWydarzenie(wydarzenie.IdWydarzenia);
+            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
             unitOfWork.Save();
         }
 
@@ -197,7 +198,7 @@ namespace BLL.Services.Sekretarz
         public void RemoveZespolFromEvent(int idWydarzenia, Zespol zespol)
         {
             var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenieById(idWydarzenia);
-            if(zespol==null)
+            if (zespol == null)
             {
                 throw new Exception();
             }
@@ -282,7 +283,8 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
-            unitOfWork.Zespoly.DeleteSprzet(sprzet.IdSprzetu);
+            unitOfWork.Zespoly.DeleteSprzet(idZespolu, sprzet);
+            //unitOfWork.Zespoly.DeleteSprzet(idZespolu,sprzet); 
             unitOfWork.Save();
         }
         
@@ -316,8 +318,8 @@ namespace BLL.Services.Sekretarz
         public IEnumerable<Wydarzenie> GetEvents()
         {
             var wydarzenia = unitOfWork.Wydarzenia.GetWydarzenia();
- 
-            if(wydarzenia==null)
+
+            if (wydarzenia == null)
             {
                 throw new Exception();
             }
@@ -337,6 +339,6 @@ namespace BLL.Services.Sekretarz
             list = (List<Zespol>)unitOfWork.Zespoly.GetZespoly();
             return list;
         }
-        
+
     }
 }

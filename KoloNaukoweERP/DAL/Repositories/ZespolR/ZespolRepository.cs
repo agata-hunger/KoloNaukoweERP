@@ -21,10 +21,7 @@ namespace DAL.Repositories.ZespolR
             return context.Zespoly.ToList();
         }
         public Zespol GetZespolById(int idZespolu)
-        {
-            /*Zespol zespol = context.Zespoly.Find(idZespolu);
-            return zespol;*/
-            
+        {         
             return context.Zespoly.Find(idZespolu);
         }
         public void InsertZespol(Zespol zespol)
@@ -33,12 +30,52 @@ namespace DAL.Repositories.ZespolR
         }
         public void DeleteZespol(int? idZespolu)
         {
-            Zespol zespol = context.Zespoly.Find(idZespolu);
+            var zespol = context.Zespoly.Find(idZespolu);
             context.Zespoly.Remove(zespol);
         }
         public void UpdateZespol(Zespol zespol)
         {
             context.Entry(zespol).State = EntityState.Modified;
+        }
+        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Wydarzenia.Add(wydarzenie);
+        }
+        public void DeleteWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Wydarzenia.Remove(wydarzenie);
+        }
+        public void InsertCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Czlonkowie.Add(czlonek);
+        }
+        public void DeleteCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Czlonkowie.Remove(czlonek);
+        }
+        public void AddSprzet(int idZespolu, Sprzet sprzet)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Sprzety.Add(sprzet);
+        }
+        public void DeleteSprzet(int idZespolu, Sprzet sprzet)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Sprzety.Remove(sprzet);
+        }
+        public void InsertProjekt(int idZespolu, Projekt projekt)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Projekty.Add(projekt);
+        }
+        public void DeleteProjekt(int idZespolu, Projekt projekt)
+        {
+            var zespol = context.Zespoly.Find(idZespolu);
+            zespol.Projekty.Remove(projekt);
         }
         public void Dispose()
         {
@@ -47,48 +84,6 @@ namespace DAL.Repositories.ZespolR
         public void Save()
         {
             context.SaveChanges();
-        }
-        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
-        {
-            Zespol zespol = context.Zespoly.Find(idZespolu);
-            zespol.Wydarzenia.Add(wydarzenie);
-        }
-        public void DeleteWydarzenie(int idWydarzenia)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddSprzet(int idZespolu, Sprzet sprzet)
-        {
-            Zespol zespol = context.Zespoly.Find(idZespolu);
-            zespol.Sprzety.Add(sprzet);
-        }
-        public void DeleteSprzet(int idSprzetu)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InsertCzlonek(int idZespolu, Czlonek czlonek)
-        {
-            Zespol zespol = context.Zespoly.Find(idZespolu);
-            zespol.Czlonkowie.Add(czlonek);
-        }
-
-        public void DeleteCzlonek(int idczlonka)
-        {
-            throw new NotImplementedException();
-            /////
-        }
-
-        public void InsertProjekt(int idZespolu, Projekt projekt)
-        {
-            Zespol zespol = context.Zespoly.Find(idZespolu);
-            zespol.Projekty.Add(projekt);
-        }
-
-        public void DeleteProjekt(int idProjektu)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -60,12 +60,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void DeleteSprzet(int idZespolu, Sprzet sprzet)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteSprzet(int idSprzetu)
+        public void DeleteWydarzenie(int idZespolu, Wydarzenie wydarzenie)
         {
             throw new NotImplementedException();
         }
@@ -75,7 +70,22 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void DeleteCzlonek(int idczlonka)
+        public void DeleteCzlonek(int idZespolu, Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSprzet(int idZespolu, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertProjekt(int idZespolu, Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProjekt(int idZespolu, Projekt projekt)
         {
             throw new NotImplementedException();
         }
