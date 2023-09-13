@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Controllers;
-using WebAPI.Models;
+using BLL.Models;
+using AutoMapper;
 
 namespace TestControllersMVC
 {
@@ -18,12 +19,14 @@ namespace TestControllersMVC
         public void TestGetAction()
         {
             Mock<ISekretarzServices> mockSekretarzServices = new Mock<ISekretarzServices>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
 
             var wydarzenia = new List<Wydarzenie>();
+            var wydarzeniaDto = mockMapper.Object.Map<List<WydarzenieDTO>>(wydarzenia);
             
             mockSekretarzServices
                 .Setup(w => w.GetEvents())
-                .Returns(wydarzenia);
+                .Returns(wydarzeniaDto);
 
             WydarzeniaController wydarzeniaController = new WydarzeniaController(mockSekretarzServices.Object);
 

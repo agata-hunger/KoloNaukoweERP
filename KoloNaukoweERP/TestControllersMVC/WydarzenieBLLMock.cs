@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Models;
 using BLL.Services.Sekretarz;
 using DAL;
 using DAL.Entities;
@@ -258,6 +259,106 @@ namespace TestControllersMVC
         }
 
         public void AddProjekt(Projekt projekt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCzlonek(CzlonekDTO czlonekDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddZespol(ZespolDTO zespolDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddWydarzenie(WydarzenieDTO wydarzenieDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProjektToTeam(int idZespolu, ProjektDTO projektDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddPelnionaFunkcja(PelnionaFunkcjaDTO pelnionaFunkcjaDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSprzet(SprzetDTO sprzetDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSprzetToTeam(int idZespolu, SprzetDTO sprzetDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveSprzetFromTeam(int idZespolu, SprzetDTO sprzetDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProjekt(ProjektDTO projektDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        WydarzenieDTO ISekretarzServices.GetEvent(int idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<WydarzenieDTO> ISekretarzServices.GetEvents()
+        {
+            throw new NotImplementedException();
+        }
+
+        ZespolDTO ISekretarzServices.GetTeam(int idZespolu)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<ZespolDTO> ISekretarzServices.GetTeams()
         {
             throw new NotImplementedException();
         }

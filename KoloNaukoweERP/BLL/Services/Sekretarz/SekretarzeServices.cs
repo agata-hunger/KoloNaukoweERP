@@ -16,9 +16,10 @@ namespace BLL.Services.Sekretarz
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public SekretarzeServices(IUnitOfWork unitOfWork)
+        public SekretarzeServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         public void AddCzlonek(CzlonekDTO czlonekDto)
@@ -73,10 +74,9 @@ namespace BLL.Services.Sekretarz
 
         public void RemoveZespol(int idZespolu)
         {
-            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             if (idZespolu == null)
             {
-                throw new NotImplementedException();
+                throw new Exception();
             }
             unitOfWork.Zespoly.DeleteZespol(idZespolu);
             unitOfWork.Save();
