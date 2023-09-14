@@ -13,8 +13,5 @@ namespace BLL.Services.Koordynator
     {
         void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
         void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
-        
-        void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
-        void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
     }
 }

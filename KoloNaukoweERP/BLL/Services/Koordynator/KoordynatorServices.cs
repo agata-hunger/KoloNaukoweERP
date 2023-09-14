@@ -43,27 +43,5 @@ namespace BLL.Services.Koordynator
             unitOfWork.Czlonkowie.DeleteWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save(); 
         }
-
-        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if(zespolDto==null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
-
-        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if(zespolDto==null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
     }
 }

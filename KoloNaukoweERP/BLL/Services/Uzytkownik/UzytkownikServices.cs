@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using AutoMapper;
+using BLL.Models;
+using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
@@ -12,24 +14,33 @@ namespace BLL.Services.Uzytkownik
     public class UzytkownikServices : IUzytkownikServices
     {
         private readonly IUnitOfWork unitOfWork;
-        
-        public UzytkownikServices(IUnitOfWork unitOfWork)
+        private readonly IMapper mapper;
+
+        public UzytkownikServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
-        public void AddWypozyczenie(string nazwa, int idCzlonka)
+
+        public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            //TO DO - id użytkownika w Urlu 
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwa));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            czlonek.Sprzety.Add(sprzet);
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.InsertWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save();
         }
-        public void RemoveWypozyczenie(string nazwa, int idCzlonka)
+
+        public void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwa));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            czlonek.Sprzety.Remove(sprzet);
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.DeleteWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save();
         }
     }

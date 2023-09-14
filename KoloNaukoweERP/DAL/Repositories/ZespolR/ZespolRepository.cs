@@ -16,6 +16,17 @@ namespace DAL.Repositories.ZespolR
         {
             this.context = context;
         }
+
+/*        public void AddWydarzeniaToZespol(ZespolWydarzenie zespolWydarzenie) 
+        {
+            context.ZespolWydarzenia.Add(zespolWydarzenie);
+        }
+
+        public void RemoveWydarzenieFromZespol(ZespolWydarzenie zespolWydarzenie)
+        {
+            context.ZespolWydarzenia.Remove(zespolWydarzenie);
+        }*/
+
         public IEnumerable<Zespol> GetZespoly()
         {
             return context.Zespoly.ToList();
@@ -37,15 +48,17 @@ namespace DAL.Repositories.ZespolR
         {
             context.Entry(zespol).State = EntityState.Modified;
         }
-        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        public void InsertWydarzenie(int idZespolu, ZespolWydarzenie zespolWydarzenie)
         {
             var zespol = context.Zespoly.Find(idZespolu);
-            zespol.Wydarzenia.Add(wydarzenie);
+            context.Zespoly.Add(zespol);
+            context.ZespolWydarzenia.Add(zespolWydarzenie);
         }
-        public void DeleteWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        public void DeleteWydarzenie(int idZespolu, ZespolWydarzenie zespolWydarzenie)
         {
             var zespol = context.Zespoly.Find(idZespolu);
-            zespol.Wydarzenia.Remove(wydarzenie);
+            context.Zespoly.Remove(zespol);
+            context.ZespolWydarzenia.Remove(zespolWydarzenie);
         }
         public void InsertCzlonek(int idZespolu, Czlonek czlonek)
         {
@@ -67,15 +80,17 @@ namespace DAL.Repositories.ZespolR
             var zespol = context.Zespoly.Find(idZespolu);
             zespol.Sprzety.Remove(sprzet);
         }
-        public void InsertProjekt(int idZespolu, Projekt projekt)
+        public void InsertProjekt(int  idZespolu, ZespolProjekt zespolProjekt)
         {
             var zespol = context.Zespoly.Find(idZespolu);
-            zespol.Projekty.Add(projekt);
+            context.Zespoly.Add(zespol);
+            context.ZespolProjekty.Add(zespolProjekt);
         }
-        public void DeleteProjekt(int idZespolu, Projekt projekt)
+        public void DeleteProjekt(int idZespolu, ZespolProjekt zespolProjekt)
         {
             var zespol = context.Zespoly.Find(idZespolu);
-            zespol.Projekty.Remove(projekt);
+            context.Zespoly.Remove(zespol);
+            context.ZespolProjekty.Remove(zespolProjekt);
         }
         public void Dispose()
         {

@@ -96,8 +96,10 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
-            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, zespolWydarzenie);
             unitOfWork.Save();
         }
 
@@ -107,8 +109,10 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
-            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, zespolWydarzenie);
             unitOfWork.Save();
         }
 
@@ -118,8 +122,10 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var projekt = mapper.Map<Projekt>(projektDto);
-            unitOfWork.Zespoly.InsertProjekt(idZespolu, projekt);
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.InsertProjekt(idZespolu, zespolProjekt);
             unitOfWork.Save();
         }
 
@@ -129,8 +135,10 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var projekt = mapper.Map<Projekt>(projektDto);
-            unitOfWork.Zespoly.DeleteProjekt(idZespolu, projekt);
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.DeleteProjekt(idZespolu, zespolProjekt);
             unitOfWork.Save();
         }
 
@@ -156,29 +164,5 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             unitOfWork.Projekty.DeleteZespol(idProjektu, zespol);
             unitOfWork.Save();
         }
-
-        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if (zespolDto == null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
-
-        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if (zespolDto == null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
-
-
     }
 }

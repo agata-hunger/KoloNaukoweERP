@@ -16,7 +16,8 @@ namespace DAL
         public DbSet<Wydarzenie> Wydarzenia { get; set; }
         public DbSet<Zespol> Zespoly { get; set; }
         public DbSet<Projekt> Projekty { get; set; }
-        //public DbSet<CzlonekZespol> CzlonkowieZespoly { get; set; }
+        public DbSet<ZespolWydarzenie> ZespolWydarzenia { get; set; }
+        public DbSet<ZespolProjekt> ZespolProjekty { get; set; }
 
         public DbKoloNaukoweERP(DbContextOptions<DbKoloNaukoweERP> options) : base (options) { }
 

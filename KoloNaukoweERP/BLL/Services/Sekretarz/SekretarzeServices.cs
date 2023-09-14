@@ -33,6 +33,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Czlonkowie.InsertCzlonek(czlonek);
             unitOfWork.Save();
         }
+
         public void RemoveCzlonek(int idCzlonka)
         {
             if(idCzlonka==null)
@@ -87,6 +88,29 @@ namespace BLL.Services.Sekretarz
 
         }
 
+
+        public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
+        {
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.InsertWypozyczenie(idCzlonka, sprzet);
+            unitOfWork.Save();
+        }
+
+        public void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
+        {
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.DeleteWypozyczenie(idCzlonka, sprzet);
+            unitOfWork.Save();
+        }
+
         public void AddWydarzenie(WydarzenieDTO wydarzenieDto)
         {
             if (wydarzenieDto == null)
@@ -114,8 +138,10 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
-            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, zespolWydarzenie);
             unitOfWork.Save();
         }
 
@@ -125,8 +151,10 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
-            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, zespolWydarzenie);
             unitOfWork.Save();
         }
 
@@ -136,8 +164,10 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var projekt = mapper.Map<Projekt>(projektDto);
-            unitOfWork.Zespoly.InsertProjekt(idZespolu, projekt);
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.InsertProjekt(idZespolu, zespolProjekt);
             unitOfWork.Save();
         }
 
@@ -147,8 +177,10 @@ namespace BLL.Services.Sekretarz
             {
                 throw new Exception();
             }
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
             var projekt = mapper.Map<Projekt>(projektDto);
-            unitOfWork.Zespoly.DeleteProjekt(idZespolu, projekt);
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = idZespolu, Zespol = zespol };
+            unitOfWork.Zespoly.DeleteProjekt(idZespolu, zespolProjekt);
             unitOfWork.Save();
         }
 
@@ -171,28 +203,6 @@ namespace BLL.Services.Sekretarz
             }
             var zespol = mapper.Map<Zespol>(zespolDto);
             unitOfWork.Projekty.DeleteZespol(idProjektu, zespol);
-            unitOfWork.Save();
-        }
-
-        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if (zespolDto == null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.InsertZespol(idWydarzenia, zespol);
-            unitOfWork.Save();
-        }
-
-        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
-        {
-            if (zespolDto == null)
-            {
-                throw new Exception();
-            }
-            var zespol = mapper.Map<Zespol>(zespolDto);
-            unitOfWork.Wydarzenia.DeleteZespol(idWydarzenia, zespol);
             unitOfWork.Save();
         }
 

@@ -257,7 +257,8 @@ namespace TestProject.BLL_Test
             var wydarzenie = new Wydarzenie() { };
 
             unitOfWorkMock.Setup(u => u.Wydarzenia.InsertWydarzenie(wydarzenie));
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = zespol.IdZespolu, Zespol = zespol };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, zespolWydarzenie));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var wydarzenieDto = new WydarzenieDTO() { };
@@ -266,7 +267,7 @@ namespace TestProject.BLL_Test
 
             sekretarz.AddWydarzenieToTeam(zespol.IdZespolu, wydarzenieDto);
 
-            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertWydarzenie(zespol.IdZespolu, It.IsAny<Wydarzenie>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertWydarzenie(zespol.IdZespolu, It.IsAny<ZespolWydarzenie>()), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
@@ -281,7 +282,8 @@ namespace TestProject.BLL_Test
             var zespol = new Zespol() { };
 
             var wydarzenie = new Wydarzenie();
-            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, wydarzenie));
+            var zespolWydarzenie = new ZespolWydarzenie() { WydarzenieId = wydarzenie.IdWydarzenia, Wydarzenie = wydarzenie, ZespolId = zespol.IdZespolu, Zespol = zespol };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertWydarzenie(zespol.IdZespolu, zespolWydarzenie));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var wydarzenieDto = new WydarzenieDTO();
@@ -289,83 +291,48 @@ namespace TestProject.BLL_Test
             sekretarz.AddWydarzenieToTeam(1, wydarzenieDto);
             sekretarz.RemoveWydarzenieFromTeam(zespol.IdZespolu, wydarzenieDto);
 
-            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(zespol.IdZespolu, It.IsAny<Wydarzenie>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(zespol.IdZespolu, It.IsAny<ZespolWydarzenie>()), Times.Once());
         }
 
 
 
-
-        // AddProjektToTeam
+        [Fact]
         public void TestAddProjektToTeamMoq()
         {
             var unitOfWorkMock = new Mock<IUnitOfWork>();
-            var zespol = new Zespol() { IdZespolu = 1, Nazwa = "Test" };
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+
+            mockMapper.Setup(x => x.Map<Projekt>(It.IsAny<ProjektDTO>()))
+                .Returns((ProjektDTO src) => new Projekt { });
+
+            var zespol = new Zespol() { };
             unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
 
-            //czy to nie to samo - domniemana nadmiarowość
+            var projekt = new Projekt() { };
+
+            unitOfWorkMock.Setup(u => u.Projekty.InsertProjekt(projekt));
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = zespol.IdZespolu, Zespol = zespol };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertProjekt(zespol.IdZespolu, zespolProjekt));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
+            var projektDto = new ProjektDTO() { };
+
+            //sekretarz.AddWydarzenie(wydarzenieDto);
+
+            sekretarz.AddProjektToTeam(zespol.IdZespolu, projektDto);
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.InsertProjekt(zespol.IdZespolu, It.IsAny<ZespolProjekt>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
         }
         // RemoveProjektFromTeam
         // AddZespolToProject
         // RemoveZespolFromProject
 
 
-
-        [Fact]
-        public void TestAddZespolToEventMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            Mock<IMapper> mockMapper = new Mock<IMapper>();
-            mockMapper.Setup(x => x.Map<Zespol>(It.IsAny<ZespolDTO>()))
-               .Returns((ZespolDTO src) => new Zespol { });
-
-            var wydarzenie = new Wydarzenie();
-
-            var zespol = new Zespol();
-            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, zespol));
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
-            var zespolDto = new ZespolDTO { };
-
-            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespolDto);
-
-            unitOfWorkMock.Verify(repo => repo.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once);
-            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
-        }
-
-        [Fact]
-        public void TestRemoveZespolFromEventMoq()
-        {
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            Mock<IMapper> mockMapper = new Mock<IMapper>();
-
-            mockMapper.Setup(x => x.Map<Zespol>(It.IsAny<ZespolDTO>()))
-                .Returns((ZespolDTO src) => new Zespol { });
-
-            var wydarzenie = new Wydarzenie();
-
-            var zespol = new Zespol();
-            unitOfWorkMock.Setup(u => u.Wydarzenia.InsertZespol(wydarzenie.IdWydarzenia, zespol));
-
-            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
-            var zespolDto = new ZespolDTO() { };
-
-            sekretarz.AddZespolToEvent(wydarzenie.IdWydarzenia, zespolDto);
-            sekretarz.RemoveZespolFromEvent(wydarzenie.IdWydarzenia, zespolDto);
-
-            unitOfWorkMock.Verify(repo => repo.Wydarzenia.DeleteZespol(wydarzenie.IdWydarzenia, It.IsAny<Zespol>()), Times.Once());
-            unitOfWorkMock.Verify(repo => repo.Save());
-        }
-
-
-
         // AddPelnionaFunkcja
         // RemovePelnionaFunkcja
         // AddPelnionaFunkcjaToUser
         // RemovePelnionaFunkcjaFromUser
-
-
-
-
 
         [Fact]
         public void TestAddSprzetMoq()

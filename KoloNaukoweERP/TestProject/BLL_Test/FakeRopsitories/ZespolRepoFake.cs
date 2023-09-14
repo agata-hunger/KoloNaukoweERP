@@ -37,11 +37,11 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 zespoly[index] = zespol;
         }
-        public void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie)
+        public void InsertWydarzenie(int idZespolu, ZespolWydarzenie zespolWydarzenie)
         {
             throw new NotImplementedException();
         }
-        public void DeleteWydarzenie(int idWydarzenia)
+        public void DeleteWydarzenie(int idZespolu, ZespolWydarzenie zespolWydarzenie)
         {
             throw new NotImplementedException();
         }
@@ -89,12 +89,12 @@ namespace TestProject.BLL_Test.FakeRopsitories
             throw new NotImplementedException();
         }
 
-        public void InsertProjekt(int idZespolu, Projekt projekt)
+        public void InsertProjekt(int idZespolu, ZespolProjekt zespolProjekt)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteProjekt(int idZespolu, Projekt projekt)
+        public void DeleteProjekt(int idZespolu, ZespolProjekt zespolProjekt)
         {
             throw new NotImplementedException();
         }

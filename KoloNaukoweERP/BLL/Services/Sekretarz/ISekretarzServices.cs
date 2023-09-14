@@ -19,8 +19,8 @@ namespace BLL.Services.Sekretarz
         void AddZespol(ZespolDTO zespolDto);
         void RemoveZespol(int? idZespolu);
 
-        /*void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
-        void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);*/
+        void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
+        void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
 
         void AddWydarzenie(WydarzenieDTO wydarzenieDto);
         void RemoveWydarzenie(int idWydarzenia);
@@ -32,10 +32,7 @@ namespace BLL.Services.Sekretarz
         void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDto);
 
         void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
-        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);       //ddpd
-
-        void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
-        void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
+        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto); 
 
         void AddPelnionaFunkcja(PelnionaFunkcjaDTO pelnionaFunkcjaDto);
         void RemovePelnionaFunkcja(int? idPelnionejFunkcji);
@@ -44,7 +41,7 @@ namespace BLL.Services.Sekretarz
         void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcjaDto);
 
         void AddSprzet(SprzetDTO sprzetDto);
-        void RemoveSprzet(int? idSrzetu);
+        void RemoveSprzet(int idSrzetu);
 
         void AddSprzetToTeam(int idZespolu, SprzetDTO sprzetDto);
         void RemoveSprzetFromTeam(int idZespolu, SprzetDTO sprzetDto);

@@ -43,18 +43,6 @@ namespace DAL.Repositories.WydarzenieR
             context.Entry(wydarzenie).State = EntityState.Modified;
         }
 
-        public void InsertZespol(int idWydarzenia, Zespol zespol)
-        {
-            var wydarzenie = context.Wydarzenia.Find(idWydarzenia);
-            context.Zespoly.Add(zespol);
-        }
-
-        public void DeleteZespol(int idWydarzenia, Zespol zespol)
-        {
-            var wydarzenie = context.Wydarzenia.Find(idWydarzenia);
-            context.Zespoly.Remove(zespol);
-        }
-
         public void Dispose()
         {
             context.Dispose();

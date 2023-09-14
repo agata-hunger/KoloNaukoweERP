@@ -14,14 +14,14 @@ namespace DAL.Repositories.ZespolR
         void InsertZespol(Zespol zespol);
         void DeleteZespol(int? idZespolu);
         void UpdateZespol(Zespol zespol);
-        void InsertWydarzenie(int idZespolu, Wydarzenie wydarzenie);
-        void DeleteWydarzenie(int idZespolu, Wydarzenie wydarzenie);
+        void InsertWydarzenie(int idZespolul, ZespolWydarzenie zespolWydarzenie);
+        void DeleteWydarzenie(int idZespolu, ZespolWydarzenie zespolWydarzenie);
         void InsertCzlonek(int idZespolu, Czlonek czlonek);
         void DeleteCzlonek(int idZespolu, Czlonek czlonek);
         void AddSprzet(int idZespolu, Sprzet sprzet);
         void DeleteSprzet(int idZespolu, Sprzet sprzet);
-        void InsertProjekt(int idZespolu, Projekt projekt);
-        void DeleteProjekt(int idZespolu, Projekt projekt);
+        void InsertProjekt(int idZespolu, ZespolProjekt zespolProjekt);
+        void DeleteProjekt(int idZespolu, ZespolProjekt zespolProjekt);
         void Dispose();
         void Save();
     }

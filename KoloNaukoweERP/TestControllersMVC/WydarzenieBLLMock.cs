@@ -384,6 +384,14 @@ namespace TestControllersMVC
         {
             throw new NotImplementedException();
         }
+        public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

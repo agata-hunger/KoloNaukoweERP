@@ -26,11 +26,6 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
         void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDt);
 
         void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
-        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);
-
-        void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
-        void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
-
-       
+        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);       
     }
 }
