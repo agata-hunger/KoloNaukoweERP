@@ -250,7 +250,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveSprzet(int? idSprzetu)
+        public void RemoveSprzet(int idSprzetu)
         {
             if(idSprzetu==null)
             {

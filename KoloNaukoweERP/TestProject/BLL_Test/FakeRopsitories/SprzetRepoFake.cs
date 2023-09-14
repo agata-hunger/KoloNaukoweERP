@@ -17,7 +17,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             return sprzety;
         }
-        public Sprzet GetSprzetById(int idSprzety)
+        public Sprzet GetSprzetById(int? idSprzety)
         {
             return sprzety.Find(s => s.IdSprzetu == idSprzety);
 
@@ -26,7 +26,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             sprzety.Add(sprzet);
         }
-        public void DeleteSprzet(int? idSprzetu)
+        public void DeleteSprzet(int idSprzetu)
         {
             Sprzet sprzet = sprzety.Find(s => s.IdSprzetu == idSprzetu);
             sprzety.Remove(sprzet);

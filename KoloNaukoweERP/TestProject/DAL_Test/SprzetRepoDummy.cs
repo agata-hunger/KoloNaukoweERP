@@ -11,22 +11,12 @@ namespace TestProject.DAL_Test
 {
     public class SprzetRepoDummy : ISprzetRepository
     {
-        public void DeleteSprzet(int? idSprzetu)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Sprzet> GetSprzet()
         {
             throw new NotImplementedException();
         }
 
-        public Sprzet GetSprzetById(int idSprzetu)
+        public Sprzet GetSprzetById(int? idSprzetu)
         {
             throw new NotImplementedException();
         }
@@ -36,12 +26,22 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void Save()
+        public void DeleteSprzet(int idSrzetu)
         {
             throw new NotImplementedException();
         }
 
         public void UpdateSprzet(Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
         {
             throw new NotImplementedException();
         }

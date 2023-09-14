@@ -10,9 +10,9 @@ namespace DAL.Repositories.SprzetR
     public interface ISprzetRepository
     {
         IEnumerable<Sprzet> GetSprzet();
-        Sprzet GetSprzetById(int idSprzetu);
+        Sprzet GetSprzetById(int? idSprzetu);
         void InsertSprzet(Sprzet sprzet);
-        void DeleteSprzet(int? idSprzetu);
+        void DeleteSprzet(int idSprzetu);
         void UpdateSprzet(Sprzet sprzet);
         void Dispose();
         void Save();

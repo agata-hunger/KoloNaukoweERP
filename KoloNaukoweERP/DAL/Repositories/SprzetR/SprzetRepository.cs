@@ -22,7 +22,7 @@ namespace DAL.Repositories.SprzetR
             return context.Sprzety.ToList();
         }
 
-        public Sprzet GetSprzetById(int idSprzetu)
+        public Sprzet GetSprzetById(int? idSprzetu)
         {
             return context.Sprzety.Find(idSprzetu);
         }
@@ -32,9 +32,9 @@ namespace DAL.Repositories.SprzetR
             context.Sprzety.Add(sprzet);
         }
 
-        public void DeleteSprzet(int? idSprzetu)
+        public void DeleteSprzet(int idSprzetu)
         {
-            Sprzet sprzet = context.Sprzety.Find(idSprzetu);
+            var sprzet = context.Sprzety.Find(idSprzetu);
             context.Sprzety.Remove(sprzet);
         }
 
@@ -42,10 +42,12 @@ namespace DAL.Repositories.SprzetR
         {
             context.Entry(sprzet).State = EntityState.Modified;
         }
+        
         public void Dispose()
         {
             context.Dispose();
         }
+
         public void Save()
         {
             context.SaveChanges();
