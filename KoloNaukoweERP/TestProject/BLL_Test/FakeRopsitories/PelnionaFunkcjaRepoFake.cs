@@ -17,7 +17,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             return pelnioneFunkcje;
         }
-        public PelnionaFunkcja GetPelnionaFunkcjaById(int idPelnioneFunkcje)
+        public PelnionaFunkcja GetPelnionaFunkcjaById(int? idPelnioneFunkcje)
         {
             return pelnioneFunkcje.Find(p => p.IdPelnionejFunkcji == idPelnioneFunkcje);
 

@@ -19,12 +19,10 @@ namespace DAL.Repositories.PelnionaFunkcjaR
 
         public IEnumerable<PelnionaFunkcja> GetPelnioneFunkcje()
         {
-            var nazwy = context.PelnioneFunkcje.Where(id=>id.IdPelnionejFunkcji > 0).Select(n=>n.Nazwa).ToList();
             return context.PelnioneFunkcje.ToList();
-
         }
 
-        public PelnionaFunkcja GetPelnionaFunkcjaById(int idPelnionejFunkcji)
+        public PelnionaFunkcja GetPelnionaFunkcjaById(int? idPelnionejFunkcji)
         {
             return context.PelnioneFunkcje.Find(idPelnionejFunkcji);
         }
@@ -36,7 +34,7 @@ namespace DAL.Repositories.PelnionaFunkcjaR
 
         public void DeletePelnionaFunkcja(int? idPelnionejFunkcji)
         {
-            PelnionaFunkcja pelnionaFunkcja = context.PelnioneFunkcje.Find(idPelnionejFunkcji);
+            var pelnionaFunkcja = context.PelnioneFunkcje.Find(idPelnionejFunkcji);
             context.PelnioneFunkcje.Remove(pelnionaFunkcja);
         }
 
@@ -44,10 +42,12 @@ namespace DAL.Repositories.PelnionaFunkcjaR
         {
             context.Entry(pelnionaFunkcja).State = EntityState.Modified;
         }
+
         public void Dispose()
         {
             context.Dispose();
         }
+        
         public void Save()
         {
             context.SaveChanges();

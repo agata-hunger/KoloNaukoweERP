@@ -21,7 +21,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public PelnionaFunkcja GetPelnionaFunkcjaById(int idPelnionejFunkcji)
+        public PelnionaFunkcja GetPelnionaFunkcjaById(int? idPelnionejFunkcji)
         {
             throw new NotImplementedException();
         }
@@ -31,7 +31,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void InsertPelnionaFunkcja(PelnionaFunkcja pelnionaFunkcja)
+        public void InsertPelnionaFunkcja(PelnionaFunkcja? pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }
