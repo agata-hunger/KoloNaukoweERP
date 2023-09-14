@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using AutoMapper;
+using BLL.Models;
+using DAL;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,39 +13,55 @@ namespace BLL.Services.Lider
     public class LiderServices : ILiderServices
     {
         private readonly IUnitOfWork unitOfWork;
-        public LiderServices(IUnitOfWork unitOfWork)
+        private readonly IMapper mapper;
+        public LiderServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
-        public void AddWypozyczenie(string nazwaSprzetu, int idCzlonka)
+        public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            //TO DO - id użytkownika w Urlu 
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            czlonek.Sprzety.Add(sprzet);
+            //TO DO - id użytkownika w Urlu -> 14.09. - ???
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.InsertWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save();
         }
 
-        public void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka)
+        public void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonekById(idCzlonka);
-            czlonek.Sprzety.Remove(sprzet);
+            if (sprzetDto == null)
+            {
+                throw new Exception();
+            }
+            var sprzet = mapper.Map<Sprzet>(sprzetDto);
+            unitOfWork.Czlonkowie.DeleteWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save();
         }
 
-        public void AddZespolToProject(Zespol zespol, int idProjektu)
+        public void AddZespolToProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Wydarzenia.GetWydarzenieById(idProjektu);
-            projekt.Zespol = zespol;
+            if (zespolDto == null)
+            {
+                throw new Exception();
+            }
+            var zespol = mapper.Map<Zespol>(zespolDto);
+            unitOfWork.Projekty.InsertZespol(idProjektu, zespol);
             unitOfWork.Save();
         }
 
-        public void RemoveZespolFromProject(Zespol zespol, int idProjektu)
+        public void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Wydarzenia.GetWydarzenieById(idProjektu);
-            projekt.Zespol = null;
+            if (zespolDto == null)
+            {
+                throw new Exception();
+            }
+            var zespol = mapper.Map<Zespol>(zespolDto);
+            unitOfWork.Projekty.DeleteZespol(idProjektu, zespol);
             unitOfWork.Save();
         }
     }

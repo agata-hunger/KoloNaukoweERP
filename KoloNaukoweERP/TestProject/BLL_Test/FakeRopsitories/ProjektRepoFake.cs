@@ -38,6 +38,16 @@ namespace TestProject.BLL_Test.FakeRopsitories
                 projekty[index] = projekt;
         }
 
+        public void InsertZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Dispose()
         {
             //do nothing

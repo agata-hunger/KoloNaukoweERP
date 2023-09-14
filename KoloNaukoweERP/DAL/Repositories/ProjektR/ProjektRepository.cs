@@ -11,7 +11,7 @@ namespace DAL.Repositories.ProjektR
     public class ProjektRepository : IProjektRepository
     {
         private DbKoloNaukoweERP context;
-        
+
         public ProjektRepository(DbKoloNaukoweERP context)
         {
             this.context = context;
@@ -35,12 +35,20 @@ namespace DAL.Repositories.ProjektR
         public void DeleteProjekt(int idProjektu)
         {
             Projekt projekt = context.Projekty.Find(idProjektu);
-            context.Projekty.Remove(projekt);   
+            context.Projekty.Remove(projekt);
         }
 
         public void UpdateProjekt(Projekt projekt)
         {
             context.Entry(projekt).State = EntityState.Modified;
+        }
+        public void InsertZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
         }
         public void Dispose()
         {

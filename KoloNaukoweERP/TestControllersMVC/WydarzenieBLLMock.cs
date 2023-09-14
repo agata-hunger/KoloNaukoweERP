@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BLL.Models;
 using BLL.Services.Sekretarz;
 using DAL;
@@ -361,6 +362,23 @@ namespace TestControllersMVC
         List<ZespolDTO> ISekretarzServices.GetTeams()
         {
             throw new NotImplementedException();
+        }
+
+        public void InsertZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddZespolToProject(int idProjektu, ZespolDTO zespolDto)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto)
+        {
+            throw new NotImplementedException();
+
         }
     }
 }

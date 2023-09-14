@@ -31,8 +31,8 @@ namespace BLL.Services.Sekretarz
         void AddProjektToTeam(int idZespolu, ProjektDTO projektDto);
         void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
 
-        void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu);
-        void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);          //ddpd
+        void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
+        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);       //ddpd
 
         void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
         void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);

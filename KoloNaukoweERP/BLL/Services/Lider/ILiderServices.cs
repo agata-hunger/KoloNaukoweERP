@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BLL.Models;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,10 @@ namespace BLL.Services.Lider
 {
     public interface ILiderServices
     {
-        void AddWypozyczenie(string nazwaSprzetu, int idCzlonka);
-        void RemoveWypozyczenie(string nazwaSprzetu, int idCzlonka);
+        void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
+        void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
 
-
-        void AddZespolToProject(Zespol zespol, int idProjektu);
-        void RemoveZespolFromProject(Zespol zespol, int idProjektu);
+        void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
+        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);
     }
 }

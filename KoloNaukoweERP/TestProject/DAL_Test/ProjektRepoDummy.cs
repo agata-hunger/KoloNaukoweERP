@@ -45,5 +45,15 @@ namespace TestProject.DAL_Test
         {
             throw new NotImplementedException();
         }
+
+        public void InsertZespol(int idProjektu, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteZespol(int idProjektu, Zespol zespol) 
+        {
+            throw new NotImplementedException();
+        }
     }
 }

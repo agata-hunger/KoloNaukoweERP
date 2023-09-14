@@ -154,18 +154,25 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        //TODO: To fix
-        public void AddZespolToProject(ZespolDTO zespolDto, string nazwaProjektu)
+        public void AddZespolToProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            //projekt.Zespol = zespol;
+            if(zespolDto==null)
+            {
+                throw new Exception();
+            }
+            var zespol = mapper.Map<Zespol>(zespolDto);
+            unitOfWork.Projekty.InsertZespol(idProjektu, zespol);
             unitOfWork.Save();
         }
 
-        //TODO: To fix
-        public void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu)
+        public void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            if (zespolDto == null)
+            {
+                throw new Exception();
+            }
+            var zespol = mapper.Map<Zespol>(zespolDto);
+            unitOfWork.Projekty.DeleteZespol(idProjektu, zespol);
             unitOfWork.Save();
         }
 
