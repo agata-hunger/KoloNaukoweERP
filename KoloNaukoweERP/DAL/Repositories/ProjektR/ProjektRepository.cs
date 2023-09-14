@@ -22,7 +22,7 @@ namespace DAL.Repositories.ProjektR
             return context.Projekty.ToList();
         }
 
-        public Projekt GetProjektById(int idProjektu)
+        public Projekt GetProjektById(int? idProjektu)
         {
             return context.Projekty.Find(idProjektu);
         }
@@ -42,18 +42,24 @@ namespace DAL.Repositories.ProjektR
         {
             context.Entry(projekt).State = EntityState.Modified;
         }
+
         public void InsertZespol(int idProjektu, Zespol zespol)
         {
-            throw new NotImplementedException();
+            var projekt = context.Projekty.Find(idProjektu);
+            zespol.Projekty.Add(projekt);
         }
+
         public void DeleteZespol(int idProjektu, Zespol zespol)
         {
-            throw new NotImplementedException();
+            var projekt = context.Projekty.Find(idProjektu);
+            zespol.Projekty.Remove(projekt);
         }
+
         public void Dispose()
         {
             context.Dispose();
         }
+
         public void Save()
         {
             context.SaveChanges();

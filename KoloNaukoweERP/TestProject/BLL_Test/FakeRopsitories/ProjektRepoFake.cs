@@ -12,12 +12,11 @@ namespace TestProject.BLL_Test.FakeRopsitories
     {
         private List<Projekt> projekty = new List<Projekt>();
 
-
         public IEnumerable<Projekt> GetProjekty()
         {
             return projekty;
         }
-        public Projekt GetProjektById(int idProjektu)
+        public Projekt GetProjektById(int? idProjektu)
         {
             return projekty.Find(p => p.IdProjektu == idProjektu);
 

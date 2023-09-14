@@ -11,22 +11,12 @@ namespace TestProject.DAL_Test
 {
     public class ProjektRepoDummy : IProjektRepository
     {
-        public void DeleteProjekt(int idProjektu)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Projekt GetProjektById(int idProjektu)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Projekt> GetProjekty()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Projekt GetProjektById(int? idProjektu)
         {
             throw new NotImplementedException();
         }
@@ -36,7 +26,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void Save()
+        public void DeleteProjekt(int idProjektu)
         {
             throw new NotImplementedException();
         }
@@ -52,6 +42,16 @@ namespace TestProject.DAL_Test
         }
 
         public void DeleteZespol(int idProjektu, Zespol zespol) 
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
         {
             throw new NotImplementedException();
         }

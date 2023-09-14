@@ -10,7 +10,7 @@ namespace DAL.Repositories.ProjektR
     public interface IProjektRepository
     {
         IEnumerable<Projekt> GetProjekty();
-        Projekt GetProjektById(int idProjektu);
+        Projekt GetProjektById(int? idProjektu);
         void InsertProjekt(Projekt projekt);
         void DeleteProjekt(int idProjektu);
         void UpdateProjekt(Projekt projekt);
