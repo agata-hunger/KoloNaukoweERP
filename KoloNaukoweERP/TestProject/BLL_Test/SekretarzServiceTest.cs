@@ -163,13 +163,54 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
-
-
-
         // AddWypozyczenie             do zweryfikowania czy chcemy?
         // RemoveWypozyczenie          do zweryfikowania czy chcemy?
+        [Fact]
+        public void TestAddWypozyczenieMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
 
+            mockMapper.Setup(x => x.Map<Sprzet>(It.IsAny<SprzetDTO>()))
+                .Returns((SprzetDTO src) => new Sprzet { });
 
+            var czlonek = new Czlonek();
+            var sprzet = new Sprzet();
+
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertWypozyczenie(czlonek.IdCzlonka, It.IsAny<Sprzet>()));
+            
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object,mockMapper.Object);
+            var sprzetDto = new SprzetDTO();
+
+            sekretarz.AddWypozyczenie(czlonek.IdCzlonka, sprzetDto);
+
+            unitOfWorkMock.Verify(repo=>repo.Czlonkowie.InsertWypozyczenie(czlonek.IdCzlonka,It.IsAny<Sprzet>()),Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once());
+        }
+
+        [Fact]
+        public void TestRemoveWyporzyczenieMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+
+            mockMapper.Setup(x => x.Map<Sprzet>(It.IsAny<SprzetDTO>()))
+                .Returns((SprzetDTO src) => new Sprzet { });
+
+            var czlonek = new Czlonek();
+            var sprzet = new Sprzet();
+
+            unitOfWorkMock.Setup(u => u.Czlonkowie.InsertWypozyczenie(czlonek.IdCzlonka, sprzet));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
+            var sprzetDto = new SprzetDTO();
+
+            //sekretarz.AddWypozyczenie(czlonek.IdCzlonka, sprzetDto);
+            sekretarz.RemoveWypozyczenie(czlonek.IdCzlonka, sprzetDto);
+
+            unitOfWorkMock.Verify(repo => repo.Czlonkowie.DeleteWypozyczenie(czlonek.IdCzlonka, It.IsAny<Sprzet>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
 
 
 
@@ -325,8 +366,6 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
         // RemoveProjektFromTeam
-        // AddZespolToProject
-        // RemoveZespolFromProject
 
 
         // AddPelnionaFunkcja

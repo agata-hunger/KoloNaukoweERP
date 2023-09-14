@@ -79,8 +79,6 @@ namespace BLL.Services.Sekretarz
         - czy AddPelnionaFunkcja(string nazwaPelnionejFunkcji, ICollection<Czlonek> czlonkowie)
             powinna mieć kolekcje jako argument?
 
-        - addZespol
-        - removeZespol
 
         */
     }
