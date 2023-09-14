@@ -10,7 +10,7 @@ namespace DAL.Repositories.WydarzenieR
     public interface IWydarzenieRepository
     {
         IEnumerable<Wydarzenie> GetWydarzenia();
-        Wydarzenie GetWydarzenieById(int idWydarzenia);
+        Wydarzenie GetWydarzenieById(int? idWydarzenia);
         void InsertWydarzenie(Wydarzenie wydarzenie);
         void DeleteWydarzenie(int idWydarzenia);
         void UpdateWydarzenie(Wydarzenie wydarzenie);

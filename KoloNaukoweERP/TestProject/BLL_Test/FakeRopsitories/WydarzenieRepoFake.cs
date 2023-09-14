@@ -20,39 +20,41 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             return wydarzenia;
         }
-        public Wydarzenie GetWydarzenieById(int idWydarzenia)
+
+        public Wydarzenie GetWydarzenieById(int? idWydarzenia)
         {
             return wydarzenia.Find(w => w.IdWydarzenia == idWydarzenia);
 
         }
+
         public void InsertWydarzenie(Wydarzenie wydarzenie)
         {
             wydarzenia.Add(wydarzenie);
         }
+
         public void DeleteWydarzenie(int idWydarzenia)
         {
-            Wydarzenie wydarzenie = wydarzenia.Find(w => w.IdWydarzenia == idWydarzenia);
+            var wydarzenie = wydarzenia.Find(w => w.IdWydarzenia == idWydarzenia);
             wydarzenia.Remove(wydarzenie);
         }
+
         public void UpdateWydarzenie(Wydarzenie wydarzenie)
         {
             int index = wydarzenia.FindIndex(w => w.IdWydarzenia == wydarzenie.IdWydarzenia);
             if (index != -1)
                 wydarzenia[index] = wydarzenie;
         }
+
         public void InsertZespol(int idWydarzenia, Zespol zespol)
         {
             throw new NotImplementedException();
         }
+
         public void DeleteZespol(int idWydarzenia, Zespol zespol)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteWydarzenie(int? idWydarzenia)
-        {
-            throw new NotImplementedException();
-        }
         public void Dispose()
         {
             //do nothing

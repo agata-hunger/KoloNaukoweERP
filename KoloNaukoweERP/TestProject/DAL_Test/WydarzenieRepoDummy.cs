@@ -11,22 +11,12 @@ namespace TestProject.DAL_Test
 {
     public class WydarzenieRepoDummy : IWydarzenieRepository
     {
-        public void DeleteWydarzenie(int idWydarzenia)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Wydarzenie> GetWydarzenia()
         {
             throw new NotImplementedException();
         }
 
-        public Wydarzenie GetWydarzenieById(int idWydarzenia)
+        public Wydarzenie GetWydarzenieById(int? idWydarzenia)
         {
             throw new NotImplementedException();
         }
@@ -36,12 +26,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void DeleteWydarzenie(int? idWydarzenia)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
+        public void DeleteWydarzenie(int idWydarzenia)
         {
             throw new NotImplementedException();
         }
@@ -55,6 +40,16 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
         public void DeleteZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
         {
             throw new NotImplementedException();
         }
