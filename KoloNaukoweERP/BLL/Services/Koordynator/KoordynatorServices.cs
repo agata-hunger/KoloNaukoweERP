@@ -24,7 +24,6 @@ namespace BLL.Services.Koordynator
 
         public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            //TO DO - id użytkownika w Urlu -> 14.09. - ???
             if(sprzetDto == null)
             {
                 throw new Exception();
