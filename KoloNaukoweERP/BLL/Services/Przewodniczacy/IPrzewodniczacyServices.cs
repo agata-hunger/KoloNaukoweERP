@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BLL.Models;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +10,26 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
 {
     public interface IPrzewodniczacyServices
     {
-        void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);
-        void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka);
+        void AddPelnionaFunkcjaToUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcja);
+        void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcja);
 
-        //TODO: ujednolicić - opcjonalnie
-        void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
-        void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
+        void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
+        void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
 
-        void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
-        void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka);
+        void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto);
+        void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto);
 
+        void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
+        void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
 
-        void AddEventToTeam(string nazwaZespolu, string nazwaWydarzenia);
-        void RemoveEventFromTeam(string nazwaZespolu, string nazwaWydarzenia);
+        void AddProjektToTeam(int idZespolu, ProjektDTO projektDt);
+        void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDt);
 
+        void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
+        void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);
 
-        void AddProjektToTeam(string nazwaZespolu, string nazwaProjektu);
-        void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
-
-        void AddZespolToProject(Zespol zespol, string nazwaProjektu);
-        void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu);
-
-        void AddZespolToEvent(Zespol zespol, string nazwaWydarzenia);
-        void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia);
+        void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto);
+        void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
 
        
     }

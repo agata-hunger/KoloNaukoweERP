@@ -48,6 +48,11 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteWydarzenie(int? idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
         public void Dispose()
         {
             //do nothing

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL.Models;
 using DAL;
 using DAL.Entities;
 using DAL.Repositories.CzlonekR;
@@ -52,6 +53,16 @@ namespace TestProject.DAL_Test
         }
 
         public void UpdateCzlonek(Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }

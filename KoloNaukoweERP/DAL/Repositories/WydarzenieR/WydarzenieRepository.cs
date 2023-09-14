@@ -29,7 +29,7 @@ namespace DAL.Repositories.WydarzenieR
         {
             context.Wydarzenia.Add(wydarzenie);
         }
-        public void DeleteWydarzenie(int idWydarzenia)
+        public void DeleteWydarzenie(int? idWydarzenia)
         {
             Wydarzenie wydarzenie = context.Wydarzenia.Find(idWydarzenia);
             context.Wydarzenia.Remove(wydarzenie);
@@ -43,6 +43,14 @@ namespace DAL.Repositories.WydarzenieR
             throw new NotImplementedException();
         }
         public void DeleteZespol(int idWydarzenia, Zespol zespol)
+        {
+            throw new NotImplementedException();
+        }
+        public void RemovePelnionaFunkcja(int idPelnionejFunkcji)
+        {
+            throw new NotImplementedException();
+        }
+        public void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }

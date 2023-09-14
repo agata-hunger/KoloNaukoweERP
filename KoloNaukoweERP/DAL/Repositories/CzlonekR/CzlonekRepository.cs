@@ -50,6 +50,14 @@ namespace DAL.Repositories.CzlonekR
         {
 
         }
+        public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        {
+
+        }
+        public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        {
+
+        }
         public void Dispose()
         {
             context.Dispose();

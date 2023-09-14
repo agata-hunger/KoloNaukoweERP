@@ -45,6 +45,21 @@ namespace TestProject.BLL_Test.FakeRopsitories
             throw new NotImplementedException();
         }
 
+        public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteWydarzenie(int? idWydarzenia)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Dispose()
         {
             //do nothing

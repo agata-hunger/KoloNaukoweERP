@@ -17,19 +17,19 @@ namespace BLL.Services.Sekretarz
         void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto);
 
         void AddZespol(ZespolDTO zespolDto);
-        void RemoveZespol(int idZespolu);
+        void RemoveZespol(int? idZespolu);
 
         /*void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);
         void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);*/
 
         void AddWydarzenie(WydarzenieDTO wydarzenieDto);
-        void RemoveWydarzenie(string nazwaWydarzenia);
+        void RemoveWydarzenie(int? idWydarzenia);
 
         void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
         void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
 
         void AddProjektToTeam(int idZespolu, ProjektDTO projektDto);
-        void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu);
+        void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDto);
 
         void AddZespolToProject(int idProjektu, ZespolDTO zespolDto);
         void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto);       //ddpd
@@ -38,13 +38,13 @@ namespace BLL.Services.Sekretarz
         void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto);
 
         void AddPelnionaFunkcja(PelnionaFunkcjaDTO pelnionaFunkcjaDto);
-        void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji);
+        void RemovePelnionaFunkcja(int? idPelnionejFunkcji);
 
-        void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja);
-        void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka);
+        void AddPelnionaFunkcjaToUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcjaDto);
+        void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcjaDto);
 
         void AddSprzet(SprzetDTO sprzetDto);
-        void RemoveSprzet(int idSrzetu);
+        void RemoveSprzet(int? idSrzetu);
 
         void AddSprzetToTeam(int idZespolu, SprzetDTO sprzetDto);
         void RemoveSprzetFromTeam(int idZespolu, SprzetDTO sprzetDto);
@@ -56,6 +56,7 @@ namespace BLL.Services.Sekretarz
         IEnumerable<WydarzenieDTO> GetEvents();
         ZespolDTO GetTeam(int idZespolu);
         List<ZespolDTO> GetTeams();
+
         //void EditEvent(int idWydarzenia);
 
 

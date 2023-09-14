@@ -1,4 +1,6 @@
-﻿using BLL.Services.Koordynator;
+﻿using AutoMapper;
+using BLL.Models;
+using BLL.Services.Koordynator;
 using BLL.Services.Lider;
 using DAL;
 using DAL.Entities;
@@ -13,52 +15,54 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
     public class PrzewodniczacyServices : IPrzewodniczacyServices
     {
         private readonly IUnitOfWork unitOfWork;
-        public PrzewodniczacyServices(IUnitOfWork unitOfWork)
+        private readonly IMapper mapper;
+        public PrzewodniczacyServices(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
-
-        public void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja)
+        public void AddPelnionaFunkcjaToUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcja)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+           
+/*            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
             var funkcja = unitOfWork.PelnioneFunkcje.GetPelnioneFunkcje().FirstOrDefault(pelnionaFunkcja => pelnionaFunkcja.Nazwa.Equals(pelnionaFunkcja));
             if(czlonek != null && funkcja != null) 
             {
                 czlonek.PelnionaFunkcja = funkcja;
-            }
+            }*/
             unitOfWork.Save();
         }
 
-        public void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka)
+        public void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcja)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
+/*            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
             if(czlonek != null)
             {
                 czlonek.PelnionaFunkcja = null; //It can be null because IdPelnionejFunkcji in Czlonek is nullable
-            }
+            }*/
             unitOfWork.Save();
         }
 
-        public void AddWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
+        public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
+/*            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
             var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            if (czlonek != null && zespol == null)
+            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));*/
+/*            if (czlonek != null && zespol == null)
             {
                 czlonek.Sprzety.Add(sprzet);
             }
             else
             {
                 zespol.Sprzety.Add(sprzet);
-            }
+            }*/
             unitOfWork.Save();
         }
 
-        public void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu)
+        public void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
-            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
+/*            var sprzet = unitOfWork.Sprzety.GetSprzet().FirstOrDefault(sprzet => sprzet.Nazwa.Equals(nazwaSprzetu));
             var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Nazwisko.Equals(nazwiskoCzlonka) && czlonek.Imie.Equals(imieCzlonka));
             var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
             if (czlonek != null && zespol == null)
@@ -69,100 +73,104 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             {
                 zespol.Sprzety.Remove(sprzet);
             }
-            unitOfWork.Save();
+            unitOfWork.Save();*/
         }
 
 
-        public void AddCzlonekToTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        public void AddCzlonekToTeam(int idZespolu, CzlonekDTO czlonekDto)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
+            if (czlonekDto == null)
             {
-                zespol.Czlonkowie.Add(czlonek);
+                throw new Exception();
             }
+            var czlonek = mapper.Map<Czlonek>(czlonekDto);
+            unitOfWork.Zespoly.InsertCzlonek(idZespolu, czlonek);
             unitOfWork.Save();
         }
 
-        public void RemoveCzlonekFromTeam(Zespol zespol, string imieCzlonka, string nazwiskoCzlonka)
+        public void RemoveCzlonekFromTeam(int idZespolu, CzlonekDTO czlonekDto)
         {
-            var czlonek = unitOfWork.Czlonkowie.GetCzlonkowie().FirstOrDefault(czlonek => czlonek.Imie.Equals(imieCzlonka) && czlonek.Nazwisko.Equals(nazwiskoCzlonka));
-            if (czlonek != null)
+            if (czlonekDto == null)
             {
-                zespol.Czlonkowie.Remove(czlonek);
+                throw new Exception();
             }
+            var czlonek = mapper.Map<Czlonek>(czlonekDto);
+            unitOfWork.Zespoly.DeleteCzlonek(idZespolu, czlonek);
             unitOfWork.Save();
         }
 
-        public void AddEventToTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if(wydarzenie!=null)
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);//GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
+            if (wydarzenieDto == null)
             {
-                zespol.Wydarzenia.Add(wydarzenie);
+                throw new Exception();
             }
+            var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
+            unitOfWork.Zespoly.InsertWydarzenie(idZespolu, wydarzenie);
             unitOfWork.Save();
         }
 
-        public void RemoveEventFromTeam(string nazwaZespolu, string nazwaWydarzenia)
+        public void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            if (wydarzenie != null)
+            var zespol = unitOfWork.Zespoly.GetZespolById(idZespolu);
+
+            if (wydarzenieDto == null)
             {
-                zespol.Wydarzenia.Remove(wydarzenie);
+                throw new Exception();
             }
+            var wydarzenie = mapper.Map<Wydarzenie>(wydarzenieDto);
+            unitOfWork.Zespoly.DeleteWydarzenie(idZespolu, wydarzenie);
             unitOfWork.Save();
         }
 
-        public void AddProjektToTeam(string nazwaZespolu, string nazwaProjektu)
+        public void AddProjektToTeam(int idZespolu, ProjektDTO projektDto)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            if (projekt != null) 
+            if (projektDto == null)
             {
-                zespol.Projekty.Add(projekt);
+                throw new Exception();
             }
+            var projekt = mapper.Map<Projekt>(projektDto);
+            unitOfWork.Zespoly.InsertProjekt(idZespolu, projekt);
             unitOfWork.Save();
         }
 
-
-        public void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu)
+        public void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDto)
         {
-            var zespol = unitOfWork.Zespoly.GetZespoly().FirstOrDefault(zespol => zespol.Nazwa.Equals(nazwaZespolu));
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            if (projekt != null)
+            if (projektDto == null)
             {
-                zespol.Projekty.Remove(projekt);
+                throw new Exception();
             }
+            var projekt = mapper.Map<Projekt>(projektDto);
+            unitOfWork.Zespoly.DeleteProjekt(idZespolu, projekt);
             unitOfWork.Save();
         }
 
-        public void AddZespolToProject(Zespol zespol, string nazwaProjektu)
+        public void AddZespolToProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            projekt.Zespol = zespol;
+/*            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            projekt.Zespol = zespol;*/
             unitOfWork.Save();
         }
 
-        public void RemoveZespolFromProject(Zespol zespol, string nazwaProjektu)
+        public void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto)
         {
-            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
-            projekt.Zespol = null;
+/*            var projekt = unitOfWork.Projekty.GetProjekty().FirstOrDefault(projekt => projekt.Nazwa.Equals(nazwaProjektu));
+            projekt.Zespol = null;*/
             unitOfWork.Save();
         }
 
-        public void AddZespolToEvent(Zespol zespol, string nazwaWydarzenia)
+        public void AddZespolToEvent(int idWydarzenia, ZespolDTO zespolDto)
         {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            wydarzenie.Zespol = zespol;
+/*            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
+            wydarzenie.Zespol = zespol;*/
             unitOfWork.Save();
         }
 
-        public void RemoveZespolFromEvent(Zespol zespol, string nazwaWydarzenia)
+        public void RemoveZespolFromEvent(int idWydarzenia, ZespolDTO zespolDto)
         {
-            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
-            wydarzenie.Zespol = null;
+/*            var wydarzenie = unitOfWork.Wydarzenia.GetWydarzenia().FirstOrDefault(wydarzenie => wydarzenie.Nazwa.Equals(nazwaWydarzenia));
+            wydarzenie.Zespol = null;*/
             unitOfWork.Save();
         }
 

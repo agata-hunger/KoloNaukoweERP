@@ -113,7 +113,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public ActionResult Delete (string nazwaWydarzenia)
         {
-            sekretarzService.RemoveWydarzenie(nazwaWydarzenia);
+            //sekretarzService.RemoveWydarzenie(nazwaWydarzenia);
             return View();
         }
         [HttpPost]
@@ -121,7 +121,7 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return View("Delete", wydarzenie);
-            sekretarzService.RemoveWydarzenie(wydarzenie.Nazwa);
+            //sekretarzService.RemoveWydarzenie(wydarzenie.Nazwa);
             return RedirectToAction(nameof(Index));     //prawdopodobieństwo błędu!
         }
 

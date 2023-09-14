@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         [HttpDelete]
         public ActionResult Delete(WydarzenieDTO wydarzenie)
         {
-            sekretarzService.RemoveWydarzenie(wydarzenie.Nazwa);
+            //sekretarzService.RemoveWydarzenie(wydarzenie.Nazwa);
             return Ok();
         }
     }

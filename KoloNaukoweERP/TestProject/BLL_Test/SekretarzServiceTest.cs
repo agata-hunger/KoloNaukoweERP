@@ -237,7 +237,7 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWork, mockMapper.Object);
             var wydarzenieDto = new WydarzenieDTO() { };
 
-            sekretarz.RemoveWydarzenie(wydarzenieDto.Nazwa);
+            sekretarz.RemoveWydarzenie(wydarzenieDto.IdWydarzenia);
 
             Assert.Equal(0, wydarzenieRepo.GetWydarzenia().Count());
         }

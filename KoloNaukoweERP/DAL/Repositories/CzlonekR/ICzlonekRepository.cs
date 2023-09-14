@@ -16,6 +16,8 @@ namespace DAL.Repositories.CzlonekR
         void UpdateCzlonek(Czlonek czlonek);
         void InsertWypozyczenie(int idCzlonka, Sprzet sprzet);
         void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet);
+        void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja);
+        void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja);
         void Dispose();
         void Save();
     }

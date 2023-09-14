@@ -48,7 +48,7 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public void AddPelnionaFunkcjaToUser(string imieCzlonka, string nazwiskoCzlonka, string pelnionaFunkcja)
+        public void AddPelnionaFunkcjaToUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcjaDto)
         {
             throw new NotImplementedException();
         }
@@ -141,32 +141,32 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public void RemovePelnionaFunkcja(string nazwaPelnionejFunkcji)
+        public void RemovePelnionaFunkcja(int? idCzlonka)
         {
             throw new NotImplementedException();
         }
 
-        public void RemovePelnionaFunkcjaFromUser(string imieCzlonka, string nazwiskoCzlonka)
+        public void RemovePelnionaFunkcjaFromUser(int idCzlonka, PelnionaFunkcjaDTO pelnionaFunkcjaDto)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveProjekt(string nazwaProjektu)
+        public void RemoveProjekt(int? idProjektu)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveProjektFromTeam(string nazwaZespolu, string nazwaProjektu)
+        public void RemoveProjektFromTeam(int idZespolu, ProjektDTO projektDTO)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveSprzet(string nazwaSprzetu)
+        public void RemoveSprzet(int? idSprzet)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveWydarzenie(string nazwaWydarzenia)
+        public void RemoveWydarzenie(int? idWydarzenia)
         {
             throw new NotImplementedException();
         }
@@ -378,7 +378,12 @@ namespace TestControllersMVC
         public void RemoveZespolFromProject(int idProjektu, ZespolDTO zespolDto)
         {
             throw new NotImplementedException();
-
         }
+
+        public void RemoveZespol(int? idZespolu)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
