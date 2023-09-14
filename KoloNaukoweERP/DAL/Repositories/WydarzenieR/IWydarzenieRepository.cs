@@ -12,7 +12,7 @@ namespace DAL.Repositories.WydarzenieR
         IEnumerable<Wydarzenie> GetWydarzenia();
         Wydarzenie GetWydarzenieById(int idWydarzenia);
         void InsertWydarzenie(Wydarzenie wydarzenie);
-        void DeleteWydarzenie(int? idWydarzenia);
+        void DeleteWydarzenie(int idWydarzenia);
         void UpdateWydarzenie(Wydarzenie wydarzenie);
         void InsertZespol(int idWydarzenia, Zespol zespol);
         void DeleteZespol(int idWydarzenia, Zespol zespol);

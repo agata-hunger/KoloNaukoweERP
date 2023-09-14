@@ -29,9 +29,9 @@ namespace DAL.Repositories.WydarzenieR
         {
             context.Wydarzenia.Add(wydarzenie);
         }
-        public void DeleteWydarzenie(int? idWydarzenia)
+        public void DeleteWydarzenie(int idWydarzenia)
         {
-            Wydarzenie wydarzenie = context.Wydarzenia.Find(idWydarzenia);
+            var wydarzenie = context.Wydarzenia.Find(idWydarzenia);
             context.Wydarzenia.Remove(wydarzenie);
         }
         public void UpdateWydarzenie(Wydarzenie wydarzenie)

@@ -34,17 +34,19 @@ namespace DAL.Repositories.CzlonekR
 
         public void DeleteCzlonek(int idCzlonka)
         {
-            Czlonek czlonek = context.Czlonkowie.Find(idCzlonka);
+            var czlonek = context.Czlonkowie.Find(idCzlonka);
             context.Czlonkowie.Remove(czlonek);
         }
 
+        //TODO: fix/verify this method
         public void UpdateCzlonek(Czlonek czlonek)
         {
             context.Entry(czlonek).State = EntityState.Modified;
         }
         public void InsertWypozyczenie(int idCzlonka, Sprzet sprzet)
         {
-
+            var czlonek = context.Czlonkowie.Find(idCzlonka);
+            czlonek.Sprzety.Add(sprzet);
         }
         public void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet)
         {

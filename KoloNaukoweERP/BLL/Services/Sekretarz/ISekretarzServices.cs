@@ -23,7 +23,7 @@ namespace BLL.Services.Sekretarz
         void RemoveWypozyczenie(string nazwaSprzetu, string nazwiskoCzlonka, string imieCzlonka, string nazwaZespolu);*/
 
         void AddWydarzenie(WydarzenieDTO wydarzenieDto);
-        void RemoveWydarzenie(int? idWydarzenia);
+        void RemoveWydarzenie(int idWydarzenia);
 
         void AddWydarzenieToTeam(int idZespolu, WydarzenieDTO wydarzenieDto);
         void RemoveWydarzenieFromTeam(int idZespolu, WydarzenieDTO wydarzenieDto);

@@ -98,7 +98,7 @@ namespace BLL.Services.Sekretarz
             unitOfWork.Save();
         }
 
-        public void RemoveWydarzenie(int? idWydarzenia)
+        public void RemoveWydarzenie(int idWydarzenia)
         {
             if (idWydarzenia==null)
             {

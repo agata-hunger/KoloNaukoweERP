@@ -166,7 +166,7 @@ namespace TestControllersMVC
             throw new NotImplementedException();
         }
 
-        public void RemoveWydarzenie(int? idWydarzenia)
+        public void RemoveWydarzenie(int idWydarzenia)
         {
             throw new NotImplementedException();
         }
