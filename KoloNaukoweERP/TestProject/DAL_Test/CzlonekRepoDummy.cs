@@ -12,27 +12,27 @@ namespace TestProject.DAL_Test
 {
     public class CzlonekRepoDummy : ICzlonekRepository
     {
-        public void DeleteCzlonek(int idCzlonka)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Czlonek GetCzlonekById(int idCzlonka)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Czlonek> GetCzlonkowie()
         {
             throw new NotImplementedException();
         }
 
+        public Czlonek GetCzlonekById(int? idCzlonka)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertCzlonek(Czlonek czlonek)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCzlonek(int idCzlonka)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCzlonek(Czlonek czlonek)
         {
             throw new NotImplementedException();
         }
@@ -47,12 +47,7 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateCzlonek(Czlonek czlonek)
+        public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }
@@ -62,7 +57,12 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
-        public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
         {
             throw new NotImplementedException();
         }

@@ -17,5 +17,15 @@ namespace DAL.Entities
         public string Nazwa { get; set; }
 
         public ICollection<Czlonek>? Czlonkowie { get; set; }
+
+        internal void Add(PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Remove(PelnionaFunkcja pelnionaFunkcja)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

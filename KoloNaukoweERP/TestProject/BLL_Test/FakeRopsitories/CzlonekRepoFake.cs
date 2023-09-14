@@ -17,7 +17,7 @@ namespace TestProject.BLL_Test.FakeRopsitories
         {
             return czlonkowie;
         }
-        public Czlonek GetCzlonekById(int idCzlonka)
+        public Czlonek GetCzlonekById(int? idCzlonka)
         {
             return czlonkowie.Find(cz => cz.IdCzlonka == idCzlonka);
         }
@@ -45,17 +45,12 @@ namespace TestProject.BLL_Test.FakeRopsitories
             throw new NotImplementedException();
         }
 
-        public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
-        {
-            throw new NotImplementedException();
-        }
-
         public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteWydarzenie(int? idWydarzenia)
+        public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
             throw new NotImplementedException();
         }

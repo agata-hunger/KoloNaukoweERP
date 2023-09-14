@@ -22,7 +22,7 @@ namespace DAL.Repositories.CzlonekR
             return context.Czlonkowie.ToList();
         }
 
-        public Czlonek GetCzlonekById(int idCzlonka)
+        public Czlonek GetCzlonekById(int? idCzlonka)
         {
             return context.Czlonkowie.Find(idCzlonka);
         }
@@ -43,27 +43,36 @@ namespace DAL.Repositories.CzlonekR
         {
             context.Entry(czlonek).State = EntityState.Modified;
         }
+        
         public void InsertWypozyczenie(int idCzlonka, Sprzet sprzet)
         {
             var czlonek = context.Czlonkowie.Find(idCzlonka);
             czlonek.Sprzety.Add(sprzet);
         }
+        
         public void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet)
         {
-
+            var czlonek = context.Czlonkowie.Find(idCzlonka);
+            czlonek.Sprzety.Remove(sprzet);
         }
+        
         public void InsertPelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
-
+            var czlonek = context.Czlonkowie.Find(idCzlonka);
+            czlonek.PelnionaFunkcja.Add(pelnionaFunkcja);
         }
+
         public void DeletePelnionaFunkcja(int idCzlonka, PelnionaFunkcja pelnionaFunkcja)
         {
-
+            var czlonek = context.Czlonkowie.Find(idCzlonka);
+            czlonek.PelnionaFunkcja.Remove(pelnionaFunkcja);
         }
+
         public void Dispose()
         {
             context.Dispose();
         }
+
         public void Save()
         {
             context.SaveChanges();
