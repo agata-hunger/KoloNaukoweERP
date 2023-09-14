@@ -36,6 +36,14 @@ namespace TestProject.BLL_Test.FakeRopsitories
             if (index != -1)
                 czlonkowie[index] = czlonek;
         }
+        public void InsertWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Dispose()
         {

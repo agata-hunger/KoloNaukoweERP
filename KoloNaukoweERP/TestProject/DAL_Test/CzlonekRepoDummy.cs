@@ -36,6 +36,16 @@ namespace TestProject.DAL_Test
             throw new NotImplementedException();
         }
 
+        public void InsertWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Save()
         {
             throw new NotImplementedException();

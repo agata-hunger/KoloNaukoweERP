@@ -42,6 +42,14 @@ namespace DAL.Repositories.CzlonekR
         {
             context.Entry(czlonek).State = EntityState.Modified;
         }
+        public void InsertWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+
+        }
+        public void DeleteWypozyczenie(int idCzlonka, Sprzet sprzet)
+        {
+
+        }
         public void Dispose()
         {
             context.Dispose();
