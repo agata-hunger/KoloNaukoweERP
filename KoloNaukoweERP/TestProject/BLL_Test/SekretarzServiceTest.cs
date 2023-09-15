@@ -163,8 +163,6 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Save());
         }
 
-        // AddWypozyczenie             do zweryfikowania czy chcemy?
-        // RemoveWypozyczenie          do zweryfikowania czy chcemy?
         [Fact]
         public void TestAddWypozyczenieMoq()
         {
@@ -205,7 +203,6 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var sprzetDto = new SprzetDTO();
 
-            //sekretarz.AddWypozyczenie(czlonek.IdCzlonka, sprzetDto);
             sekretarz.RemoveWypozyczenie(czlonek.IdCzlonka, sprzetDto);
 
             unitOfWorkMock.Verify(repo => repo.Czlonkowie.DeleteWypozyczenie(czlonek.IdCzlonka, It.IsAny<Sprzet>()), Times.Once());
@@ -335,8 +332,6 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteWydarzenie(zespol.IdZespolu, It.IsAny<ZespolWydarzenie>()), Times.Once());
         }
 
-
-
         [Fact]
         public void TestAddProjektToTeamMoq()
         {
@@ -365,13 +360,76 @@ namespace TestProject.BLL_Test
             unitOfWorkMock.Verify(repo => repo.Zespoly.InsertProjekt(zespol.IdZespolu, It.IsAny<ZespolProjekt>()), Times.Once());
             unitOfWorkMock.Verify(repo => repo.Save());
         }
-        // RemoveProjektFromTeam
 
+        [Fact]
+        public void TestRemoveProjektFromTeamMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
 
-        // AddPelnionaFunkcja
-        // RemovePelnionaFunkcja
-        // AddPelnionaFunkcjaToUser
-        // RemovePelnionaFunkcjaFromUser
+            mockMapper.Setup(x => x.Map<Projekt>(It.IsAny<ProjektDTO>()))
+                .Returns((ProjektDTO src) => new Projekt { });
+
+            var zespol = new Zespol() { };
+            unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
+
+            var projekt = new Projekt();
+            unitOfWorkMock.Setup(u => u.Projekty.InsertProjekt(projekt));
+
+            var zespolProjekt = new ZespolProjekt() { ProjektId = projekt.IdProjektu, Projekt = projekt, ZespolId = zespol.IdZespolu, Zespol = zespol };
+            unitOfWorkMock.Setup(u => u.Zespoly.InsertProjekt(zespol.IdZespolu, zespolProjekt));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
+            var projekttDto = new ProjektDTO() { };
+
+            sekretarz.AddProjektToTeam(zespol.IdZespolu, projekttDto);
+            sekretarz.RemoveProjektFromTeam(zespol.IdZespolu, projekttDto);
+
+            unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteProjekt(zespol.IdZespolu, It.IsAny<ZespolProjekt>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+
+        [Fact]
+        public void TestAddPelnionaFunkcjaMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+            mockMapper.Setup(x => x.Map<PelnionaFunkcja>(It.IsAny<PelnionaFunkcjaDTO>()))
+                .Returns((PelnionaFunkcjaDTO src) => new PelnionaFunkcja { });
+
+            var pelnionaFunkcja = new PelnionaFunkcja();
+            unitOfWorkMock.Setup(u => u.PelnioneFunkcje.InsertPelnionaFunkcja(pelnionaFunkcja));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
+            var pelnionaFunkcjaDto = new PelnionaFunkcjaDTO();
+
+            sekretarz.AddPelnionaFunkcja(pelnionaFunkcjaDto);
+            unitOfWorkMock.Verify(repo => repo.PelnioneFunkcje.InsertPelnionaFunkcja(It.IsAny<PelnionaFunkcja>()), Times.Once);
+            unitOfWorkMock.Verify(repo => repo.Save(), Times.Once);
+        }
+
+        [Fact]
+        public void TestRemovePelnionaFunkcjaMoq()
+        {
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+            mockMapper.Setup(x => x.Map<PelnionaFunkcja>(It.IsAny<PelnionaFunkcjaDTO>()))
+               .Returns((PelnionaFunkcjaDTO src) => new PelnionaFunkcja { });
+
+            var pelnionaFunkcja = new PelnionaFunkcja();
+            unitOfWorkMock.Setup(u => u.PelnioneFunkcje.InsertPelnionaFunkcja(pelnionaFunkcja));
+
+            var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
+            var pelnionaFunkcjaDto = new PelnionaFunkcjaDTO();
+
+            sekretarz.AddPelnionaFunkcja(pelnionaFunkcjaDto);
+            sekretarz.RemovePelnionaFunkcja(pelnionaFunkcja.IdPelnionejFunkcji);
+
+            unitOfWorkMock.Verify(repo => repo.PelnioneFunkcje.DeletePelnionaFunkcja(It.IsAny<int>()), Times.Once());
+            unitOfWorkMock.Verify(repo => repo.Save());
+        }
+        // AddPelnionaFunkcjaToUser             -       wiąże się z dodaniem UserPelnionaFunkcja
+        // RemovePelnionaFunkcjaFromUser             -       wiąże się z dodaniem UserPelnionaFunkcja
 
         [Fact]
         public void TestAddSprzetMoq()
