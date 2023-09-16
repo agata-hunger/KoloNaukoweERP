@@ -142,6 +142,7 @@ namespace BLL.Services.ZastepcaPrzewodniczacego
             unitOfWork.Save();
         }
 
+        //do przekminienia
         public void AddZespolToProject(int idProjektu, ZespolDTO zespolDto)
         {
             if (zespolDto == null)
