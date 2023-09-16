@@ -88,7 +88,6 @@ namespace BLL.Services.Sekretarz
 
         }
 
-
         public void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
             if (sprzetDto == null)
