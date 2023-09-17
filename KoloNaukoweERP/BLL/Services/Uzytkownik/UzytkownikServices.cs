@@ -43,5 +43,16 @@ namespace BLL.Services.Uzytkownik
             unitOfWork.Czlonkowie.DeleteWypozyczenie(idCzlonka, sprzet);
             unitOfWork.Save();
         }
+
+        public List<SprzetDTO> GetSprzet()
+        {
+            var list = new List<Sprzet>();
+            list = (List<Sprzet>)unitOfWork.Sprzety.GetSprzet();
+            if (list == null)
+            {
+                throw new Exception();
+            }
+            return mapper.Map<List<SprzetDTO>>(list);
+        }
     }
 }

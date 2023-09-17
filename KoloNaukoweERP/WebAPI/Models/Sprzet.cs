@@ -1,6 +1,8 @@
-﻿namespace WebAPI.Models
+﻿using BLL.Models;
+
+namespace WebAPI.Models
 {
-    public class SprzetDTO
+    public class Sprzet
     {
         public int IdSprzetu { get; set; }
         public int? IdCzlonka { get; set; }
@@ -8,5 +10,6 @@
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public bool CzyDostepny { get; set; }
+        public IEnumerable<SprzetDTO> Sprzety { get; set; }
     }
 }

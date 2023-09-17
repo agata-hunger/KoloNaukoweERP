@@ -1,0 +1,42 @@
+﻿@* @model List<SprzetDTO> // Model danych, który jest listą SprzetDTO *@
+    @model WebAPI.Models.Sprzet
+@{
+    ViewBag.Title = "Lista Sprzętu";
+}
+
+<h2>Lista Sprzętu</h2>
+
+
+@{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Sprzętu</th>
+                <th>ID członka</th>
+                <th>ID Zespołu</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Dostępność</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sprzet in Model.Sprzety)
+            {
+                <tr>
+                    <td>@sprzet.IdSprzetu</td>
+                    <td>@sprzet.IdCzlonka</td>
+                    <td>@sprzet.IdZespolu</td>
+                    <td>@sprzet.Nazwa</td>
+                    <td>@sprzet.Opis</td>
+                    <td>(@sprzet.CzyDostepny ? "Dostępny" : "Niedostępny")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@* else
+{
+    <p>Brak dostępnego sprzętu.</p>
+} *@
+
+@Html.ActionLink("Powrót do strony głównej", "Index", "Home") // Link do powrotu do strony głównej

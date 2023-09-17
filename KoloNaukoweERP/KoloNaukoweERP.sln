@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestControllersMVC", "TestControllersMVC\TestControllersMVC.csproj", "{24F7B27B-778E-4641-8F1F-EECCFE021D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{E84963C5-E729-401C-8FFF-D84BDA3FF630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{E84963C5-E729-401C-8FFF-D84BDA3FF630}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -352,5 +352,7 @@ namespace BLL.Services.Sekretarz
             }
             return mapper.Map<List<ZespolDTO>>(list);
         }
+
+        
     }
 }

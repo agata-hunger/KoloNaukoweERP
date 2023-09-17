@@ -12,5 +12,6 @@ namespace BLL.Services.Uzytkownik
     {
         void AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
         void RemoveWypozyczenie(int idCzlonka, SprzetDTO sprzetDto);
+        public List<SprzetDTO> GetSprzet();
     }
 }

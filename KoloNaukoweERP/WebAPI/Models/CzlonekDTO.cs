@@ -12,6 +12,6 @@
         public string Wydzial { get; set; }
         public string Uczelnia { get; set; }
         public virtual ICollection<ZespolDTO> ZespolyDTOs { get; set; }
-        public virtual ICollection<SprzetDTO>? SprzetyDTOs { get; set; }
+        public virtual ICollection<Sprzet>? SprzetyDTOs { get; set; }
     }
 }

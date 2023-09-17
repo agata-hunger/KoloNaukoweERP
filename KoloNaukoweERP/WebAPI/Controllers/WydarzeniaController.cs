@@ -6,8 +6,8 @@ using DAL.Entities;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    /*[Route("api/[controller]")]
+    [ApiController]*/
     public class WydarzeniaController : ControllerBase
     {
         private readonly ISekretarzServices sekretarzService;
