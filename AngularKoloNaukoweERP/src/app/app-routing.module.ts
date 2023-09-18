@@ -8,6 +8,8 @@ import { WydarzenieTabelaComponent } from './wydarzenie-tabela/wydarzenie-tabela
 import { WydarzenieFormularzComponent } from './wydarzenie-formularz/wydarzenie-formularz.component';
 import { ZespolTabelaComponent } from './zespol-tabela/zespol-tabela.component';
 import { ZespolFormularzComponent } from './zespol-formularz/zespol-formularz.component';
+import { CzlonekTabelaComponent } from './czlonek-tabela/czlonek-tabela.component';
+import { CzlonekFormularzComponent } from './czlonek-formularz/czlonek-formularz.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,13 @@ const routes: Routes = [
     [
       { path: '', component: ZespolTabelaComponent },
       { path: 'dodajZespol', component: ZespolFormularzComponent}
+    ]
+  },
+  {
+    path: 'czlonkowie', children:
+    [
+      { path: '', component: CzlonekTabelaComponent },
+      { path: 'dodajCzlonka', component: CzlonekFormularzComponent}
     ]
   }
 ];
