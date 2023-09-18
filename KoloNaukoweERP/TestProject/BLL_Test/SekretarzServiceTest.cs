@@ -61,7 +61,6 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var czlonekDto = new CzlonekDTO() { };
 
-            //sekretarz.AddCzlonek(czlonekDto);
             sekretarz.RemoveCzlonek(czlonekDto.IdCzlonka);
 
             unitOfWorkMock.Verify(repo => repo.Czlonkowie.DeleteCzlonek(It.IsAny<int>()), Times.Once());
@@ -78,11 +77,8 @@ namespace TestProject.BLL_Test
                 .Returns((CzlonekDTO src) => new Czlonek { });
 
             var zespol = new Zespol() { };
-            //unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
-            //unitOfWorkMock.Setup(u => u.Zespoly.InsertZespol(zespol));
 
             var czlonek = new Czlonek() { };
-            //unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
             unitOfWorkMock.Setup(u => u.Zespoly.InsertCzlonek(zespol.IdZespolu, It.IsAny<Czlonek>()));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
@@ -104,16 +100,13 @@ namespace TestProject.BLL_Test
                 .Returns((CzlonekDTO src) => new Czlonek { });
 
             var zespol = new Zespol() { };
-            //unitOfWorkMock.Setup(u => u.Zespoly.GetZespolById(zespol.IdZespolu)).Returns(zespol);
 
             var czlonek = new Czlonek();
-            //unitOfWorkMock.Setup(u => u.Czlonkowie.InsertCzlonek(czlonek));
             unitOfWorkMock.Setup(u => u.Zespoly.InsertCzlonek(zespol.IdZespolu, czlonek));
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var czlonekDto = new CzlonekDTO();
 
-            //sekretarz.AddCzlonekToTeam(zespol.IdZespolu, czlonekDto);
             sekretarz.RemoveCzlonekFromTeam(zespol.IdZespolu, czlonekDto);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteCzlonek(zespol.IdZespolu, It.IsAny<Czlonek>()), Times.Once());
@@ -156,7 +149,6 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var zespolDto = new ZespolDTO() { };    
 
-            //sekretarz.AddZespol(zespolDto);
             sekretarz.RemoveZespol(zespolDto.IdZespolu);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.DeleteZespol(It.IsAny<int>()), Times.Once());
@@ -301,8 +293,6 @@ namespace TestProject.BLL_Test
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var wydarzenieDto = new WydarzenieDTO() { };
 
-            //sekretarz.AddWydarzenie(wydarzenieDto);
-
             sekretarz.AddWydarzenieToTeam(zespol.IdZespolu, wydarzenieDto);
 
             unitOfWorkMock.Verify(repo => repo.Zespoly.InsertWydarzenie(zespol.IdZespolu, It.IsAny<ZespolWydarzenie>()), Times.Once());
@@ -352,8 +342,6 @@ namespace TestProject.BLL_Test
 
             var sekretarz = new SekretarzeServices(unitOfWorkMock.Object, mockMapper.Object);
             var projektDto = new ProjektDTO() { };
-
-            //sekretarz.AddWydarzenie(wydarzenieDto);
 
             sekretarz.AddProjektToTeam(zespol.IdZespolu, projektDto);
 

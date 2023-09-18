@@ -14,7 +14,7 @@ namespace WebAPIKN.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
+        public ActionResult AddWypozyczenie(int idCzlonka, SprzetDTO sprzetDto)
         {
             liderServices.AddWypozyczenie(idCzlonka, sprzetDto);
             return View();
