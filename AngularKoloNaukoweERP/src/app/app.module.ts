@@ -16,6 +16,9 @@ import { WydarzenieFormularzComponent } from './wydarzenie-formularz/wydarzenie-
 import { ZespolTabelaComponent } from './zespol-tabela/zespol-tabela.component';
 import { ZespolFormularzComponent } from './zespol-formularz/zespol-formularz.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CzlonekComponent } from './czlonek/czlonek.component';
+import { CzlonekTabelaComponent } from './czlonek-tabela/czlonek-tabela.component';
+import { CzlonekFormularzComponent } from './czlonek-formularz/czlonek-formularz.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     WydarzenieTabelaComponent,
     WydarzenieFormularzComponent,
     ZespolTabelaComponent,
-    ZespolFormularzComponent
+    ZespolFormularzComponent,
+    CzlonekComponent,
+    CzlonekTabelaComponent,
+    CzlonekFormularzComponent
   ],
   imports: [
     BrowserModule,
