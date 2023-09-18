@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CzlonekComponent } from './czlonek/czlonek.component';
 import { CzlonekTabelaComponent } from './czlonek-tabela/czlonek-tabela.component';
 import { CzlonekFormularzComponent } from './czlonek-formularz/czlonek-formularz.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CzlonekFormularzComponent } from './czlonek-formularz/czlonek-formularz
     AppRoutingModule,
     FormsModule,     
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
