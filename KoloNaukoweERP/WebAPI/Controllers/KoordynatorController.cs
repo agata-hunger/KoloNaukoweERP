@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class KoordynatorController : Controller
     {
         public readonly IKoordynatorServices koordynatorServices;
