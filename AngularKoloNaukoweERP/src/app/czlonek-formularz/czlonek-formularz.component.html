@@ -1,0 +1,60 @@
+<!-- <form [formGroup]="form" class="formularz" (submit)="onSubmit()"> -->
+    <form [formGroup]="formCzlonek" class="formularz" >
+        <div [ngClass]="{ 'error': !isValid('idPelnionejFunkcji')}">
+            <label>
+                idPelnionejFunkcji:
+            </label>
+            <input type="number" name="idPelnionejFunkcji" formControlName="idPelnionejFunkcji">
+        </div>
+        <div>
+            <label>
+                idCzlonekZespol:
+            </label>
+            <input type="number" name="idCzlonekZespol" formControlName="idCzlonekZespol">
+        </div>
+        <div>
+            <label>
+                kierunek Studiow
+            </label>
+            <input type="text" name="kierunekStudiow" formControlName="kierunekStudiow">
+        </div>
+        <div>
+            <label>
+                numer telefonu
+            </label>
+            <input type="date" name="terminRealizacji" formControlName="terminRealizacji">
+        </div>
+        <div>
+            <label>
+                mail
+            </label>
+            <input type="text" name="mail" formControlName="mail">
+        </div>
+        <div>
+            <label>
+                nazwisko
+            </label>
+            <input type="text" name="nazwisko" formControlName="nazwisko">
+        </div>
+        <div>
+            <label>
+                imie
+            </label>
+            <input type="text" name="imie" formControlName="imie">
+        </div>
+        <div>
+            <label>
+                uczelnia
+            </label>
+            <input type="text" name="uczelnia" formControlName="uczelnia">
+        </div>
+        <div>
+            <label>
+                wydzial
+            </label>
+            <input type="text" name="wydzial" formControlName="wydzial">
+        </div>
+    
+    
+        <button [disabled]="!formCzlonek.valid" type="submit">Dodaj</button>
+    </form>
